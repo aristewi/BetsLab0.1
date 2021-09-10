@@ -1,0 +1,99 @@
+
+*gui.MainGUI#getPanel()Ljavax/swing/JPanel;l
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.java¿ ¿("3*½
+2l
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaÁ Á(Ÿœ
+l
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaÁ Á(
+%1javax.swing.JPanel"javax.swing.JPanel±
+®
+l
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaÁ Á(
+%2"javax.swing.JPanel#<init>()V*
+
+%1javax.swing.JPanel­
+ª
+l
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaÁ Á(
+gui.MainGUI"
+panel"__id*
+
+%1javax.swing.JPanel­
+ª
+l
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaÂ Â(
+%3javax.swing.JPanel"__id**
+gui.MainGUI"
+panelä
+á
+l
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaÂ Â('
+%4javax.swing.JRadioButton"@gui.MainGUI#getRdbtnNewRadioButton_1()Ljavax/swing/JRadioButton;*
+gui.MainGUI¦£
+l
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaÂ Â((
+%5java.awt.Component"@java.awt.Container#add(Ljava/awt/Component;)Ljava/awt/Component;*
+
+%3javax.swing.JPanel* 
+
+%4javax.swing.JRadioButton2add(Ljava/awt/Component;)­
+ª
+l
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaÃ Ã(
+%6javax.swing.JPanel"__id**
+gui.MainGUI"
+panelä
+á
+l
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaÃ Ã('
+%7javax.swing.JRadioButton"@gui.MainGUI#getRdbtnNewRadioButton_2()Ljavax/swing/JRadioButton;*
+gui.MainGUI¦£
+l
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaÃ Ã((
+%8java.awt.Component"@java.awt.Container#add(Ljava/awt/Component;)Ljava/awt/Component;*
+
+%6javax.swing.JPanel* 
+
+%7javax.swing.JRadioButton2add(Ljava/awt/Component;)­
+ª
+l
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaÄ Ä(
+%9javax.swing.JPanel"__id**
+gui.MainGUI"
+panelã
+à
+l
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaÄ Ä(%
+%10javax.swing.JRadioButton">gui.MainGUI#getRdbtnNewRadioButton()Ljavax/swing/JRadioButton;*
+gui.MainGUI¨¥
+l
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaÄ Ä(&
+%11java.awt.Component"@java.awt.Container#add(Ljava/awt/Component;)Ljava/awt/Component;*
+
+%9javax.swing.JPanel*!
+
+%10javax.swing.JRadioButton2add(Ljava/awt/Component;)*
+1*©
+3l
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaÀ À(­
+ª
+l
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaÀ À(
+%0javax.swing.JPanel"__id**
+gui.MainGUI"
+panel*
+2
+1*°
+1l
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaÆ	 Æ(®
+«
+l
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaÆ	 Æ(
+%12javax.swing.JPanel"__id**
+gui.MainGUI"
+panel"‹
+l
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaÆ Æ(
+
+%12javax.swing.JPanelB
+gui.MainGUI

@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>ApostuaEzabatuGUI.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Bets21Azkena (3 oct 2021 22:03:21)</a> &gt; <a href="../../index.html" class="el_group">Bets21Azkena</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">gui</a> &gt; <span class="el_source">ApostuaEzabatuGUI.java</span></div><h1>ApostuaEzabatuGUI.java</h1><pre class="source lang-java linenums">package gui;
+
+
+
+
+import java.util.*;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.awt.event.*;
+import businessLogic.BLFacade;
+import configuration.UtilDate;
+import domain.Apustua;
+import domain.Bezeroa;
+import domain.PronostikoaContainer;
+import exceptions.EventFinished;
+
+public class ApostuaEzabatuGUI extends JFrame {
+	BezeroaGUI aurrekoa;
+	private Bezeroa bezeroa; 
+	private Vector&lt;Apustua&gt; apustuak;
+	
+	private static final long serialVersionUID = 1L;
+
+	private JLabel jlabelMsg;
+	private JComboBox&lt;Apustua&gt; comboBox;
+<span class="nc" id="L27">	private DefaultComboBoxModel&lt;Apustua&gt; apustuakModel = new DefaultComboBoxModel&lt;Apustua&gt;();</span>
+	
+	private Apustua selectedApustua;
+<span class="nc" id="L30">	private Vector&lt;PronostikoaContainer&gt; selectedPronostikoak = new Vector&lt;PronostikoaContainer&gt;();</span>
+	private JButton removeButton;
+<span class="nc" id="L32">	private JScrollPane scrollPaneApustua = new JScrollPane();</span>
+<span class="nc" id="L33">	private JTable tableApustua = new JTable();</span>
+	private DefaultTableModel tableModelApustua;
+
+<span class="nc" id="L36">	private String[] columnNamesApustua = new String[] {</span>
+<span class="nc" id="L37">			ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;EventDate&quot;), </span>
+<span class="nc" id="L38">			ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Event&quot;), </span>
+<span class="nc" id="L39">			ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Query&quot;),</span>
+<span class="nc" id="L40">			ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Result&quot;),</span>
+<span class="nc" id="L41">			ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Kuota&quot;),</span>
+<span class="nc" id="L42">			ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;FinalResult&quot;)</span>
+	};
+	private JLabel labelJokatua;
+	private JLabel labelKuota;
+	private JLabel labelIrabazia;
+	private JLabel labeMsg;
+	
+<span class="nc" id="L49">	public ApostuaEzabatuGUI(BezeroaGUI aurrekoa, Bezeroa bezeroa) {</span>
+		try {
+<span class="nc" id="L51">			this.aurrekoa=aurrekoa;</span>
+<span class="nc" id="L52">			this.bezeroa=bezeroa;</span>
+<span class="nc" id="L53">			jbInit();</span>
+<span class="nc" id="L54">		} catch (Exception e) {</span>
+<span class="nc" id="L55">			e.printStackTrace();</span>
+		}
+<span class="nc" id="L57">	}</span>
+
+	private void jbInit() throws Exception {
+<span class="nc" id="L60">		BLFacade facade = MainGUI.getBusinessLogic();</span>
+<span class="nc" id="L61">		bezeroa=facade.getBezeroa(bezeroa.getErabiltzaileIzena());</span>
+		
+<span class="nc" id="L63">		apustuak=bezeroa.getApustuak();</span>
+
+<span class="nc" id="L65">		this.getContentPane().setLayout(null);</span>
+		
+<span class="nc" id="L67">		this.setSize(new Dimension(630, 470));</span>
+<span class="nc" id="L68">		this.setTitle(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;DeleteBetGUI&quot;));</span>
+		
+<span class="nc" id="L70">		jlabelMsg = new JLabel(&quot;&quot;); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L71">		jlabelMsg.setBounds(50, 23, 493, 30);</span>
+<span class="nc" id="L72">		getContentPane().add(jlabelMsg);</span>
+		
+<span class="nc" id="L74">		scrollPaneApustua = new JScrollPane();</span>
+<span class="nc" id="L75">		scrollPaneApustua.setBounds(new Rectangle(138, 273, 406, 116));</span>
+<span class="nc" id="L76">		scrollPaneApustua.setBounds(19, 114, 585, 116);</span>
+<span class="nc" id="L77">		getContentPane().add(scrollPaneApustua);</span>
+<span class="nc" id="L78">		scrollPaneApustua.setVisible(false);</span>
+		
+<span class="nc" id="L80">		scrollPaneApustua.setViewportView(tableApustua);</span>
+<span class="nc" id="L81">		tableModelApustua = new DefaultTableModel(null, columnNamesApustua);</span>
+		
+<span class="nc" id="L83">		tableApustua.setModel(tableModelApustua);</span>
+<span class="nc" id="L84">		tableApustua.getColumnModel().getColumn(0).setPreferredWidth(45);</span>
+<span class="nc" id="L85">		tableApustua.getColumnModel().getColumn(1).setPreferredWidth(100);</span>
+<span class="nc" id="L86">		tableApustua.getColumnModel().getColumn(2).setPreferredWidth(120);</span>
+<span class="nc" id="L87">		tableApustua.getColumnModel().getColumn(3).setPreferredWidth(5);</span>
+<span class="nc" id="L88">		tableApustua.getColumnModel().getColumn(4).setPreferredWidth(5);</span>
+<span class="nc" id="L89">		tableApustua.getColumnModel().getColumn(5).setPreferredWidth(20);</span>
+		
+<span class="nc" id="L91">		comboBox = new JComboBox&lt;Apustua&gt;();</span>
+<span class="nc" id="L92">		comboBox.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L94">				selectedApustua=((domain.Apustua) comboBox.getSelectedItem());</span>
+<span class="nc" id="L95">				tableApustua.getColumnModel().getColumn(0).setPreferredWidth(25);</span>
+<span class="nc" id="L96">				tableApustua.getColumnModel().getColumn(1).setPreferredWidth(120);</span>
+<span class="nc" id="L97">				tableApustua.getColumnModel().getColumn(2).setPreferredWidth(120);</span>
+<span class="nc" id="L98">				tableApustua.getColumnModel().getColumn(3).setPreferredWidth(5);</span>
+<span class="nc" id="L99">				tableApustua.getColumnModel().getColumn(4).setPreferredWidth(5);</span>
+<span class="nc" id="L100">				tableApustua.getColumnModel().getColumn(5).setPreferredWidth(20);</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">				if(selectedApustua!=null) {</span>
+<span class="nc" id="L102">					removeButton.setVisible(true);</span>
+<span class="nc" id="L103">					removeButton.setEnabled(true);</span>
+<span class="nc" id="L104">					scrollPaneApustua.setVisible(true);</span>
+<span class="nc" id="L105">					tableModelApustua.setDataVector(null, columnNamesApustua);</span>
+<span class="nc" id="L106">					BLFacade facade = MainGUI.getBusinessLogic();</span>
+<span class="nc" id="L107">					selectedPronostikoak=facade.getPronostikoak(selectedApustua);</span>
+					Vector&lt;Object&gt; row;
+<span class="nc bnc" id="L109" title="All 2 branches missed.">					for(PronostikoaContainer p : selectedPronostikoak){</span>
+<span class="nc" id="L110">						row = new Vector&lt;Object&gt;();</span>
+<span class="nc" id="L111">						row.add(UtilDate.getString(p.getGertaera().getEventDate()));</span>
+<span class="nc" id="L112">						row.add(p.getGertaera());</span>
+<span class="nc" id="L113">						row.add(p.getQuestion());</span>
+<span class="nc" id="L114">						row.add(p.getPronostikoa().getDeskripzioa());</span>
+<span class="nc" id="L115">						row.add(p.getPronostikoa().getKuota());</span>
+<span class="nc" id="L116">						String emaitza = p.getQuestion().getResult();</span>
+<span class="nc bnc" id="L117" title="All 2 branches missed.">						if(emaitza==null) {</span>
+<span class="nc" id="L118">							row.add(&quot;-&quot;);</span>
+<span class="nc" id="L119">						}else {</span>
+<span class="nc" id="L120">							row.add(emaitza);</span>
+						}		
+<span class="nc" id="L122">						tableModelApustua.addRow(row);</span>
+					}
+<span class="nc" id="L124">					labelJokatua.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Played&quot;)+&quot; &quot;+selectedApustua.getKopurua());</span>
+<span class="nc" id="L125">					labelKuota.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;TotalFee&quot;)+&quot; &quot;+selectedApustua.getKuotaTotala());</span>
+<span class="nc" id="L126">					labelIrabazia.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Potential&quot;)+&quot; &quot;+selectedApustua.getKopurua()*selectedApustua.getKuotaTotala());</span>
+<span class="nc" id="L127">					tableApustua.getColumnModel().getColumn(0).setPreferredWidth(25);</span>
+<span class="nc" id="L128">					tableApustua.getColumnModel().getColumn(1).setPreferredWidth(60);</span>
+<span class="nc" id="L129">					tableApustua.getColumnModel().getColumn(2).setPreferredWidth(150);</span>
+<span class="nc" id="L130">					tableApustua.getColumnModel().getColumn(3).setPreferredWidth(2);</span>
+<span class="nc" id="L131">					tableApustua.getColumnModel().getColumn(4).setPreferredWidth(2);</span>
+<span class="nc" id="L132">					tableApustua.getColumnModel().getColumn(5).setPreferredWidth(20);</span>
+<span class="nc" id="L133">				}else {</span>
+<span class="nc" id="L134">					jlabelMsg.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;NoBets&quot;));</span>
+<span class="nc" id="L135">					removeButton.setVisible(false);</span>
+<span class="nc" id="L136">					removeButton.setEnabled(false);</span>
+<span class="nc" id="L137">					labelJokatua.setText(&quot;&quot;);</span>
+<span class="nc" id="L138">					labelKuota.setText(&quot;&quot;);</span>
+<span class="nc" id="L139">					labelIrabazia.setText(&quot;&quot;);</span>
+				}
+<span class="nc" id="L141">			}</span>
+		});
+<span class="nc" id="L143">		comboBox.setModel(apustuakModel);</span>
+<span class="nc" id="L144">		comboBox.setBounds(166, 64, 238, 22);</span>
+<span class="nc" id="L145">		getContentPane().add(comboBox);</span>
+<span class="nc bnc" id="L146" title="All 2 branches missed.">		if(apustuak.isEmpty()) {</span>
+<span class="nc" id="L147">			comboBox.setVisible(false);</span>
+		}
+		
+<span class="nc" id="L150">		removeButton = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Remove&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L151">		removeButton.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L153">				labeMsg.setText(&quot;&quot;);</span>
+				try {
+<span class="nc" id="L155">					BLFacade facade = MainGUI.getBusinessLogic();</span>
+<span class="nc" id="L156">					bezeroa=facade.deleteApustua(selectedApustua);</span>
+<span class="nc" id="L157">					labeMsg.setForeground(Color.GREEN);</span>
+<span class="nc" id="L158">					labeMsg.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;SuccessEvent&quot;));</span>
+<span class="nc" id="L159">					apustuakModel.removeAllElements();</span>
+<span class="nc" id="L160">					apustuak=bezeroa.getApustuak();</span>
+<span class="nc bnc" id="L161" title="All 2 branches missed.">					if(apustuak.isEmpty()) {</span>
+<span class="nc" id="L162">						scrollPaneApustua.setVisible(false);</span>
+						//jlabelMsg.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;NoBets&quot;));
+<span class="nc" id="L164">						removeButton.setEnabled(false);</span>
+<span class="nc" id="L165">						removeButton.setVisible(false);</span>
+					}
+<span class="nc bnc" id="L167" title="All 2 branches missed.">					for(Apustua a:apustuak) {</span>
+<span class="nc" id="L168">						apustuakModel.addElement(a);</span>
+					}
+<span class="nc" id="L170">					selectedApustua=((domain.Apustua) comboBox.getSelectedItem());</span>
+<span class="nc" id="L171">				}catch(EventFinished e){</span>
+<span class="nc" id="L172">					labeMsg.setForeground(Color.RED);</span>
+<span class="nc" id="L173">					labeMsg.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;EventsFinished&quot;));</span>
+				}
+<span class="nc" id="L175">			}</span>
+		});
+<span class="nc" id="L177">		removeButton.setBounds(454, 267, 89, 23);</span>
+<span class="nc" id="L178">		getContentPane().add(removeButton);</span>
+<span class="nc" id="L179">		removeButton.setVisible(false);</span>
+<span class="nc" id="L180">		removeButton.setEnabled(false);</span>
+		
+<span class="nc" id="L182">		labelJokatua = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L183">		labelJokatua.setBounds(68, 241, 137, 14);</span>
+<span class="nc" id="L184">		getContentPane().add(labelJokatua);</span>
+		
+<span class="nc" id="L186">		labelKuota = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L187">		labelKuota.setBounds(215, 241, 137, 14);</span>
+<span class="nc" id="L188">		getContentPane().add(labelKuota);</span>
+		
+<span class="nc" id="L190">		labelIrabazia = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L191">		labelIrabazia.setBounds(388, 241, 182, 14);</span>
+<span class="nc" id="L192">		getContentPane().add(labelIrabazia);</span>
+		
+<span class="nc" id="L194">		labeMsg = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L195">		labeMsg.setForeground(Color.RED);</span>
+<span class="nc" id="L196">		labeMsg.setBounds(78, 267, 366, 22);</span>
+<span class="nc" id="L197">		getContentPane().add(labeMsg);</span>
+		
+<span class="nc" id="L199">		JButton jButtonClose = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Back&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L200">		jButtonClose.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L202">				back();</span>
+<span class="nc" id="L203">			}</span>
+		});
+<span class="nc" id="L205">		jButtonClose.setBounds(new Rectangle(300, 275, 130, 30));</span>
+<span class="nc" id="L206">		jButtonClose.setBounds(413, 341, 130, 30);</span>
+<span class="nc" id="L207">		getContentPane().add(jButtonClose);</span>
+		
+<span class="nc bnc" id="L209" title="All 2 branches missed.">		if(apustuak.isEmpty()) {</span>
+<span class="nc" id="L210">			jlabelMsg.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;NoBets&quot;));</span>
+<span class="nc" id="L211">		}else {</span>
+<span class="nc" id="L212">			jlabelMsg.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;ChooseBet&quot;));</span>
+<span class="nc bnc" id="L213" title="All 2 branches missed.">			for(Apustua a:apustuak) {</span>
+<span class="nc" id="L214">				apustuakModel.addElement(a);</span>
+			}
+		}
+		
+<span class="nc" id="L218">	}</span>
+	
+	private void back() {
+<span class="nc" id="L221">		this.setVisible(false);</span>
+<span class="nc" id="L222">		aurrekoa.setVisible(true);</span>
+<span class="nc" id="L223">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>Bets21Azkena (3 oct 2021 22:03:21)</div></body></html>

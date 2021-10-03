@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Pertsona.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Bets21Azkena (3 oct 2021 22:03:21)</a> &gt; <a href="../../index.html" class="el_group">Bets21Azkena</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">Pertsona.java</span></div><h1>Pertsona.java</h1><pre class="source lang-java linenums">package domain;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlSeeAlso;
+
+@Entity
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlSeeAlso ({Bezeroa.class, Admin.class, Langilea.class})
+public abstract class Pertsona implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public String izena;
+	public String abizena1;
+	public String abizena2;
+	@Id
+	@XmlID
+	public String erabiltzaileIzena;
+	public String pasahitza;
+	public String telefonoZbkia;
+	public String email;
+	public Date jaiotzeData;
+	
+	
+	public Pertsona(){
+<span class="nc" id="L34">		super();</span>
+<span class="nc" id="L35">	}</span>
+	
+<span class="fc" id="L37">	public Pertsona (String izena, String abizena1, String abizena2, String erabiltzaileIzena, String pasahitza, String telefonoZbkia, String email, Date jaiotzeData) {</span>
+<span class="fc" id="L38">		this.izena = izena;</span>
+<span class="fc" id="L39">		this.abizena1 = abizena1;</span>
+<span class="fc" id="L40">		this.abizena2 = abizena2;</span>
+<span class="fc" id="L41">		this.erabiltzaileIzena = erabiltzaileIzena;</span>
+<span class="fc" id="L42">		this.pasahitza = pasahitza;</span>
+<span class="fc" id="L43">		this.telefonoZbkia = telefonoZbkia;</span>
+<span class="fc" id="L44">		this.email=email;</span>
+<span class="fc" id="L45">		this.jaiotzeData=jaiotzeData;</span>
+	
+<span class="fc" id="L47">	}</span>
+
+	
+
+	public String getErabiltzaileIzena() {
+<span class="nc" id="L52">		return erabiltzaileIzena;</span>
+	}
+
+	public String getIzena() {
+<span class="nc" id="L56">		return izena;</span>
+	}
+
+	public void setIzena(String izena) {
+<span class="nc" id="L60">		this.izena = izena;</span>
+<span class="nc" id="L61">	}</span>
+
+	public String getAbizena1() {
+<span class="nc" id="L64">		return abizena1;</span>
+	}
+
+	public void setAbizena1(String abizena1) {
+<span class="nc" id="L68">		this.abizena1 = abizena1;</span>
+<span class="nc" id="L69">	}</span>
+
+	public String getAbizena2() {
+<span class="nc" id="L72">		return abizena2;</span>
+	}
+
+	public void setAbizena2(String abizena2) {
+<span class="nc" id="L76">		this.abizena2 = abizena2;</span>
+<span class="nc" id="L77">	}</span>
+
+	public String getPasahitza() {
+<span class="nc" id="L80">		return pasahitza;</span>
+	}
+
+	public void setPasahitza(String pasahitza) {
+<span class="nc" id="L84">		this.pasahitza = pasahitza;</span>
+<span class="nc" id="L85">	}</span>
+
+	public String getTelefonoZbkia() {
+<span class="nc" id="L88">		return telefonoZbkia;</span>
+	}
+
+	public void setTelefonoZbkia(String telefonoZbkia) {
+<span class="nc" id="L92">		this.telefonoZbkia = telefonoZbkia;</span>
+<span class="nc" id="L93">	}</span>
+
+	public String getEmail() {
+<span class="nc" id="L96">		return email;</span>
+	}
+
+	public void setEmail(String email) {
+<span class="nc" id="L100">		this.email = email;</span>
+<span class="nc" id="L101">	}</span>
+
+	public Date getJaiotzeData() {
+<span class="nc" id="L104">		return jaiotzeData;</span>
+	}
+
+	public void setJaiotzeData(Date jaiotzeData) {
+<span class="nc" id="L108">		this.jaiotzeData = jaiotzeData;</span>
+<span class="nc" id="L109">	}</span>
+
+	public void setErabiltzaileIzena(String erabiltzaileIzena) {
+<span class="nc" id="L112">		this.erabiltzaileIzena = erabiltzaileIzena;</span>
+<span class="nc" id="L113">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>Bets21Azkena (3 oct 2021 22:03:21)</div></body></html>

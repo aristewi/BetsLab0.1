@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>BezeroaContainer.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Bets21Azkena (3 oct 2021 22:03:21)</a> &gt; <a href="../../index.html" class="el_group">Bets21Azkena</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">BezeroaContainer.java</span></div><h1>BezeroaContainer.java</h1><pre class="source lang-java linenums">package domain;
+
+import java.util.Vector;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType; 
+
+@XmlAccessorType(XmlAccessType.FIELD) 
+public class BezeroaContainer {
+	
+	private Bezeroa bezeroa; 
+	private Vector&lt;ArretaElkarrizketa&gt; elkarrizketak; 
+	
+<span class="nc" id="L14">	public BezeroaContainer(Bezeroa b) {</span>
+<span class="nc" id="L15">		bezeroa=b;</span>
+<span class="nc" id="L16">		elkarrizketak=b.getArretaElkarrizketak(); </span>
+<span class="nc" id="L17">    }</span>
+	
+<span class="nc" id="L19">	public BezeroaContainer() {</span>
+<span class="nc" id="L20">		bezeroa=null;</span>
+<span class="nc" id="L21">		elkarrizketak=new Vector&lt;ArretaElkarrizketa&gt;();</span>
+<span class="nc" id="L22">	}</span>
+
+	public Bezeroa getBezeroa() {
+<span class="nc" id="L25">		return bezeroa;</span>
+	}
+
+	public void setBezeroa(Bezeroa bezeroa) {
+<span class="nc" id="L29">		this.bezeroa = bezeroa;</span>
+<span class="nc" id="L30">	}</span>
+
+	public Vector&lt;ArretaElkarrizketa&gt; getElkarrizketak() {
+<span class="nc" id="L33">		return elkarrizketak;</span>
+	}
+
+	public void setElkarrizketak(Vector&lt;ArretaElkarrizketa&gt; elkarrizketa) {
+<span class="nc" id="L37">		this.elkarrizketak = elkarrizketa;</span>
+<span class="nc" id="L38">	}</span>
+
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>Bets21Azkena (3 oct 2021 22:03:21)</div></body></html>

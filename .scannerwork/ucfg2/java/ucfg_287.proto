@@ -1,16 +1,16 @@
 
-+domain.Event#getEventDate()Ljava/util/Date;k
-a/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Event.javaF F("1*¨
+4domain.Mezua#getIdentifikadorea()Ljava/lang/Integer;k
+a/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Mezua.java: :(""1*´
 1k
-a/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Event.javaG	 G(­
-ª
+a/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Mezua.java;	 ;(¶
+³
 k
-a/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Event.javaG	 G(
-%0java.util.Date"__id**
-domain.Event"
-	eventDate"…
+a/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Mezua.java;	 ;(
+%0java.lang.Integer"__id*%*#
+domain.Mezua"
+identifikadorea"ˆ
 k
-a/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Event.javaG G(
-
-%0java.util.DateB
-domain.Event
+a/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Mezua.java; ;(
+
+%0java.lang.IntegerB
+domain.Mezua

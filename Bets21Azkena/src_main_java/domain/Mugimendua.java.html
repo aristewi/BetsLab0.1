@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Mugimendua.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Bets21Azkena (3 oct 2021 22:03:21)</a> &gt; <a href="../../index.html" class="el_group">Bets21Azkena</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">Mugimendua.java</span></div><h1>Mugimendua.java</h1><pre class="source lang-java linenums">package domain;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+@Entity
+@XmlAccessorType(XmlAccessType.FIELD)
+public class Mugimendua implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String deskripzioa;
+	private Date data;
+	private double aldaketa;
+	@Id
+	@XmlID
+	@XmlJavaTypeAdapter(IntegerAdapter.class)
+	@GeneratedValue
+	private Integer identifikadorea;
+	@OneToOne
+	@XmlIDREF
+	private Bezeroa bezeroa;
+	private String mota;
+	
+	public Mugimendua(){
+<span class="nc" id="L37">		super();</span>
+<span class="nc" id="L38">	}</span>
+	
+<span class="nc" id="L40">	public Mugimendua(String deskripzioa, double aldaketa, String mota) {</span>
+<span class="nc" id="L41">		data=new Date();</span>
+<span class="nc" id="L42">		this.deskripzioa = deskripzioa;</span>
+<span class="nc" id="L43">		this.aldaketa = aldaketa;</span>
+<span class="nc" id="L44">		this.mota = mota;</span>
+<span class="nc" id="L45">	}</span>
+	
+<span class="nc" id="L47">	public Mugimendua(String deskripzioa, double aldaketa, Bezeroa bezeroa, String mota) {</span>
+<span class="nc" id="L48">		data=new Date();</span>
+<span class="nc" id="L49">		this.deskripzioa = deskripzioa;</span>
+<span class="nc" id="L50">		this.aldaketa = aldaketa;</span>
+<span class="nc" id="L51">		this.bezeroa = bezeroa;</span>
+<span class="nc" id="L52">		this.mota = mota;</span>
+<span class="nc" id="L53">	}</span>
+	
+	public Date getData() {
+<span class="nc" id="L56">		return data;</span>
+	}
+
+	public void setData(Date data) {
+<span class="nc" id="L60">		this.data = data;</span>
+<span class="nc" id="L61">	}</span>
+
+	public Integer getIdentifikadorea() {
+<span class="nc" id="L64">		return identifikadorea;</span>
+	}
+
+	public void setIdentifikadorea(Integer identifikadorea) {
+<span class="nc" id="L68">		this.identifikadorea = identifikadorea;</span>
+<span class="nc" id="L69">	}</span>
+
+	public void setDeskripzioa(String deskripzioa) {
+<span class="nc" id="L72">		this.deskripzioa = deskripzioa;</span>
+<span class="nc" id="L73">	}</span>
+
+	public void setAldaketa(double aldaketa) {
+<span class="nc" id="L76">		this.aldaketa = aldaketa;</span>
+<span class="nc" id="L77">	}</span>
+
+	public void setBezeroa(Bezeroa bezeroa) {
+<span class="nc" id="L80">		this.bezeroa = bezeroa;</span>
+<span class="nc" id="L81">	}</span>
+	
+<span class="nc" id="L83">	public Mugimendua(String deskripzioa, double aldaketa, Bezeroa bezeroa, String mota, Date data) {</span>
+<span class="nc" id="L84">		this.data=data;</span>
+<span class="nc" id="L85">		this.deskripzioa = deskripzioa;</span>
+<span class="nc" id="L86">		this.aldaketa = aldaketa;</span>
+<span class="nc" id="L87">		this.bezeroa = bezeroa;</span>
+<span class="nc" id="L88">		this.mota = mota;</span>
+<span class="nc" id="L89">	}</span>
+	
+	public String getMota() {
+<span class="nc" id="L92">		return mota;</span>
+	}
+
+	public void setMota(String mota) {
+<span class="nc" id="L96">		this.mota = mota;</span>
+<span class="nc" id="L97">	}</span>
+
+	public String getDeskripzioa() {
+<span class="nc" id="L100">		return deskripzioa;</span>
+	}
+	
+	public double getAldaketa() {
+<span class="nc" id="L104">		return aldaketa;</span>
+	}
+	
+	public Bezeroa getBezeroa() {
+<span class="nc" id="L108">		return bezeroa;</span>
+	}
+	
+	public String toString() {
+<span class="nc" id="L112">		return data+&quot; : &quot;+deskripzioa+&quot;  /  &quot;+aldaketa+ &quot; &quot;;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>Bets21Azkena (3 oct 2021 22:03:21)</div></body></html>

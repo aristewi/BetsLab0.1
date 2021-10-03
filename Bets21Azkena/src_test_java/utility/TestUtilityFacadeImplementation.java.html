@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>TestUtilityFacadeImplementation.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Bets21Azkena (3 oct 2021 22:03:21)</a> &gt; <a href="../../index.html" class="el_group">Bets21Azkena</a> &gt; <a href="../index.html" class="el_bundle">src/test/java</a> &gt; <a href="index.source.html" class="el_package">utility</a> &gt; <span class="el_source">TestUtilityFacadeImplementation.java</span></div><h1>TestUtilityFacadeImplementation.java</h1><pre class="source lang-java linenums">package utility;
+
+import java.util.Date;
+import java.util.Vector;
+
+import configuration.ConfigXML;
+import domain.Bezeroa;
+import domain.Event;
+import domain.Langilea;
+import domain.Pertsona;
+import exceptions.UserAlreadyExist;
+
+/**
+ * Utilities to access Data Base
+ * 
+ * @author IS2
+ *
+ */
+public class TestUtilityFacadeImplementation {
+	private TestUtilityDataAccess dbManagerTest;
+
+<span class="fc" id="L22">	public TestUtilityFacadeImplementation() {</span>
+<span class="fc" id="L23">		System.out.println(&quot;Creating TestFacadeImplementation instance&quot;);</span>
+<span class="fc" id="L24">		ConfigXML.getInstance();</span>
+<span class="fc" id="L25">		dbManagerTest = new TestUtilityDataAccess();</span>
+<span class="fc" id="L26">		dbManagerTest.close();</span>
+<span class="fc" id="L27">	}</span>
+
+	public Event addEventWithQuestion(String desc, Date d, String question, float qty) {
+<span class="fc" id="L30">		dbManagerTest.open();</span>
+<span class="fc" id="L31">		Event o = dbManagerTest.addEventWithQuestion(desc, d, question, qty);</span>
+<span class="fc" id="L32">		dbManagerTest.close();</span>
+<span class="fc" id="L33">		return o;</span>
+
+	}
+
+	public Vector&lt;Event&gt; getEvents(Date date) {
+<span class="nc" id="L38">		dbManagerTest.open();</span>
+<span class="nc" id="L39">		Vector&lt;Event&gt; events = dbManagerTest.getEvents(date);</span>
+<span class="nc" id="L40">		dbManagerTest.close();</span>
+<span class="nc" id="L41">		return events;</span>
+	}
+
+	public Bezeroa getBezeroa(String ErabiltzaileIzena) {
+<span class="nc" id="L45">		dbManagerTest.open();</span>
+<span class="nc" id="L46">		Bezeroa b = dbManagerTest.getBezeroa(ErabiltzaileIzena);</span>
+<span class="nc" id="L47">		dbManagerTest.close();</span>
+<span class="nc" id="L48">		return b;</span>
+	}
+
+	public Langilea getLangilea(String ErabiltzaileIzena) {
+<span class="nc" id="L52">		dbManagerTest.open();</span>
+<span class="nc" id="L53">		Langilea l = dbManagerTest.getLangilea(ErabiltzaileIzena);</span>
+<span class="nc" id="L54">		dbManagerTest.close();</span>
+<span class="nc" id="L55">		return l;</span>
+	}
+
+	public Vector&lt;Bezeroa&gt; getBezeroak(String username, Bezeroa bezeroa) {
+<span class="nc" id="L59">		dbManagerTest.open();</span>
+<span class="nc" id="L60">		Vector&lt;Bezeroa&gt; bezeroak = dbManagerTest.getBezeroak(username, bezeroa);</span>
+<span class="nc" id="L61">		dbManagerTest.close();</span>
+<span class="nc" id="L62">		return bezeroak;</span>
+	}
+
+	public Pertsona register(String izena, String abizena1, String abizena2, String erabiltzaileIzena, String pasahitza,
+			String telefonoZbkia, String email, Date jaiotzeData, String mota) throws UserAlreadyExist {
+<span class="fc" id="L67">		dbManagerTest.open();</span>
+<span class="fc" id="L68">		Pertsona emaitza = dbManagerTest.register(izena, abizena1, abizena2, erabiltzaileIzena, pasahitza,</span>
+<span class="fc" id="L69">				telefonoZbkia, email, jaiotzeData, mota);</span>
+<span class="fc" id="L70">		dbManagerTest.close();</span>
+<span class="fc" id="L71">		return emaitza;</span>
+	}
+
+	public void ezabatuGertaera(Event event) {
+<span class="nc" id="L75">		dbManagerTest.open();</span>
+<span class="nc" id="L76">		dbManagerTest.ezabatuGertaera(event);</span>
+<span class="nc" id="L77">		dbManagerTest.close();</span>
+<span class="nc" id="L78">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>Bets21Azkena (3 oct 2021 22:03:21)</div></body></html>

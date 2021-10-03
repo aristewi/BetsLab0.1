@@ -32,6 +32,17 @@ public class RegisterDATest {
 		}
 
 	}
+	@Test
+	@DisplayName("Test5: usuario con parametros nulos")
+	public void test5() {
+		try {
+			betsDAO.register(null, null, null, null, null, null, null, null, "bezeroa");
+			System.out.print("Parametros nulos en algunos o todos los campos");
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	@Test
 	@DisplayName("Test 2: La persona a añadir es un bezeroa")
@@ -56,6 +67,7 @@ public class RegisterDATest {
 					UtilDate.newDate(2021, 11, 2), "admin");
 			
 			System.out.print("usuario añadido corrrectamente, admin");
+			
 
 		} catch (UserAlreadyExist e) {
 			// TODO Auto-generated catch block

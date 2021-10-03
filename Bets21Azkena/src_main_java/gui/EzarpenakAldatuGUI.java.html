@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>EzarpenakAldatuGUI.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Bets21Azkena (3 oct 2021 22:03:21)</a> &gt; <a href="../../index.html" class="el_group">Bets21Azkena</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">gui</a> &gt; <span class="el_source">EzarpenakAldatuGUI.java</span></div><h1>EzarpenakAldatuGUI.java</h1><pre class="source lang-java linenums">package gui;
+
+import java.awt.Color;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import businessLogic.BLFacade;
+import domain.Bezeroa;
+
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
+import java.awt.event.ActionEvent;
+import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
+import java.awt.Font;
+
+public class EzarpenakAldatuGUI extends JFrame {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private Bezeroa bezeroa;
+	private BezeroaGUI lehengoa;
+<span class="nc" id="L31">	private final ButtonGroup buttonGroup = new ButtonGroup();</span>
+	private JTextField balioa;
+	private JLabel kontuMota;
+	private JLabel komisioAutomatikoa;
+	private JLabel komisioa;
+	private JRadioButton pribatua;
+	private JRadioButton publikoa;
+	private JRadioButton bai;
+	private JRadioButton ez;
+	private JLabel batetik;
+	private JButton gorde;
+	private JButton editatu;
+	private JLabel invalid;
+	private JLabel invalid_1;
+	private JLabel invalid_2;
+<span class="nc" id="L46">	private final ButtonGroup buttonGroup_1 = new ButtonGroup();</span>
+	private String mota;
+	
+
+	/**
+	 * Launch the application.
+	 */
+<span class="nc" id="L53">	public EzarpenakAldatuGUI(Bezeroa bezeroa, BezeroaGUI lehengoa) {</span>
+		try {
+<span class="nc" id="L55">			this.lehengoa=lehengoa;</span>
+<span class="nc" id="L56">			this.bezeroa=bezeroa;</span>
+<span class="nc" id="L57">			EzarpenakAldatuGUIExekuzioa();</span>
+<span class="nc" id="L58">		} catch (Exception e) {</span>
+<span class="nc" id="L59">			e.printStackTrace();</span>
+		}
+<span class="nc" id="L61">	}</span>
+
+	/**
+	 * Create the frame.
+	 */
+	public void EzarpenakAldatuGUIExekuzioa() {
+<span class="nc" id="L67">		this.setTitle(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Settings&quot;));</span>
+<span class="nc" id="L68">		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L69">		setBounds(100, 100, 580, 197);</span>
+<span class="nc" id="L70">		contentPane = new JPanel();</span>
+<span class="nc" id="L71">		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));</span>
+<span class="nc" id="L72">		setContentPane(contentPane);</span>
+<span class="nc" id="L73">		contentPane.setLayout(null);</span>
+		
+<span class="nc" id="L75">		JButton btnClose = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Close&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L76">		btnClose.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L78">				atzera();</span>
+<span class="nc" id="L79">			}</span>
+		});
+<span class="nc" id="L81">		btnClose.setBounds(465, 113, 89, 23);</span>
+<span class="nc" id="L82">		contentPane.add(btnClose);</span>
+		
+<span class="nc bnc" id="L84" title="All 2 branches missed.">		if(bezeroa.isPublikoa()) {</span>
+<span class="nc" id="L85">			mota=ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Public&quot;);</span>
+<span class="nc" id="L86">		}else {</span>
+<span class="nc" id="L87">			mota=ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Private&quot;);</span>
+		}
+<span class="nc" id="L89">		kontuMota = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;TypeAccount&quot;)+&quot; &quot;+mota); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L90">		kontuMota.setBounds(31, 33, 359, 14);</span>
+<span class="nc" id="L91">		contentPane.add(kontuMota);</span>
+		
+		String automatikoa;
+<span class="nc" id="L94">		double komisioAuto = bezeroa.getKomisioAutomatikoa();</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">		if(komisioAuto==-1) {</span>
+<span class="nc" id="L96">			automatikoa=ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;No&quot;);</span>
+<span class="nc" id="L97">		}else {</span>
+<span class="nc" id="L98">			automatikoa=ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Yes&quot;);</span>
+		}
+<span class="nc" id="L100">		komisioAutomatikoa = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;AutomaticResponse&quot;)+&quot; &quot;+automatikoa); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L101">		komisioAutomatikoa.setBounds(31, 60, 359, 14);</span>
+<span class="nc" id="L102">		contentPane.add(komisioAutomatikoa);</span>
+		
+<span class="nc" id="L104">		komisioa = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L105">		komisioa.setBounds(69, 88, 282, 14);</span>
+<span class="nc" id="L106">		contentPane.add(komisioa);</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">		if(komisioAuto!=-1) {</span>
+<span class="nc" id="L108">			komisioa.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Commission&quot;)+&quot; &quot;+komisioAuto);</span>
+		}
+		
+<span class="nc" id="L111">		pribatua = new JRadioButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Private&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L112">		buttonGroup.add(pribatua);</span>
+<span class="nc" id="L113">		pribatua.setBounds(229, 30, 110, 23);</span>
+<span class="nc" id="L114">		contentPane.add(pribatua);</span>
+<span class="nc" id="L115">		pribatua.setVisible(false);</span>
+		
+<span class="nc" id="L117">		publikoa = new JRadioButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Public&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L118">		buttonGroup.add(publikoa);</span>
+<span class="nc" id="L119">		publikoa.setBounds(341, 30, 100, 23);</span>
+<span class="nc" id="L120">		contentPane.add(publikoa);</span>
+<span class="nc" id="L121">		publikoa.setVisible(false);</span>
+		
+<span class="nc" id="L123">		bai = new JRadioButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Yes&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L124">		buttonGroup_1.add(bai);</span>
+<span class="nc" id="L125">		bai.addActionListener(new ActionListener(){</span>
+		    public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L127">		    	balioa.setText(&quot;&quot;);</span>
+<span class="nc" id="L128">		    	komisioa.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Commission&quot;));</span>
+<span class="nc" id="L129">		    	balioa.setVisible(true);</span>
+<span class="nc" id="L130">				batetik.setVisible(true);</span>
+<span class="nc" id="L131">		    }</span>
+		});
+<span class="nc" id="L133">		bai.setBounds(229, 57, 110, 23);</span>
+<span class="nc" id="L134">		contentPane.add(bai);</span>
+<span class="nc" id="L135">		bai.setVisible(false);</span>
+		
+<span class="nc" id="L137">		ez = new JRadioButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;No&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L138">		buttonGroup_1.add(ez);</span>
+<span class="nc" id="L139">		ez.addActionListener(new ActionListener(){</span>
+		    public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L141">		    	komisioa.setText(&quot;&quot;);</span>
+<span class="nc" id="L142">		    	balioa.setVisible(false);</span>
+<span class="nc" id="L143">				batetik.setVisible(false);</span>
+<span class="nc" id="L144">		    }</span>
+		});
+<span class="nc" id="L146">		ez.setBounds(341, 57, 101, 23);</span>
+<span class="nc" id="L147">		contentPane.add(ez);</span>
+<span class="nc" id="L148">		ez.setVisible(false);</span>
+		
+<span class="nc" id="L150">		balioa = new JTextField();</span>
+<span class="nc" id="L151">		balioa.setText(&quot;&quot;);</span>
+<span class="nc" id="L152">		balioa.setBounds(194, 86, 47, 20);</span>
+<span class="nc" id="L153">		contentPane.add(balioa);</span>
+<span class="nc" id="L154">		balioa.setColumns(10);</span>
+<span class="nc" id="L155">		balioa.setVisible(false);</span>
+		
+<span class="nc" id="L157">		batetik = new JLabel(&quot;/1&quot;);</span>
+<span class="nc" id="L158">		batetik.setFont(batetik.getFont().deriveFont(batetik.getFont().getStyle() | Font.BOLD, batetik.getFont().getSize() + 1f));</span>
+<span class="nc" id="L159">		batetik.setBounds(243, 88, 61, 14);</span>
+<span class="nc" id="L160">		contentPane.add(batetik);</span>
+<span class="nc" id="L161">		batetik.setVisible(false);</span>
+		
+<span class="nc" id="L163">		gorde = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Save&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L164">		gorde.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L166">				boolean ondo = true;</span>
+<span class="nc" id="L167">				double komisioBerria = -1;</span>
+<span class="nc bnc" id="L168" title="All 4 branches missed.">				if(!pribatua.isSelected() &amp;&amp; !publikoa.isSelected()) {</span>
+<span class="nc" id="L169">					invalid.setVisible(true);</span>
+<span class="nc" id="L170">					ondo=false;</span>
+				}
+<span class="nc bnc" id="L172" title="All 4 branches missed.">				if(!bai.isSelected() &amp;&amp; !ez.isSelected()) {</span>
+<span class="nc" id="L173">					invalid_1.setVisible(true);</span>
+<span class="nc" id="L174">					ondo=false;</span>
+				}
+<span class="nc bnc" id="L176" title="All 2 branches missed.">				if(bai.isSelected()) {</span>
+					try {
+<span class="nc" id="L178">						komisioBerria = Double.valueOf(balioa.getText());</span>
+<span class="nc bnc" id="L179" title="All 4 branches missed.">						if(komisioBerria&lt;0 || komisioBerria&gt;=1) {</span>
+<span class="nc" id="L180">							invalid_2.setVisible(true);</span>
+<span class="nc" id="L181">							ondo=false;</span>
+						}
+<span class="nc" id="L183">					}catch(Exception e) {</span>
+<span class="nc" id="L184">						invalid_2.setVisible(true);</span>
+<span class="nc" id="L185">						ondo=false;</span>
+					}
+				}
+<span class="nc bnc" id="L188" title="All 2 branches missed.">				if(ondo) {</span>
+<span class="nc bnc" id="L189" title="All 2 branches missed.">					if(publikoa.isSelected()) {</span>
+<span class="nc" id="L190">						mota=ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Public&quot;);</span>
+<span class="nc" id="L191">					}else {</span>
+<span class="nc" id="L192">						mota=ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Private&quot;);</span>
+					}
+<span class="nc" id="L194">					BLFacade facade=MainGUI.getBusinessLogic();</span>
+<span class="nc" id="L195">					bezeroa = facade.eguneratuEzarpenak(bezeroa, komisioBerria, publikoa.isSelected());</span>
+<span class="nc" id="L196">					editatu.setVisible(true);</span>
+<span class="nc" id="L197">					editatu.setEnabled(true);</span>
+<span class="nc" id="L198">					kontuMota.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;TypeAccount&quot;)+&quot; &quot;+mota);</span>
+					String automatikoaDa;
+<span class="nc" id="L200">					double komisioAutom = bezeroa.getKomisioAutomatikoa();</span>
+<span class="nc bnc" id="L201" title="All 2 branches missed.">					if(komisioAutom==-1) {</span>
+<span class="nc" id="L202">						automatikoaDa=ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;No&quot;);</span>
+<span class="nc" id="L203">					}else {</span>
+<span class="nc" id="L204">						automatikoaDa=ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Yes&quot;);</span>
+<span class="nc" id="L205">						komisioa.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Commission&quot;)+&quot; &quot;+komisioAutom);</span>
+					}
+<span class="nc" id="L207">					komisioAutomatikoa.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;AutomaticResponse&quot;)+&quot; &quot;+automatikoaDa);</span>
+<span class="nc" id="L208">					bai.setVisible(false);</span>
+<span class="nc" id="L209">					ez.setVisible(false);</span>
+<span class="nc" id="L210">					publikoa.setVisible(false);</span>
+<span class="nc" id="L211">					pribatua.setVisible(false);</span>
+<span class="nc" id="L212">					gorde.setVisible(false);</span>
+<span class="nc" id="L213">					gorde.setEnabled(false);</span>
+<span class="nc" id="L214">					balioa.setVisible(false);</span>
+<span class="nc" id="L215">					batetik.setVisible(false);</span>
+				}
+<span class="nc" id="L217">			}</span>
+		});
+<span class="nc" id="L219">		gorde.setBounds(31, 113, 89, 23);</span>
+<span class="nc" id="L220">		contentPane.add(gorde);</span>
+<span class="nc" id="L221">		gorde.setVisible(false);</span>
+<span class="nc" id="L222">		gorde.setEnabled(false);</span>
+		
+<span class="nc" id="L224">		editatu = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Edit&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L225">		editatu.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L227">				editatu.setVisible(false);</span>
+<span class="nc" id="L228">				editatu.setEnabled(false);</span>
+<span class="nc" id="L229">				kontuMota.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;TypeAccount&quot;));</span>
+<span class="nc" id="L230">				komisioAutomatikoa.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;AutomaticResponse&quot;));</span>
+<span class="nc" id="L231">				komisioa.setText(&quot;&quot;);</span>
+<span class="nc" id="L232">				bai.setVisible(true);</span>
+<span class="nc" id="L233">				ez.setVisible(true);</span>
+<span class="nc" id="L234">				publikoa.setVisible(true);</span>
+<span class="nc" id="L235">				pribatua.setVisible(true);</span>
+<span class="nc" id="L236">				gorde.setVisible(true);</span>
+<span class="nc" id="L237">				gorde.setEnabled(true);</span>
+<span class="nc" id="L238">			}</span>
+		});
+<span class="nc" id="L240">		editatu.setBounds(253, 113, 89, 23);</span>
+<span class="nc" id="L241">		contentPane.add(editatu);</span>
+		
+<span class="nc" id="L243">		invalid = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Invalid&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L244">		invalid.setForeground(Color.RED);</span>
+<span class="nc" id="L245">		invalid.setBounds(455, 35, 72, 14);</span>
+<span class="nc" id="L246">		contentPane.add(invalid);</span>
+<span class="nc" id="L247">		invalid.setVisible(false);</span>
+		
+<span class="nc" id="L249">		invalid_1 = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Invalid&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L250">		invalid_1.setForeground(Color.RED);</span>
+<span class="nc" id="L251">		invalid_1.setBounds(454, 60, 110, 14);</span>
+<span class="nc" id="L252">		contentPane.add(invalid_1);</span>
+<span class="nc" id="L253">		invalid_1.setVisible(false);</span>
+		
+<span class="nc" id="L255">		invalid_2 = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Invalid&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L256">		invalid_2.setForeground(Color.RED);</span>
+<span class="nc" id="L257">		invalid_2.setBounds(289, 88, 120, 14);</span>
+<span class="nc" id="L258">		contentPane.add(invalid_2);</span>
+<span class="nc" id="L259">		invalid_2.setVisible(false);</span>
+<span class="nc" id="L260">	}</span>
+	
+	public void atzera() {
+<span class="nc" id="L263">		this.setVisible(false);</span>
+<span class="nc" id="L264">		this.lehengoa.setBezeroa(bezeroa);</span>
+<span class="nc" id="L265">		this.lehengoa.setVisible(true);</span>
+<span class="nc" id="L266">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>Bets21Azkena (3 oct 2021 22:03:21)</div></body></html>

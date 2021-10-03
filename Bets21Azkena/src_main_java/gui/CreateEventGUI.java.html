@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>CreateEventGUI.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Bets21Azkena (3 oct 2021 22:03:21)</a> &gt; <a href="../../index.html" class="el_group">Bets21Azkena</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">gui</a> &gt; <span class="el_source">CreateEventGUI.java</span></div><h1>CreateEventGUI.java</h1><pre class="source lang-java linenums">package gui;
+
+
+import java.util.*;
+
+import javax.swing.*;
+
+import com.toedter.calendar.JCalendar;
+
+import java.awt.*;
+import java.awt.event.*;
+
+import businessLogic.BLFacade;
+import configuration.UtilDate;
+import domain.Event;
+import exceptions.EventAlreadyExist;
+
+
+public class CreateEventGUI extends JFrame {
+	private static final long serialVersionUID = 1L;
+<span class="nc" id="L21">	DefaultComboBoxModel&lt;Event&gt; modelEvents = new DefaultComboBoxModel&lt;Event&gt;();</span>
+<span class="nc" id="L22">	private JLabel jLabelEventDate = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;EventDate&quot;));</span>
+
+<span class="nc" id="L24">	private JTextField jEventDescription = new JTextField();</span>
+<span class="nc" id="L25">	private JCalendar jCalendar = new JCalendar();</span>
+
+<span class="nc" id="L27">	private JScrollPane scrollPaneEvents = new JScrollPane();</span>
+<span class="nc" id="L28">	private JButton jButtonClose = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Close&quot;));</span>
+<span class="nc" id="L29">	private JLabel jLabelError1 = new JLabel();</span>
+<span class="nc" id="L30">	private JLabel jLabelError2 = new JLabel();</span>
+	private JLabel jLabelSucces;
+	
+	private LangileaGUI aurrekoLangilea;
+<span class="nc" id="L34">	private final JLabel lblNewLabel = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Description&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+	
+<span class="nc" id="L36">	public CreateEventGUI(LangileaGUI aurrekoLangilea) {</span>
+		try {
+<span class="nc" id="L38">			this.aurrekoLangilea=aurrekoLangilea;</span>
+<span class="nc" id="L39">			CreateEventGUIExekuzioa();</span>
+<span class="nc" id="L40">		} catch (Exception e) {</span>
+<span class="nc" id="L41">			e.printStackTrace();</span>
+		}
+<span class="nc" id="L43">	}</span>
+
+
+	public void CreateEventGUIExekuzioa() throws Exception {
+
+<span class="nc" id="L48">		this.getContentPane().setLayout(null);</span>
+<span class="nc" id="L49">		this.setSize(new Dimension(604, 370));</span>
+<span class="nc" id="L50">		this.setTitle(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CreateEventGUI&quot;));</span>
+<span class="nc" id="L51">		jEventDescription.setBounds(new Rectangle(119, 211, 429, 18));</span>
+
+<span class="nc" id="L53">		jCalendar.setBounds(new Rectangle(40, 50, 225, 150));</span>
+<span class="nc" id="L54">		scrollPaneEvents.setBounds(new Rectangle(25, 44, 346, 116));</span>
+<span class="nc" id="L55">		jButtonClose.setBounds(new Rectangle(349, 276, 130, 30));</span>
+<span class="nc" id="L56">		jButtonClose.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L58">				jButtonClose_actionPerformed(e);</span>
+<span class="nc" id="L59">			}</span>
+		});
+		// jLabelMsg.setSize(new Dimension(305, 20));
+
+<span class="nc" id="L63">		jLabelError1.setBounds(new Rectangle(175, 240, 305, 20));</span>
+<span class="nc" id="L64">		jLabelError1.setForeground(Color.red);</span>
+<span class="nc" id="L65">		this.getContentPane().add(jLabelError1, null);</span>
+
+<span class="nc" id="L67">		this.getContentPane().add(jButtonClose, null);</span>
+<span class="nc" id="L68">		this.getContentPane().add(jEventDescription, null);</span>
+
+<span class="nc" id="L70">		this.getContentPane().add(jCalendar, null);	</span>
+
+<span class="nc" id="L72">		jLabelEventDate.setBounds(new Rectangle(40, 15, 140, 25));</span>
+<span class="nc" id="L73">		jLabelEventDate.setBounds(25, 11, 140, 25);</span>
+<span class="nc" id="L74">		getContentPane().add(jLabelEventDate);</span>
+		
+<span class="nc" id="L76">		JButton btnNewButton = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CreateEvent&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L77">		btnNewButton.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L79">				jLabelError1.setText(&quot;&quot;);</span>
+<span class="nc" id="L80">				jLabelError2.setText(&quot;&quot;);</span>
+<span class="nc" id="L81">				jLabelSucces.setText(&quot;&quot;);</span>
+				
+<span class="nc" id="L83">				String description = jEventDescription.getText();</span>
+				
+<span class="nc bnc" id="L85" title="All 2 branches missed.">				if(description.length()&gt;0) {</span>
+<span class="nc" id="L86">					Date eventDate = jCalendar.getDate();</span>
+<span class="nc" id="L87">					eventDate = UtilDate.trim(eventDate);</span>
+<span class="nc" id="L88">					Date today = new Date();</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">					if(eventDate.after(today)) {</span>
+						try {
+<span class="nc" id="L91">							BLFacade facade = MainGUI.getBusinessLogic();</span>
+<span class="nc" id="L92">							facade.createEvent(description,eventDate);</span>
+<span class="nc" id="L93">							jLabelSucces.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;SuccesEvent&quot;));</span>
+<span class="nc" id="L94">						}catch (EventAlreadyExist exp){</span>
+<span class="nc" id="L95">							jLabelError1.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;EventExist&quot;));</span>
+						}
+<span class="nc" id="L97">					}else {</span>
+<span class="nc" id="L98">						jLabelError2.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;DatePased&quot;));</span>
+					}
+<span class="nc" id="L100">				}else {</span>
+<span class="nc" id="L101">					jLabelError1.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;DescriptionEmpty&quot;));</span>
+				}
+				
+<span class="nc" id="L104">			}</span>
+		});
+<span class="nc" id="L106">		btnNewButton.setBounds(100, 276, 165, 30);</span>
+<span class="nc" id="L107">		getContentPane().add(btnNewButton);</span>
+		
+<span class="nc" id="L109">		jLabelError2 = new JLabel();</span>
+<span class="nc" id="L110">		jLabelError2.setForeground(Color.RED);</span>
+<span class="nc" id="L111">		jLabelError2.setBounds(new Rectangle(175, 240, 305, 20));</span>
+<span class="nc" id="L112">		jLabelError2.setBounds(283, 180, 305, 20);</span>
+<span class="nc" id="L113">		getContentPane().add(jLabelError2);</span>
+		
+<span class="nc" id="L115">		jLabelSucces = new JLabel();</span>
+<span class="nc" id="L116">		jLabelSucces.setForeground(Color.GREEN);</span>
+<span class="nc" id="L117">		jLabelSucces.setBounds(new Rectangle(175, 240, 305, 20));</span>
+<span class="nc" id="L118">		jLabelSucces.setBounds(164, 240, 305, 20);</span>
+<span class="nc" id="L119">		getContentPane().add(jLabelSucces);</span>
+<span class="nc" id="L120">		lblNewLabel.setBounds(25, 213, 90, 14);</span>
+		
+<span class="nc" id="L122">		getContentPane().add(lblNewLabel);</span>
+<span class="nc" id="L123">	}</span>
+
+	private void jButtonClose_actionPerformed(ActionEvent e) {
+<span class="nc" id="L126">		this.aurrekoLangilea.setVisible(true);</span>
+<span class="nc" id="L127">		this.setVisible(false);</span>
+<span class="nc" id="L128">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>Bets21Azkena (3 oct 2021 22:03:21)</div></body></html>

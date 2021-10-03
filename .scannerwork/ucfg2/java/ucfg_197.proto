@@ -1,48 +1,16 @@
 
-(domain.Apustua#equals(Ldomain/Apustua;)Zo
-c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.javaï ï("7*Ô
-3o
-c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.javaõ õ("y
-o
-c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.javaõ õ(
-""*Ó
-4o
-c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.javaö ö(ÏÈ
-o
-c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.javaö ö(
-%2".domain.Apustua#baduPronostikoa(LPronostikoa;)Z*
-
-apusdomain.Apustua*
-""2baduPronostikoa(LPronostikoa;)*	
-3
-4
-1*Ô
-6o
-c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.javaó
- ó("y
-o
-c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.javaó ó(
-""*∞
-7o
-c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.javañ ñ(	∫
-∑
-o
-c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.javañ ñ(
-%0java.lang.Integer"__id*%*#
-domain.Apustua"
-pronostikoKopÒÓ
-o
-c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.javañ ñ(0
-%1java.lang.Integer"4domain.Apustua#getPronostikoKop()Ljava/lang/Integer;*
-
-apusdomain.Apustua2getPronostikoKop()*	
-4
-6
-1*Ô
-1o
-c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.javaû	 û("y
-o
-c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.javaû û(
-"":
-apusdomain.ApustuaB
-domain.Apustua
+9domain.Mugimendua#getIdentifikadorea()Ljava/lang/Integer;p
+f/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Mugimendua.java? ?(""1*»
+1p
+f/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Mugimendua.java@	 @(¿
+Ω
+p
+f/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Mugimendua.java@	 @(
+%0java.lang.Integer"__id***(
+domain.Mugimendua"
+identifikadorea"ç
+p
+f/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Mugimendua.java@ @(
+
+%0java.lang.IntegerB
+domain.Mugimendua

@@ -1,16 +1,9 @@
 
-;configuration.ConfigXML#getDatabaseNode()Ljava/lang/String;x
-l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/configuration/ConfigXML.java¦ ¦("1*á
-1x
-l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/configuration/ConfigXML.java§	 §(Ê
-Ç
-x
-l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/configuration/ConfigXML.java§	 §(
-%0java.lang.String"__id*-*+
-configuration.ConfigXML"
-databaseNode"”
-x
-l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/configuration/ConfigXML.java§ §(
-
-%0java.lang.StringB
-configuration.ConfigXML
++domain.Bezeroa#toString()Ljava/lang/String;o
+c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Bezeroa.javaž ž("1*ï
+1o
+c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Bezeroa.javaŸ	 Ÿ("y
+o
+c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Bezeroa.javaŸ Ÿ(
+""B
+domain.Bezeroa

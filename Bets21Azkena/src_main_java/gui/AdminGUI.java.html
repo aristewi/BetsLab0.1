@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>AdminGUI.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Bets21Azkena (3 oct 2021 22:03:21)</a> &gt; <a href="../../index.html" class="el_group">Bets21Azkena</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">gui</a> &gt; <span class="el_source">AdminGUI.java</span></div><h1>AdminGUI.java</h1><pre class="source lang-java linenums">package gui;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
+import java.util.Vector;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import businessLogic.BLFacade;
+import domain.Admin;
+
+import javax.swing.JLabel;
+import java.awt.Color;
+
+public class AdminGUI extends JFrame {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8301123738250509410L;
+	private JPanel contentPane;
+	private MainGUI lehengoMain;
+	private Admin admin;
+	private JLabel done;
+<span class="nc" id="L29">	private static String etiquetas = &quot;Etiquetas&quot;;</span>
+<span class="nc" id="L30">	public AdminGUI(Admin admin, MainGUI lehengoMain) {</span>
+		try {
+<span class="nc" id="L32">			this.lehengoMain=lehengoMain;</span>
+<span class="nc" id="L33">			this.admin=admin;</span>
+<span class="nc" id="L34">			AdminGUIExekuzioa();</span>
+<span class="nc" id="L35">		} catch (Exception e) {</span>
+<span class="nc" id="L36">			e.printStackTrace();</span>
+		}
+<span class="nc" id="L38">	}</span>
+
+	public void AdminGUIExekuzioa() throws Exception{
+<span class="nc" id="L41">		this.setTitle(ResourceBundle.getBundle(etiquetas).getString(&quot;Admin&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+		
+<span class="nc" id="L43">		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L44">		setBounds(100, 100, 450, 332);</span>
+<span class="nc" id="L45">		contentPane = new JPanel();</span>
+<span class="nc" id="L46">		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));</span>
+<span class="nc" id="L47">		setContentPane(contentPane);</span>
+<span class="nc" id="L48">		contentPane.setLayout(null);</span>
+		
+<span class="nc" id="L50">		JLabel lblNewLabel = new JLabel(ResourceBundle.getBundle(etiquetas).getString(&quot;Welcome&quot;)+&quot; &quot;+admin.getErabiltzaileIzena()+&quot;!&quot;); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L51">		lblNewLabel.setBounds(124, 23, 250, 29);</span>
+<span class="nc" id="L52">		contentPane.add(lblNewLabel);</span>
+		
+<span class="nc" id="L54">		JButton btnNewButton = new JButton(ResourceBundle.getBundle(etiquetas).getString(&quot;SignOut&quot;));</span>
+<span class="nc" id="L55">		btnNewButton.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L57">				saioaItxi();</span>
+<span class="nc" id="L58">			}</span>
+		});
+<span class="nc" id="L60">		btnNewButton.setBounds(10, 259, 89, 23);</span>
+<span class="nc" id="L61">		contentPane.add(btnNewButton);</span>
+		
+<span class="nc" id="L63">		JButton btnCreateQuestion = new JButton();</span>
+<span class="nc" id="L64">		btnCreateQuestion.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L66">				irekiCreateQuestion();</span>
+<span class="nc" id="L67">				done.setText(&quot;&quot;);</span>
+<span class="nc" id="L68">			}</span>
+		});
+<span class="nc" id="L70">		btnCreateQuestion.setText(ResourceBundle.getBundle(etiquetas).getString(&quot;CreateQuestion&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L71">		btnCreateQuestion.setBounds(10, 50, 408, 66);</span>
+<span class="nc" id="L72">		contentPane.add(btnCreateQuestion);</span>
+		
+<span class="nc" id="L74">		JButton eguneratuHilabetekoak = new JButton();</span>
+<span class="nc" id="L75">		eguneratuHilabetekoak.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L77">				BLFacade facade=MainGUI.getBusinessLogic();</span>
+<span class="nc" id="L78">				facade.eguneratuErrepikapenak();</span>
+<span class="nc" id="L79">				done.setText(ResourceBundle.getBundle(etiquetas).getString(&quot;Done&quot;));</span>
+<span class="nc" id="L80">			}</span>
+		});
+<span class="nc" id="L82">		eguneratuHilabetekoak.setText(ResourceBundle.getBundle(etiquetas).getString(&quot;ResetMonth&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L83">		eguneratuHilabetekoak.setBounds(10, 180, 408, 66);</span>
+<span class="nc" id="L84">		contentPane.add(eguneratuHilabetekoak);</span>
+		
+<span class="nc" id="L86">		JButton puntuazioakIkusi = new JButton();</span>
+<span class="nc" id="L87">		puntuazioakIkusi.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L89">				irekiPuntuazioakIkusi();</span>
+<span class="nc" id="L90">			}</span>
+		});
+<span class="nc" id="L92">		puntuazioakIkusi.setText(ResourceBundle.getBundle(etiquetas).getString(&quot;ViewWorker&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L93">		puntuazioakIkusi.setBounds(10, 115, 408, 66);</span>
+<span class="nc" id="L94">		contentPane.add(puntuazioakIkusi);</span>
+		
+<span class="nc" id="L96">		done = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L97">		done.setForeground(Color.GREEN);</span>
+<span class="nc" id="L98">		done.setBounds(136, 259, 146, 14);</span>
+<span class="nc" id="L99">		contentPane.add(done);</span>
+<span class="nc" id="L100">	}</span>
+	
+	/**
+	 * Metodo honen bidez, saioa itxi eta hasierako menura joaten gara
+	 */
+	public void saioaItxi() {
+<span class="nc" id="L106">		this.setVisible(false);</span>
+<span class="nc" id="L107">		this.lehengoMain.setVisible(true);</span>
+<span class="nc" id="L108">	}</span>
+	
+	public void irekiCreateQuestion() {
+<span class="nc" id="L111">		this.setVisible(false);</span>
+<span class="nc" id="L112">		JFrame a = new CreateQuestionGUI(new Vector&lt;domain.Event&gt;(), this);</span>
+<span class="nc" id="L113">		a.setVisible(true);</span>
+<span class="nc" id="L114">	}</span>
+	
+	public void irekiPuntuazioakIkusi() {
+<span class="nc" id="L117">		this.setVisible(false);</span>
+<span class="nc" id="L118">		JFrame a = new PuntuazioakIkusiGUI(this);</span>
+<span class="nc" id="L119">		a.setVisible(true);</span>
+<span class="nc" id="L120">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>Bets21Azkena (3 oct 2021 22:03:21)</div></body></html>

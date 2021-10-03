@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>ErrepikatzaileakGUI.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Bets21Azkena (3 oct 2021 22:03:21)</a> &gt; <a href="../../index.html" class="el_group">Bets21Azkena</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">gui</a> &gt; <span class="el_source">ErrepikatzaileakGUI.java</span></div><h1>ErrepikatzaileakGUI.java</h1><pre class="source lang-java linenums">package gui;
+
+import java.awt.Dimension;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+import java.util.Vector;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import businessLogic.BLFacade;
+import domain.Bezeroa;
+import domain.ErrepikatuakContainer;
+import java.awt.event.MouseAdapter;
+
+public class ErrepikatzaileakGUI extends JFrame {
+
+
+	BezeroaGUI aurrekoa;
+	private Bezeroa bezeroa; 
+	private ArrayList&lt;ErrepikatuakContainer&gt; errepikatzaileak;
+	private ArrayList&lt;ErrepikatuakContainer&gt; errepikapenak;
+	
+	private static final long serialVersionUID = 1L;
+
+	private JLabel jlabelMsg;
+<span class="nc" id="L35">	private JScrollPane scrollPaneJarraitzaileak = new JScrollPane();</span>
+<span class="nc" id="L36">	private JTable tableJarraitzaileak = new JTable();</span>
+	private DefaultTableModel tableModelJarraitzaileak;
+	
+<span class="nc" id="L39">	private JScrollPane scrollPaneJarraituak = new JScrollPane();</span>
+<span class="nc" id="L40">	private JTable tableJarraituak = new JTable();</span>
+	private DefaultTableModel tableModelJarraituak;
+
+<span class="nc" id="L43">	private String[] columnNamesJarraitzaileak = new String[] {</span>
+<span class="nc" id="L44">			ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;jarraitzaileak&quot;), </span>
+<span class="nc" id="L45">			&quot;&quot;, </span>
+	};
+<span class="nc" id="L47">	private String[] columnNamesJarraituak = new String[] {</span>
+<span class="nc" id="L48">			ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;jarraituak&quot;), </span>
+<span class="nc" id="L49">			&quot;&quot;, </span>
+	};
+
+	
+<span class="nc" id="L53">	public ErrepikatzaileakGUI(Bezeroa bezeroa, BezeroaGUI aurrekoa) {</span>
+		try {
+<span class="nc" id="L55">			this.aurrekoa=aurrekoa;</span>
+<span class="nc" id="L56">			this.bezeroa=bezeroa;</span>
+<span class="nc" id="L57">			ErrepikapenaGUIExekuzioa();</span>
+<span class="nc" id="L58">		} catch (Exception e) {</span>
+<span class="nc" id="L59">			e.printStackTrace();</span>
+		}
+<span class="nc" id="L61">	}</span>
+	
+	
+	public void ErrepikapenaGUIExekuzioa() {
+<span class="nc" id="L65">		BLFacade facade = MainGUI.getBusinessLogic();</span>
+<span class="nc" id="L66">		bezeroa=facade.getBezeroa(bezeroa.getErabiltzaileIzena());</span>
+
+<span class="nc" id="L68">		this.getContentPane().setLayout(null);</span>
+		
+<span class="nc" id="L70">		this.setSize(new Dimension(630, 470));</span>
+<span class="nc" id="L71">		this.setTitle(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CheckFollowers&quot;));</span>
+		
+<span class="nc" id="L73">		jlabelMsg = new JLabel(&quot;&quot;); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L74">		jlabelMsg.setBounds(43, 24, 493, 30);</span>
+<span class="nc" id="L75">		getContentPane().add(jlabelMsg);</span>
+		
+<span class="nc" id="L77">		scrollPaneJarraitzaileak = new JScrollPane();</span>
+		
+<span class="nc" id="L79">		scrollPaneJarraitzaileak.setBounds(new Rectangle(138, 273, 406, 116));</span>
+<span class="nc" id="L80">		scrollPaneJarraitzaileak.setBounds(19, 60, 585, 116);</span>
+<span class="nc" id="L81">		getContentPane().add(scrollPaneJarraitzaileak);</span>
+<span class="nc" id="L82">		scrollPaneJarraitzaileak.setVisible(false);</span>
+		
+<span class="nc" id="L84">		scrollPaneJarraitzaileak.setViewportView(tableJarraitzaileak);</span>
+<span class="nc" id="L85">		tableModelJarraitzaileak = new DefaultTableModel(null, columnNamesJarraitzaileak);</span>
+		
+<span class="nc" id="L87">		tableJarraitzaileak.setModel(tableModelJarraitzaileak);</span>
+<span class="nc" id="L88">		tableJarraitzaileak.addMouseListener(new MouseAdapter() {</span>
+			public void mouseClicked(MouseEvent e) {
+<span class="nc" id="L90">				int i=tableJarraitzaileak.rowAtPoint(e.getPoint());</span>
+<span class="nc" id="L91">				int j=tableJarraitzaileak.columnAtPoint(e.getPoint());</span>
+<span class="nc" id="L92">				eguneratu();</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">				if(j==1) {</span>
+<span class="nc" id="L94">					BLFacade facade=MainGUI.getBusinessLogic();</span>
+<span class="nc" id="L95">					facade.jarraitzeariUtzi(errepikatzaileak.get(i).getErrepikapena());</span>
+<span class="nc" id="L96">					eguneratu();</span>
+				}
+				
+<span class="nc" id="L99">			}</span>
+		});
+		
+<span class="nc" id="L102">		tableJarraitzaileak.getColumnModel().getColumn(0).setPreferredWidth(25);</span>
+<span class="nc" id="L103">		tableJarraitzaileak.getColumnModel().getColumn(1).setPreferredWidth(120);</span>
+
+		
+<span class="nc" id="L106">		scrollPaneJarraitzaileak.setVisible(true);</span>
+<span class="nc" id="L107">		tableModelJarraitzaileak.setDataVector(null, columnNamesJarraitzaileak);</span>
+		
+		
+		
+<span class="nc" id="L111">		scrollPaneJarraituak = new JScrollPane();</span>
+		
+<span class="nc" id="L113">		scrollPaneJarraituak.setBounds(new Rectangle(138, 435, 406, 116));</span>
+<span class="nc" id="L114">		scrollPaneJarraituak.setBounds(19, 220, 585, 116);</span>
+<span class="nc" id="L115">		getContentPane().add(scrollPaneJarraituak);</span>
+<span class="nc" id="L116">		scrollPaneJarraituak.setVisible(false);</span>
+		
+<span class="nc" id="L118">		scrollPaneJarraituak.setViewportView(tableJarraituak);</span>
+<span class="nc" id="L119">		tableModelJarraituak = new DefaultTableModel(null, columnNamesJarraituak);</span>
+		
+<span class="nc" id="L121">		tableJarraituak.setModel(tableModelJarraituak);</span>
+		
+<span class="nc" id="L123">		JButton btnNewButton = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Back&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L124">		btnNewButton.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L126">				back();</span>
+<span class="nc" id="L127">			}</span>
+		});
+<span class="nc" id="L129">		btnNewButton.setBounds(22, 388, 117, 29);</span>
+<span class="nc" id="L130">		getContentPane().add(btnNewButton);</span>
+<span class="nc" id="L131">		tableJarraituak.addMouseListener(new MouseAdapter() {</span>
+			public void mouseClicked(MouseEvent e) {
+<span class="nc" id="L133">				int i=tableJarraituak.rowAtPoint(e.getPoint());</span>
+<span class="nc" id="L134">				int j=tableJarraituak.columnAtPoint(e.getPoint());</span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">				if(j==1) {</span>
+<span class="nc" id="L136">					BLFacade facade=MainGUI.getBusinessLogic();					</span>
+<span class="nc" id="L137">					facade.jarraitzeariUtzi(errepikapenak.get(i).getErrepikapena());</span>
+					
+				}
+<span class="nc" id="L140">				eguneratu();</span>
+<span class="nc" id="L141">			}</span>
+		});
+		
+<span class="nc" id="L144">		tableJarraituak.getColumnModel().getColumn(0).setPreferredWidth(25);</span>
+<span class="nc" id="L145">		tableJarraituak.getColumnModel().getColumn(1).setPreferredWidth(120);</span>
+
+		
+<span class="nc" id="L148">		scrollPaneJarraituak.setVisible(true);</span>
+<span class="nc" id="L149">		tableModelJarraituak.setDataVector(null, columnNamesJarraituak);</span>
+<span class="nc" id="L150">		eguneratu();</span>
+		
+		
+	
+		
+<span class="nc" id="L155">	}</span>
+	
+	private void back() {
+<span class="nc" id="L158">		this.setVisible(false);</span>
+<span class="nc" id="L159">		BLFacade facade = MainGUI.getBusinessLogic();</span>
+<span class="nc" id="L160">		bezeroa=facade.getBezeroa(bezeroa.getErabiltzaileIzena());</span>
+<span class="nc" id="L161">		aurrekoa.setBezeroa(bezeroa);</span>
+<span class="nc" id="L162">		aurrekoa.setVisible(true);</span>
+<span class="nc" id="L163">	}</span>
+	private void eguneratu() {
+<span class="nc" id="L165">		Vector&lt;Object&gt; row=null;</span>
+<span class="nc" id="L166">		BLFacade facade=MainGUI.getBusinessLogic();</span>
+<span class="nc" id="L167">		errepikatzaileak=facade.getErrepikatzaileak(bezeroa);</span>
+<span class="nc" id="L168">		int size=tableModelJarraitzaileak.getRowCount();</span>
+<span class="nc bnc" id="L169" title="All 2 branches missed.">		if(size&gt;0) {</span>
+<span class="nc bnc" id="L170" title="All 2 branches missed.">			for(int i=0;i&lt;size;i++) {</span>
+<span class="nc" id="L171">				tableModelJarraitzaileak.removeRow(0);</span>
+			}
+		}	
+<span class="nc bnc" id="L174" title="All 2 branches missed.">		for(ErrepikatuakContainer e:errepikatzaileak) {</span>
+<span class="nc" id="L175">			row=new Vector&lt;Object&gt;();</span>
+<span class="nc" id="L176">			row.add(e.getErrepikapena().getNork());</span>
+<span class="nc" id="L177">			row.add(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;JarraitzaileaEzabatu&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L178">			tableModelJarraitzaileak.addRow(row);</span>
+		}
+		
+		
+<span class="nc" id="L182">		errepikapenak=facade.getErrepikapenak(bezeroa);</span>
+<span class="nc" id="L183">		int size2=tableModelJarraituak.getRowCount();</span>
+<span class="nc bnc" id="L184" title="All 2 branches missed.">		if(size2&gt;0) {</span>
+<span class="nc bnc" id="L185" title="All 2 branches missed.">			for(int i=0;i&lt;size2;i++) {</span>
+<span class="nc" id="L186">				tableModelJarraituak.removeRow(0);</span>
+			}
+		}	
+<span class="nc bnc" id="L189" title="All 2 branches missed.">		for(ErrepikatuakContainer e:errepikapenak) {</span>
+<span class="nc" id="L190">			row=new Vector&lt;Object&gt;();</span>
+<span class="nc" id="L191">			row.add(e.getErrepikapena().getNori());</span>
+<span class="nc" id="L192">			row.add(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;JarraituaEzabatu&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+			
+<span class="nc" id="L194">			tableModelJarraituak.addRow(row);</span>
+		}
+		
+		
+<span class="nc" id="L198">	}</span>
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>Bets21Azkena (3 oct 2021 22:03:21)</div></body></html>

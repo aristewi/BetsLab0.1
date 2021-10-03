@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>LangileaGUI.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Bets21Azkena (3 oct 2021 22:03:21)</a> &gt; <a href="../../index.html" class="el_group">Bets21Azkena</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">gui</a> &gt; <span class="el_source">LangileaGUI.java</span></div><h1>LangileaGUI.java</h1><pre class="source lang-java linenums">package gui;
+
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import domain.Langilea;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
+import java.awt.event.ActionEvent;
+
+public class LangileaGUI extends JFrame {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5173883962843347204L;
+	private JPanel contentPane;
+	private MainGUI lehengoMain;
+	private Langilea langilea;
+
+<span class="nc" id="L25">	public LangileaGUI(Langilea langilea, MainGUI lehengoMain) {</span>
+		try {
+<span class="nc" id="L27">			this.lehengoMain=lehengoMain;</span>
+<span class="nc" id="L28">			this.langilea=langilea;</span>
+<span class="nc" id="L29">			langileaGUIExekuzioa();</span>
+<span class="nc" id="L30">		} catch (Exception e) {</span>
+<span class="nc" id="L31">			e.printStackTrace();</span>
+		}
+<span class="nc" id="L33">	}</span>
+
+	public void langileaGUIExekuzioa() throws Exception{
+<span class="nc" id="L36">		this.setTitle(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Worker&quot;));</span>
+<span class="nc" id="L37">		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L38">		setBounds(100, 100, 450, 463);</span>
+<span class="nc" id="L39">		contentPane = new JPanel();</span>
+<span class="nc" id="L40">		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));</span>
+<span class="nc" id="L41">		setContentPane(contentPane);</span>
+<span class="nc" id="L42">		contentPane.setLayout(null);</span>
+		
+<span class="nc" id="L44">		JLabel lblNewLabel = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Welcome&quot;)+&quot; &quot;+langilea.getErabiltzaileIzena()+&quot;!&quot;); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L45">		lblNewLabel.setBounds(124, 23, 250, 29);</span>
+<span class="nc" id="L46">		contentPane.add(lblNewLabel);</span>
+		
+<span class="nc" id="L48">		JButton btnNewButton = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;SignOut&quot;));</span>
+<span class="nc" id="L49">		btnNewButton.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L51">				saioaItxi();</span>
+<span class="nc" id="L52">			}</span>
+		});
+<span class="nc" id="L54">		btnNewButton.setBounds(16, 390, 179, 23);</span>
+<span class="nc" id="L55">		contentPane.add(btnNewButton);</span>
+		
+<span class="nc" id="L57">		JButton btnCreateEvent = new JButton();</span>
+<span class="nc" id="L58">		btnCreateEvent.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L60">				irekiCreateEvent();</span>
+<span class="nc" id="L61">			}</span>
+		});
+<span class="nc" id="L63">		btnCreateEvent.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CreateEvent&quot;));</span>
+<span class="nc" id="L64">		btnCreateEvent.setBounds(16, 49, 408, 66);</span>
+<span class="nc" id="L65">		contentPane.add(btnCreateEvent);</span>
+		
+<span class="nc" id="L67">		JButton btnCreatePronostic = new JButton();</span>
+<span class="nc" id="L68">		btnCreatePronostic.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L70">				irekiCreatePronostic();</span>
+<span class="nc" id="L71">			}</span>
+		});
+<span class="nc" id="L73">		btnCreatePronostic.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CreatePronostic&quot;));</span>
+<span class="nc" id="L74">		btnCreatePronostic.setBounds(16, 115, 408, 66);</span>
+<span class="nc" id="L75">		contentPane.add(btnCreatePronostic);</span>
+		
+<span class="nc" id="L77">		JButton btnPutResult = new JButton();</span>
+<span class="nc" id="L78">		btnPutResult.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L80">				irekiEmaitzaIpini();</span>
+<span class="nc" id="L81">			}</span>
+		});
+<span class="nc" id="L83">		btnPutResult.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;PutResult&quot;));</span>
+<span class="nc" id="L84">		btnPutResult.setBounds(16, 182, 408, 66);</span>
+<span class="nc" id="L85">		contentPane.add(btnPutResult);</span>
+		
+<span class="nc" id="L87">		JButton btnDeleteEvent = new JButton();</span>
+<span class="nc" id="L88">		btnDeleteEvent.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L90">				irekiGertaeraEzabatu();</span>
+<span class="nc" id="L91">			}</span>
+		});
+<span class="nc" id="L93">		btnDeleteEvent.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;DeleteEvent&quot;));</span>
+<span class="nc" id="L94">		btnDeleteEvent.setBounds(16, 249, 408, 66);</span>
+<span class="nc" id="L95">		contentPane.add(btnDeleteEvent);</span>
+		
+<span class="nc" id="L97">		JButton btnDeleteEvent_1 = new JButton();</span>
+<span class="nc" id="L98">		btnDeleteEvent_1.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L100">				irekiArretaZerbitzuaEman();</span>
+<span class="nc" id="L101">			}</span>
+		});
+<span class="nc" id="L103">		btnDeleteEvent_1.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;ProvideCustomer&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L104">		btnDeleteEvent_1.setBounds(16, 315, 408, 66);</span>
+<span class="nc" id="L105">		contentPane.add(btnDeleteEvent_1);</span>
+<span class="nc" id="L106">	}</span>
+	
+	/**
+	 * Metodo honen bidez gertaera sortu erabilera kasuaren interfazea irekitzen da
+	 */
+	public void irekiCreateEvent() {
+<span class="nc" id="L112">		this.setVisible(false);</span>
+<span class="nc" id="L113">		JFrame a = new CreateEventGUI(this);</span>
+<span class="nc" id="L114">		a.setVisible(true);</span>
+<span class="nc" id="L115">	}</span>
+	
+	public void irekiCreatePronostic() {
+<span class="nc" id="L118">		this.setVisible(false);</span>
+<span class="nc" id="L119">		JFrame a = new CreatePronosticGUI(this);</span>
+<span class="nc" id="L120">		a.setVisible(true);</span>
+<span class="nc" id="L121">	}</span>
+	
+	public void irekiEmaitzaIpini() {
+<span class="nc" id="L124">		this.setVisible(false);</span>
+<span class="nc" id="L125">		JFrame a = new EmaitzaIpiniGUI(this);</span>
+<span class="nc" id="L126">		a.setVisible(true);</span>
+<span class="nc" id="L127">	}</span>
+	
+	public void irekiGertaeraEzabatu() {
+<span class="nc" id="L130">		this.setVisible(false);</span>
+<span class="nc" id="L131">		JFrame a = new GertaeraEzabatuGUI(this);</span>
+<span class="nc" id="L132">		a.setVisible(true);</span>
+<span class="nc" id="L133">	}</span>
+	
+	public void irekiArretaZerbitzuaEman() {
+<span class="nc" id="L136">		this.setVisible(false);</span>
+<span class="nc" id="L137">		JFrame a = new ArretaZerbitzuaEmanGUI(this, langilea);</span>
+<span class="nc" id="L138">		a.setVisible(true);</span>
+<span class="nc" id="L139">	}</span>
+	
+	public void setLangilea(Langilea l) {
+<span class="nc" id="L142">		this.langilea=l;</span>
+<span class="nc" id="L143">	}</span>
+	
+	/**
+	 * Metodo honen bidez, saioa itxi eta hasierako menura joaten gara
+	 */
+	public void saioaItxi() {
+<span class="nc" id="L149">		this.setVisible(false);</span>
+<span class="nc" id="L150">		this.lehengoMain.setVisible(true);</span>
+<span class="nc" id="L151">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>Bets21Azkena (3 oct 2021 22:03:21)</div></body></html>

@@ -14,10 +14,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import businessLogic.BLFacade;
+
 import businessLogic.BLFacadeImplementation;
 import dataAccess.DataAccess;
-import domain.Event;
+import domain.Admin;
+import domain.Bezeroa;
 import domain.Pertsona;
 import exceptions.UserAlreadyExist;
 
@@ -30,6 +31,7 @@ public class RegisterBLMockTest {
 		MockitoAnnotations.initMocks(this);
 		sut = new BLFacadeImplementation(dao);
 	}
+	
 
 	@Test
 	@DisplayName("Test 0:User name Not Exist on DataBase ")
@@ -45,18 +47,31 @@ public class RegisterBLMockTest {
 		assertThrows(UserAlreadyExist.class,()-> sut.register("Tarek", "Chamkhi", "Ermina", "Tarek12301", "aaaaaaaa", "123456789", "Tarek12301@gmail.com",
 				oneDate, "Bezeroa"));
 	}
+	
+	@Test
+	@DisplayName ("Test5: parametros nulos")
+	public void test5() throws UserAlreadyExist {
+		Bezeroa b = new Bezeroa();
+		
+	
+			Mockito.doReturn(true).when(dao).register(null, null, null, null, null, null, null, null, null);
+			sut.register(null, null, null, null, null, null, null, null, null);
+			Mockito.verify(dao, Mockito.times(1)).register(null, null, null, null, null, null, null, null, null);
+			assertEquals(b, sut.register(null, null, null, null, null, null, null, null, null));
+		}
+		
 
 	@Test
 	@DisplayName("Test 2: La persona a añadir es un admin")
 	public void test2() throws ParseException {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		Date oneDate = sdf.parse("05/10/2022");
-		
 		try {
 			Mockito.doReturn(true).when(dao).register("Taek", "Chamhi", "Erina", "Tarek1201", "aaaaaaa", "123406789", "Tarek12301@gmail.com",oneDate, "admin");
+			sut.register("Taek", "Chamhi", "Erina", "Tarek1201", "aaaaaaa", "123406789", "Tarek12301@gmail.com",oneDate, "admin");
+			Mockito.verify(dao, Mockito.times(1)).register("Taek", "Chamhi", "Erina", "Tarek1201", "aaaaaaa", "123406789", "Tarek12301@gmail.com",oneDate, "admin");
 			assertTrue(true);
 		} catch (UserAlreadyExist e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -69,9 +84,11 @@ public class RegisterBLMockTest {
 		
 		try {
 			Mockito.doReturn(true).when(dao).register("Taerek", "Chaermhi", "Erierna", "Tak124701", "aaaaaaa", "123406789", "Tarek1222301@gmail.com",oneDate, "Bezeroa");
+			
+			sut.register("Taerek", "Chaermhi", "Erierna", "Tak124701", "aaaaaaa", "123406789", "Tarek1222301@gmail.com",oneDate, "Bezeroa");
+			Mockito.verify(dao, Mockito.times(1)).register("Taerek", "Chaermhi", "Erierna", "Tak124701", "aaaaaaa", "123406789", "Tarek1222301@gmail.com",oneDate, "Bezeroa");
 			assertTrue(true);
 		} catch (UserAlreadyExist e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -83,9 +100,11 @@ public class RegisterBLMockTest {
 		
 		try {
 			Mockito.doReturn(true).when(dao).register("Tafsdaek", "Chamasfdhi", "Erdfina", "Tarek21201", "aaaaasdfaava", "123406789", "Tarek12375801@gmail.com",oneDate, "Langilea");
+			sut.register("Tafsdaek", "Chamasfdhi", "Erdfina", "Tarek21201", "aaaaasdfaava", "123406789", "Tarek12375801@gmail.com",oneDate, "Langilea");
+			Mockito.verify(dao, Mockito.times(1)).register("Tafsdaek", "Chamasfdhi", "Erdfina", "Tarek21201", "aaaaasdfaava", "123406789", "Tarek12375801@gmail.com",oneDate, "Langilea");
+			
 			assertTrue(true);
 		} catch (UserAlreadyExist e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

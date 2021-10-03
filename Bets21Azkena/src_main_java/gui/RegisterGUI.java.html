@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>RegisterGUI.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Bets21Azkena (3 oct 2021 22:03:21)</a> &gt; <a href="../../index.html" class="el_group">Bets21Azkena</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">gui</a> &gt; <span class="el_source">RegisterGUI.java</span></div><h1>RegisterGUI.java</h1><pre class="source lang-java linenums">package gui;
+
+import java.awt.Color;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import businessLogic.BLFacade;
+import configuration.UtilDate;
+import domain.Bezeroa;
+import domain.Pertsona;
+import exceptions.UserAlreadyExist;
+
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JPasswordField;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.util.Date;
+import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
+
+public class RegisterGUI extends JFrame {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -286120661524135679L;
+	private JPanel contentPane;
+	private JTextField name;
+	private JTextField abizena_1;
+	private JTextField abizena_2;
+	private JPasswordField pas_1;
+	private JPasswordField pas_2;
+	private JTextField userName;
+	private JTextField e_mail;
+	private JTextField day;
+	private JTextField year;
+	private JTextField phoneNumber;
+	private JComboBox&lt;String&gt; comboBox;
+<span class="nc" id="L46">	private DefaultComboBoxModel&lt;String&gt; hilabeteak= new DefaultComboBoxModel&lt;String&gt;();</span>
+	private LoginGUI lehengoLogin;
+	private MainGUI lehengoMain;
+	private JLabel nameMezua;
+	private JLabel pas_2Mezua;
+	private JLabel abizena_Mezua;
+	private JLabel pas_1Mezua;
+	private JLabel abizena_2Mezua;
+	private JLabel usernameMezua;
+	private JLabel emailMezua;
+	private JLabel telefonoaMezua;
+	private JLabel lblNewLabel;
+	private JLabel lblFirstSurname;
+	private JLabel lblSecondSurname;
+	private JLabel lblNewLabel_3;
+	private JLabel lblYear;
+	private JLabel lblPassword;
+	private JLabel lblRepitePassword;
+	private JLabel lblNewLabel_4;
+	private JLabel lblNewLabel_1;
+	private JLabel date_Mezua;
+	private JLabel lblEmail;
+	private JLabel lblNewLabel_2;
+	private JLabel date_Mezua2;
+	private JLabel lblDay;
+	
+	
+
+	
+<span class="nc" id="L75">	public RegisterGUI(MainGUI lehengoMain, LoginGUI lehengoLogin) {</span>
+		try {
+<span class="nc" id="L77">			this.lehengoMain=lehengoMain;</span>
+<span class="nc" id="L78">			this.lehengoLogin=lehengoLogin;</span>
+<span class="nc" id="L79">			registerGUIExekuzioa();</span>
+<span class="nc" id="L80">		} catch (Exception e) {</span>
+<span class="nc" id="L81">			e.printStackTrace();</span>
+		}
+<span class="nc" id="L83">	}</span>
+
+
+	public void registerGUIExekuzioa() {
+<span class="nc" id="L87">		this.setTitle(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;RegisterGUI&quot;));</span>
+<span class="nc" id="L88">		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);</span>
+<span class="nc" id="L89">		setBounds(500, 100, 470, 600);</span>
+<span class="nc" id="L90">		contentPane = new JPanel();</span>
+<span class="nc" id="L91">		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));</span>
+<span class="nc" id="L92">		setContentPane(contentPane);</span>
+<span class="nc" id="L93">		contentPane.setLayout(null);</span>
+
+		
+<span class="nc" id="L96">		nameMezua = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L97">		nameMezua.setBounds(292, 37, 111, 14);</span>
+<span class="nc" id="L98">		nameMezua.setForeground(Color.RED);</span>
+<span class="nc" id="L99">		contentPane.add(nameMezua);</span>
+		
+<span class="nc" id="L101">		pas_2Mezua = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L102">		pas_2Mezua.setBounds(292, 192, 116, 14);</span>
+<span class="nc" id="L103">		pas_2Mezua.setForeground(Color.RED);</span>
+<span class="nc" id="L104">		contentPane.add(pas_2Mezua);</span>
+		
+<span class="nc" id="L106">		pas_1Mezua = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L107">		pas_1Mezua.setBounds(292, 161, 161, 14);</span>
+<span class="nc" id="L108">		pas_1Mezua.setForeground(Color.RED);</span>
+<span class="nc" id="L109">		contentPane.add(pas_1Mezua);</span>
+		
+<span class="nc" id="L111">		abizena_Mezua = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L112">		abizena_Mezua.setBounds(292, 66, 116, 14);</span>
+<span class="nc" id="L113">		abizena_Mezua.setForeground(Color.RED);</span>
+<span class="nc" id="L114">		contentPane.add(abizena_Mezua);</span>
+		
+<span class="nc" id="L116">		abizena_2Mezua = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L117">		abizena_2Mezua.setBounds(292, 99, 116, 14);</span>
+<span class="nc" id="L118">		abizena_2Mezua.setForeground(Color.RED);</span>
+<span class="nc" id="L119">		contentPane.add(abizena_2Mezua);</span>
+		
+<span class="nc" id="L121">		usernameMezua = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L122">		usernameMezua.setBounds(292, 128, 161, 14);</span>
+<span class="nc" id="L123">		usernameMezua.setForeground(Color.RED);</span>
+<span class="nc" id="L124">		contentPane.add(usernameMezua);</span>
+		
+<span class="nc" id="L126">		emailMezua = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L127">		emailMezua.setBounds(292, 223, 116, 14);</span>
+<span class="nc" id="L128">		emailMezua.setForeground(Color.RED);</span>
+<span class="nc" id="L129">		contentPane.add(emailMezua);</span>
+		
+<span class="nc" id="L131">		telefonoaMezua = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L132">		telefonoaMezua.setBounds(292, 254, 116, 14);</span>
+<span class="nc" id="L133">		telefonoaMezua.setForeground(Color.RED);</span>
+<span class="nc" id="L134">		contentPane.add(telefonoaMezua);</span>
+		
+<span class="nc" id="L136">		lblNewLabel = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Name&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L137">		lblNewLabel.setBounds(63, 37, 78, 14);</span>
+<span class="nc" id="L138">		contentPane.add(lblNewLabel);</span>
+		
+<span class="nc" id="L140">		name = new JTextField();</span>
+<span class="nc" id="L141">		name.setBounds(176, 37, 111, 20);</span>
+<span class="nc" id="L142">		contentPane.add(name);</span>
+<span class="nc" id="L143">		name.setColumns(10);</span>
+		
+<span class="nc" id="L145">		lblFirstSurname = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Abizena1&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L146">		lblFirstSurname.setBounds(63, 66, 111, 14);</span>
+<span class="nc" id="L147">		contentPane.add(lblFirstSurname);</span>
+		
+<span class="nc" id="L149">		abizena_1 = new JTextField();</span>
+<span class="nc" id="L150">		abizena_1.setBounds(176, 63, 111, 20);</span>
+<span class="nc" id="L151">		contentPane.add(abizena_1);</span>
+<span class="nc" id="L152">		abizena_1.setColumns(10);</span>
+		
+<span class="nc" id="L154">		lblSecondSurname = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Abizena2&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L155">		lblSecondSurname.setBounds(63, 99, 111, 14);</span>
+<span class="nc" id="L156">		contentPane.add(lblSecondSurname);</span>
+		
+<span class="nc" id="L158">		abizena_2 = new JTextField();</span>
+<span class="nc" id="L159">		abizena_2.setBounds(176, 96, 111, 20);</span>
+<span class="nc" id="L160">		contentPane.add(abizena_2);</span>
+<span class="nc" id="L161">		abizena_2.setColumns(10);</span>
+		
+<span class="nc" id="L163">		lblPassword = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Password&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L164">		lblPassword.setBounds(63, 161, 78, 14);</span>
+<span class="nc" id="L165">		contentPane.add(lblPassword);</span>
+		
+		
+<span class="nc" id="L168">		pas_1 = new JPasswordField();</span>
+<span class="nc" id="L169">		pas_1.setBounds(176, 158, 111, 20);</span>
+<span class="nc" id="L170">		contentPane.add(pas_1);</span>
+		
+<span class="nc" id="L172">		lblRepitePassword = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Password2&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L173">		lblRepitePassword.setBounds(63, 192, 111, 14);</span>
+<span class="nc" id="L174">		contentPane.add(lblRepitePassword);</span>
+		
+<span class="nc" id="L176">		pas_2 = new JPasswordField();</span>
+<span class="nc" id="L177">		pas_2.setBounds(176, 189, 111, 20);</span>
+<span class="nc" id="L178">		contentPane.add(pas_2);</span>
+		
+		
+		
+<span class="nc" id="L182">		lblNewLabel_1 = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;UserName&quot;));</span>
+<span class="nc" id="L183">		lblNewLabel_1.setBounds(63, 128, 78, 14);</span>
+<span class="nc" id="L184">		contentPane.add(lblNewLabel_1);</span>
+		
+<span class="nc" id="L186">		userName = new JTextField();</span>
+<span class="nc" id="L187">		userName.setBounds(176, 127, 111, 20);</span>
+<span class="nc" id="L188">		contentPane.add(userName);</span>
+<span class="nc" id="L189">		userName.setColumns(10);</span>
+		
+<span class="nc" id="L191">		lblEmail = new JLabel(&quot;E-mail:&quot;);</span>
+<span class="nc" id="L192">		lblEmail.setBounds(63, 223, 46, 14);</span>
+<span class="nc" id="L193">		contentPane.add(lblEmail);</span>
+		
+<span class="nc" id="L195">		e_mail = new JTextField();</span>
+<span class="nc" id="L196">		e_mail.setBounds(176, 220, 111, 20);</span>
+<span class="nc" id="L197">		contentPane.add(e_mail);</span>
+<span class="nc" id="L198">		e_mail.setColumns(10);</span>
+		
+<span class="nc" id="L200">		lblNewLabel_2 = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;BirthDate&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L201">		lblNewLabel_2.setBounds(198, 328, 155, 14);</span>
+<span class="nc" id="L202">		contentPane.add(lblNewLabel_2);</span>
+		
+<span class="nc" id="L204">		lblDay = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Day&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L205">		lblDay.setBounds(63, 356, 46, 14);</span>
+<span class="nc" id="L206">		contentPane.add(lblDay);</span>
+		
+<span class="nc" id="L208">		day = new JTextField();</span>
+<span class="nc" id="L209">		day.setBounds(102, 353, 27, 20);</span>
+<span class="nc" id="L210">		contentPane.add(day);</span>
+<span class="nc" id="L211">		day.setColumns(10);</span>
+		
+<span class="nc" id="L213">		comboBox = new JComboBox&lt;String&gt;();</span>
+<span class="nc" id="L214">		comboBox.setBounds(198, 353, 89, 20);</span>
+<span class="nc" id="L215">		comboBox.setModel(hilabeteak);</span>
+<span class="nc" id="L216">		contentPane.add(comboBox);</span>
+<span class="nc" id="L217">		hilabeteak.addElement(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;January&quot;));</span>
+<span class="nc" id="L218">		hilabeteak.addElement(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;February&quot;));</span>
+<span class="nc" id="L219">		hilabeteak.addElement(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;March&quot;));</span>
+<span class="nc" id="L220">		hilabeteak.addElement(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;April&quot;));</span>
+<span class="nc" id="L221">		hilabeteak.addElement(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;May&quot;));</span>
+<span class="nc" id="L222">		hilabeteak.addElement(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;June&quot;));</span>
+<span class="nc" id="L223">		hilabeteak.addElement(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;July&quot;));</span>
+<span class="nc" id="L224">		hilabeteak.addElement(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;August&quot;));</span>
+<span class="nc" id="L225">		hilabeteak.addElement(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Sectenber&quot;));</span>
+<span class="nc" id="L226">		hilabeteak.addElement(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;October&quot;));</span>
+<span class="nc" id="L227">		hilabeteak.addElement(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Novenber&quot;));</span>
+<span class="nc" id="L228">		hilabeteak.addElement(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Decenber&quot;));</span>
+		
+		
+		
+<span class="nc" id="L232">		lblNewLabel_3 = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Month&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L233">		lblNewLabel_3.setBounds(146, 356, 64, 14);</span>
+<span class="nc" id="L234">		contentPane.add(lblNewLabel_3);</span>
+		
+<span class="nc" id="L236">		lblYear = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Year&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L237">		lblYear.setBounds(308, 356, 64, 14);</span>
+<span class="nc" id="L238">		contentPane.add(lblYear);</span>
+		
+<span class="nc" id="L240">		year = new JTextField();</span>
+<span class="nc" id="L241">		year.setBounds(342, 353, 46, 20);</span>
+<span class="nc" id="L242">		contentPane.add(year);</span>
+<span class="nc" id="L243">		year.setColumns(10);</span>
+		
+<span class="nc" id="L245">		lblNewLabel_4 = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;PhoneNumber&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L246">		lblNewLabel_4.setBounds(63, 254, 111, 14);</span>
+<span class="nc" id="L247">		contentPane.add(lblNewLabel_4);</span>
+		
+<span class="nc" id="L249">	    date_Mezua = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L250">		date_Mezua.setBounds(63, 305, 325, 23);</span>
+<span class="nc" id="L251">		date_Mezua.setForeground(Color.RED);</span>
+<span class="nc" id="L252">		contentPane.add(date_Mezua);</span>
+		
+<span class="nc" id="L254">		date_Mezua2 = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L255">		date_Mezua2.setBounds(63, 282, 340, 16);</span>
+<span class="nc" id="L256">		date_Mezua2.setForeground(Color.red);</span>
+<span class="nc" id="L257">		contentPane.add(date_Mezua2);</span>
+		
+<span class="nc" id="L259">		phoneNumber = new JTextField();</span>
+<span class="nc" id="L260">		phoneNumber.setBounds(176, 251, 111, 20);</span>
+<span class="nc" id="L261">		contentPane.add(phoneNumber);</span>
+<span class="nc" id="L262">		phoneNumber.setColumns(10);</span>
+		
+<span class="nc" id="L264">		JButton btnRegister = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;register&quot;));</span>
+<span class="nc" id="L265">		btnRegister.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L267">				pas_1Mezua.setText(&quot;&quot;);</span>
+<span class="nc" id="L268">				nameMezua.setText(&quot;&quot;);</span>
+<span class="nc" id="L269">				pas_2Mezua.setText(&quot;&quot;);</span>
+<span class="nc" id="L270">				abizena_Mezua.setText(&quot;&quot;);</span>
+<span class="nc" id="L271">				abizena_2Mezua.setText(&quot;&quot;);</span>
+<span class="nc" id="L272">				usernameMezua.setText(&quot;&quot;);</span>
+<span class="nc" id="L273">				emailMezua.setText(&quot;&quot;);</span>
+<span class="nc" id="L274">				telefonoaMezua.setText(&quot;&quot;);</span>
+<span class="nc" id="L275">				date_Mezua.setText(&quot;&quot;);</span>
+<span class="nc" id="L276">				date_Mezua2.setText(&quot;&quot;);</span>
+<span class="nc" id="L277">				boolean pasa = check();		</span>
+<span class="nc bnc" id="L278" title="All 2 branches missed.">				if(pasa) {</span>
+<span class="nc" id="L279">					String izena= name.getText();</span>
+<span class="nc" id="L280">					String abizena1=abizena_1.getText();</span>
+<span class="nc" id="L281">					String abizena2=abizena_2.getText();</span>
+<span class="nc" id="L282">					String erabiltzaileIzena=userName.getText();</span>
+<span class="nc" id="L283">					String pasahitza = new String(pas_1.getPassword());</span>
+<span class="nc" id="L284">					String emaila = e_mail.getText();</span>
+<span class="nc" id="L285">					String telefonoa = phoneNumber.getText();</span>
+<span class="nc" id="L286">					BLFacade facade = MainGUI.getBusinessLogic();</span>
+					try {
+<span class="nc" id="L288">						Pertsona pertsona = facade.register(izena, abizena1, abizena2, erabiltzaileIzena, pasahitza, telefonoa, emaila, UtilDate.newDate(Integer.valueOf(year.getText()),hilabeteak.getIndexOf(hilabeteak.getSelectedItem()),Integer.valueOf(day.getText())), &quot;bezeroa&quot;);</span>
+<span class="nc" id="L289">						loginBezeroa((Bezeroa)pertsona);</span>
+<span class="nc" id="L290">					}catch (UserAlreadyExist e) {</span>
+<span class="nc" id="L291">						usernameMezua.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;AlredyUsed&quot;));</span>
+					}
+					
+				}
+<span class="nc" id="L295">			}</span>
+		});
+<span class="nc" id="L297">		btnRegister.setBounds(172, 391, 115, 35);</span>
+<span class="nc" id="L298">		contentPane.add(btnRegister);		</span>
+		
+<span class="nc" id="L300">		JButton btnNewButton = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;jButtonClose&quot;));</span>
+<span class="nc" id="L301">		btnNewButton.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L303">				bueltatuLogin();</span>
+<span class="nc" id="L304">			}</span>
+		});
+<span class="nc" id="L306">		btnNewButton.setBounds(10, 515, 100, 35);</span>
+<span class="nc" id="L307">		contentPane.add(btnNewButton);</span>
+<span class="nc" id="L308">	}</span>
+	
+	/**
+	 * Metodo honen bidez sarrerako datuak zuzenak ote diren begiratzen da
+	 * @return datuak zuzenak al diren
+	 */
+	public boolean check() {
+<span class="nc" id="L315">		boolean pasa = true;</span>
+<span class="nc" id="L316">		Pattern pattern=Pattern.compile(&quot;^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@&quot;+&quot;[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$&quot;);</span>
+<span class="nc" id="L317">		Matcher mather=pattern.matcher(e_mail.getText());</span>
+<span class="nc bnc" id="L318" title="All 2 branches missed.">		if(mather.find()!=true) {</span>
+<span class="nc" id="L319">			emailMezua.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Invalid&quot;));</span>
+<span class="nc" id="L320">			pasa=false;</span>
+		}
+<span class="nc bnc" id="L322" title="All 2 branches missed.">		if(name.getText().isEmpty()) {</span>
+<span class="nc" id="L323">			nameMezua.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Required&quot;));</span>
+<span class="nc" id="L324">			pasa=false;</span>
+		}
+<span class="nc bnc" id="L326" title="All 2 branches missed.">		if((new String(pas_1.getPassword())).length()&lt;8) {</span>
+<span class="nc" id="L327">			pas_1Mezua.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;NotLong&quot;));</span>
+<span class="nc" id="L328">			pasa=false;</span>
+		}
+<span class="nc bnc" id="L330" title="All 2 branches missed.">		if((new String(pas_1.getPassword())).isEmpty()) {</span>
+<span class="nc" id="L331">			pas_1Mezua.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Required&quot;));</span>
+<span class="nc" id="L332">			pasa=false;</span>
+		}
+<span class="nc bnc" id="L334" title="All 2 branches missed.">		if((new String(pas_2.getPassword())).isEmpty()) {</span>
+<span class="nc" id="L335">			pas_2Mezua.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Required&quot;));</span>
+<span class="nc" id="L336">			pasa=false;</span>
+		}
+<span class="nc bnc" id="L338" title="All 2 branches missed.">		if((new String(pas_1.getPassword())).compareTo((new String(pas_2.getPassword())))!=0) {</span>
+<span class="nc" id="L339">			pas_2Mezua.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;DiferentPas&quot;));</span>
+<span class="nc" id="L340">			pasa=false;</span>
+		}
+<span class="nc bnc" id="L342" title="All 2 branches missed.">		if(abizena_1.getText().isEmpty()) {</span>
+<span class="nc" id="L343">			abizena_Mezua.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Required&quot;));</span>
+<span class="nc" id="L344">			pasa=false;</span>
+		}
+<span class="nc bnc" id="L346" title="All 2 branches missed.">		if(abizena_2.getText().isEmpty()) {</span>
+<span class="nc" id="L347">			abizena_2Mezua.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Required&quot;));</span>
+<span class="nc" id="L348">			pasa=false;</span>
+		}
+<span class="nc bnc" id="L350" title="All 2 branches missed.">		if(userName.getText().isEmpty()) {</span>
+<span class="nc" id="L351">			usernameMezua.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Required&quot;));</span>
+<span class="nc" id="L352">			pasa=false;</span>
+<span class="nc bnc" id="L353" title="All 2 branches missed.">		}else if(userName.getText().length()&lt;4) {</span>
+<span class="nc" id="L354">			usernameMezua.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;NotLong4&quot;));</span>
+<span class="nc" id="L355">			pasa=false;</span>
+		}
+<span class="nc bnc" id="L357" title="All 2 branches missed.">		if(e_mail.getText().isEmpty()) {</span>
+<span class="nc" id="L358">			emailMezua.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Required&quot;));</span>
+<span class="nc" id="L359">			pasa=false;</span>
+		}
+<span class="nc bnc" id="L361" title="All 2 branches missed.">		if(phoneNumber.getText().isEmpty()) {</span>
+<span class="nc" id="L362">			telefonoaMezua.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Required&quot;));</span>
+<span class="nc" id="L363">			pasa=false;</span>
+<span class="nc bnc" id="L364" title="All 2 branches missed.">		} else if(phoneNumber.getText().length()!=9) {</span>
+<span class="nc" id="L365">			telefonoaMezua.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Invalid&quot;));</span>
+<span class="nc" id="L366">			pasa=false;</span>
+<span class="nc" id="L367">		} else {</span>
+			try {
+<span class="nc" id="L369">				Integer.parseInt(phoneNumber.getText());</span>
+<span class="nc" id="L370">			}catch (Exception e) {</span>
+<span class="nc" id="L371">				telefonoaMezua.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Invalid&quot;));</span>
+<span class="nc" id="L372">				pasa=false;</span>
+			}
+		}
+		try {
+<span class="nc" id="L376">			Date gaur=new Date();</span>
+<span class="nc" id="L377">			Date jaiotzeData =UtilDate.newDate(Integer.valueOf(year.getText()),hilabeteak.getIndexOf(hilabeteak.getSelectedItem()),Integer.valueOf(day.getText()));</span>
+<span class="nc" id="L378">			int egunak=(int) ((gaur.getTime()-jaiotzeData.getTime())/(1000 * 60 * 60 * 24));</span>
+<span class="nc bnc" id="L379" title="All 2 branches missed.">			if(egunak&lt;6575) {</span>
+<span class="nc" id="L380">				date_Mezua2.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;NotAlowed1&quot;));</span>
+<span class="nc" id="L381">				date_Mezua.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;NotAlowed2&quot;));</span>
+<span class="nc" id="L382">				pasa=false;</span>
+			}				
+<span class="nc" id="L384">		}catch(Exception e){</span>
+<span class="nc" id="L385">			pasa=false;</span>
+<span class="nc" id="L386">			date_Mezua.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;DateNotAlowed&quot;));</span>
+		}
+<span class="nc" id="L388">		return pasa;</span>
+	}
+	
+	/**
+	 * Metodo honen bidez, aurreko egoerara itzul gaitezke
+	 */
+	public void bueltatuLogin() {
+<span class="nc" id="L395">		this.setVisible(false);</span>
+<span class="nc" id="L396">		this.lehengoLogin.setVisible(true);</span>
+<span class="nc" id="L397">	}</span>
+	
+	/**
+	 * Metodo honen bidez bezero baten interfazera sar gaitezke.
+	 * @param bezeroa
+	 */
+	public void loginBezeroa(Bezeroa bezeroa) {
+<span class="nc" id="L404">		this.setVisible(false);</span>
+<span class="nc" id="L405">		JFrame a = new BezeroaGUI(bezeroa,this.lehengoMain);</span>
+<span class="nc" id="L406">		a.setVisible(true);</span>
+<span class="nc" id="L407">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>Bets21Azkena (3 oct 2021 22:03:21)</div></body></html>

@@ -18,7 +18,7 @@ import domain.BezeroartekoMezua;
 import domain.Mezua;
 /**
  * 
- * @author amaiaaristeguiiturraran
+ * 
  *
  */
 public class PostontziaGUI extends JFrame {

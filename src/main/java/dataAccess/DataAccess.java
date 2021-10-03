@@ -35,6 +35,7 @@ import domain.Pertsona;
 import domain.Pronostikoa;
 import domain.PronostikoaContainer;
 import domain.Question;
+
 import exceptions.EventAlreadyExist;
 import exceptions.EventFinished;
 import exceptions.PronosticAlreadyExist;
@@ -435,6 +436,7 @@ public class DataAccess {
 			return berria;
 		}
 	}
+	
 	
 	public void createEvent(String description, Date eventDate) throws EventAlreadyExist{
 		TypedQuery<Event> query = db.createQuery("SELECT e FROM Event e WHERE e.description=?1 AND e.eventDate=?2", Event.class);
@@ -879,4 +881,8 @@ public class DataAccess {
 		ArretaElkarrizketa emaitza = db.find(ArretaElkarrizketa.class, ae.getIdentifikadorea());
 		return emaitza;
 	}
+
+	
+	
+	
 }

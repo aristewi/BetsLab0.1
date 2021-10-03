@@ -29,6 +29,7 @@ public abstract class Pertsona implements Serializable{
 	public String email;
 	public Date jaiotzeData;
 	
+	
 	public Pertsona(){
 		super();
 	}
@@ -42,8 +43,11 @@ public abstract class Pertsona implements Serializable{
 		this.telefonoZbkia = telefonoZbkia;
 		this.email=email;
 		this.jaiotzeData=jaiotzeData;
-	}
 	
+	}
+
+	
+
 	public String getErabiltzaileIzena() {
 		return erabiltzaileIzena;
 	}

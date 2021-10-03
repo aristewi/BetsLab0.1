@@ -166,4 +166,6 @@ public interface BLFacade  {
 	@WebMethod public ArrayList<ErrepikatuakContainer> getErrepikapenak(Bezeroa bezeroa);
 	
 	@WebMethod public ArretaElkarrizketa getArretaElkarrizketa(ArretaElkarrizketa ae);
+	
+
 }

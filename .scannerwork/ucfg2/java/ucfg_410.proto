@@ -1,80 +1,16 @@
 
-(domain.Apustua#eguneratuAsmatutakoKop()Zo
-c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.javaÜ Ü(&"1*Ñ
-1o
-c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.javaá á(∫
+6domain.Apustua#getIdentifikadorea()Ljava/lang/Integer;m
+c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.javal l(""1*º
+1m
+c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.javam	 m(∫
 ∑
-o
-c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.javaá á(
-%0java.lang.Integer"__id*%*#
-domain.Apustua"
-asmatutakoKopß
-§
-o
-c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.javaá á(#
-domain.Apustua"
-asmatutakoKop"__id*
-""ù
-ö
-o
-c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.javaà à(
-%1java.io.PrintStream"__id*
-""∫
-∑
-o
-c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.javaà à("
-%2java.lang.Integer"__id*%*#
-domain.Apustua"
-asmatutakoKopπ
-∂
-o
-c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.javaà à('
-%3java.lang.String"__concat*
+m
+c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.javam	 m(
+%0java.lang.Integer"__id*'*%
+domain.Apustua"
+identifikadorea"ä
+m
+c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.javam m(
 
-%2java.lang.Integer*
-==∫
-∑
-o
-c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.javaà( à(5
-%4java.lang.Integer"__id*%*#
-domain.Apustua"
-pronostikoKopÀ
-»
-o
-c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.javaà à(5
-%5java.lang.String"__concat*
-
-%3java.lang.String*
-
-%4java.lang.IntegerÜÉ
-o
-c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.javaà à(6
-
-%6void"0java.io.PrintStream#println(Ljava/lang/String;)V*
-
-%1java.io.PrintStream*
-
-%5java.lang.String2println(Ljava/lang/String;)∫
-∑
-o
-c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.javaâ	 â(
-%7java.lang.Integer"__id*%*#
-domain.Apustua"
-asmatutakoKop∫
-∑
-o
-c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.javaâ â(+
-%8java.lang.Integer"__id*%*#
-domain.Apustua"
-pronostikoKopÑÅ
-o
-c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.javaâ	 â(,
-%9boolean"-java.lang.Integer#equals(Ljava/lang/Object;)Z*
-
-%7java.lang.Integer*
-
-%8java.lang.Integer2equals(Ljava/lang/Object;)"y
-o
-c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.javaâ â(-
-""B
+%0java.lang.IntegerB
 domain.Apustua

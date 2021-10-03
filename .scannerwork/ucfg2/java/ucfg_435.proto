@@ -1,16 +1,16 @@
 
-?configuration.ConfigXML#getDataBaseOpenMode()Ljava/lang/String;x
-l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/configuration/ConfigXML.java¢ ¢(""1*å
+@configuration.ConfigXML#getBusinessLogicName()Ljava/lang/String;x
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/configuration/ConfigXML.javaš š(#"1*æ
 1x
-l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/configuration/ConfigXML.java£	 £(Î
-Ë
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/configuration/ConfigXML.java›	 ›(Ï
+Ì
 x
-l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/configuration/ConfigXML.java£	 £(
-%0java.lang.String"__id*1*/
-configuration.ConfigXML"
-dataBaseOpenMode"”
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/configuration/ConfigXML.java›	 ›(
+%0java.lang.String"__id*2*0
+configuration.ConfigXML"
+businessLogicName"”
 x
-l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/configuration/ConfigXML.java£ £(
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/configuration/ConfigXML.java› ›(
 
 %0java.lang.StringB
 configuration.ConfigXML

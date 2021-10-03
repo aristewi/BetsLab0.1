@@ -3,5 +3,5 @@ projectKey=BetsStaticVerification2122
 serverUrl=https://sonarcloud.io
 serverVersion=8.0.0.23630
 dashboardUrl=https://sonarcloud.io/dashboard?id=BetsStaticVerification2122
-ceTaskId=AXxHxDF09emFYoRBdCMz
-ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AXxHxDF09emFYoRBdCMz
+ceTaskId=AXxH2F8DH06SfIFBk2aq
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AXxH2F8DH06SfIFBk2aq

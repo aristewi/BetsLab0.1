@@ -48,19 +48,7 @@ public class RegisterBLMockTest {
 				oneDate, "Bezeroa"));
 	}
 	
-	@Test
-	@DisplayName ("Test5: parametros nulos")
-	public void test5() throws UserAlreadyExist {
-		Bezeroa b = new Bezeroa();
-		
 	
-			Mockito.doReturn(true).when(dao).register(null, null, null, null, null, null, null, null, null);
-			sut.register(null, null, null, null, null, null, null, null, null);
-			Mockito.verify(dao, Mockito.times(1)).register(null, null, null, null, null, null, null, null, null);
-			assertEquals(b, sut.register(null, null, null, null, null, null, null, null, null));
-		}
-		
-
 	@Test
 	@DisplayName("Test 2: La persona a añadir es un admin")
 	public void test2() throws ParseException {

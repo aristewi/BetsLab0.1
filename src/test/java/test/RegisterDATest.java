@@ -69,8 +69,8 @@ public class RegisterDATest {
 					"asda@gmail.com", UtilDate.newDate(2021, 11, 2), "admin");
 
 			System.out.print("usuario añadido corrrectamente, admin");
-			assertEquals(a, sut.register("Amiaaa ", "aaaaaa", "bbbb", "adaaasf", "aaaaaaa", "67676777",
-					"asdaa@gmail.com", UtilDate.newDate(2021, 11, 2), "bezeroa"));
+			assertEquals(a, sut.register("Amiadfga ", "aadfgaa", "bbsdfbb", "adasf", "aafhsdfghaa", "676736777",
+					"asda@gmail.com", UtilDate.newDate(2021, 11, 2), "admin"));
 
 		} catch (UserAlreadyExist e) {
 			System.out.print("usuario NO añadido corrrectamente");
@@ -87,8 +87,8 @@ public class RegisterDATest {
 					"67676777", "asasda@gmail.com", UtilDate.newDate(2021, 11, 2), "langilea");
 
 			System.out.print("usuario añadido corrrectamente, langilea");
-			assertEquals(l, sut.register("Amiaaa ", "aaaaaa", "bbbb", "adaaasf", "aaaaaaa", "67676777",
-					"asdaa@gmail.com", UtilDate.newDate(2021, 11, 2), "bezeroa"));
+			assertEquals(l, sut.register("Amisdfgasa ", "aaaaadgsa", "bbbaagfdsb", "adaasagfsf", "aaabsdcvdaa",
+					"67676777", "asasda@gmail.com", UtilDate.newDate(2021, 11, 2), "langilea"));
 
 		} catch (UserAlreadyExist e) {
 			System.out.print("usuario NO añadido corrrectamente");

@@ -1,129 +1,93 @@
 
-0gui.MainGUI#getLblNewLabel()Ljavax/swing/JLabel;l
-`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaé é("3*Ÿ
-2l
-`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaê# ê(1ê
-ç
-l
-`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaê# ê(H
-%1java.util.ResourceBundle"Pjava.util.ResourceBundle#getBundle(Ljava/lang/String;)Ljava/util/ResourceBundle;*"
+,gui.MainGUI#getBoton2()Ljavax/swing/JButton;j
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javal l("3*∆
+2j
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javan n(%üú
+j
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javan n(#
+%1javax.swing.JButton"javax.swing.JButton±
+Æ
+j
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javan n(%
+%2"javax.swing.JButton#<init>()V*
+
+%1javax.swing.JButtonπ
+∂
+j
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javan n(%%
+gui.MainGUI"
+jButtonCreateQuery"__id*
+
+%1javax.swing.JButtonπ
+∂
+j
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javao o(
+%3javax.swing.JButton"__id*'*%
+gui.MainGUI"
+jButtonCreateQueryé
+ã
+j
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javao o(C
+%4java.util.ResourceBundle"Pjava.util.ResourceBundle#getBundle(Ljava/lang/String;)Ljava/util/ResourceBundle;*"
 java.util.ResourceBundle*
-	Etiquetas¶£
-l
-`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaê# ê(b
-%2java.lang.String"Hjava.util.ResourceBundle#getString(Ljava/lang/String;)Ljava/lang/String;* 
+	Etiquetasùö
+j
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javao o(V
+%5java.lang.String"Hjava.util.ResourceBundle#getString(Ljava/lang/String;)Ljava/lang/String;* 
 
-%1java.util.ResourceBundle*
-SelectOption2getString(Ljava/lang/String;)üú
-l
-`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaê ê("
-%3javax.swing.JLabel"javax.swing.JLabel›
-⁄
-l
-`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaê ê(c
-%4".javax.swing.JLabel#<init>(Ljava/lang/String;)V*
-
-%3javax.swing.JLabel*
+%4java.util.ResourceBundle*	
+logIn2getString(Ljava/lang/String;)àÖ
+j
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javao o(W
+
+%6void"7javax.swing.AbstractButton#setText(Ljava/lang/String;)V*
+
+%3javax.swing.JButton*
 
-%2java.lang.String∫
-∑
-l
-`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaê ê(c%
+%5java.lang.String2setText(Ljava/lang/String;)π
+∂
+j
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javap p(
+%7javax.swing.JButton"__id*'*%
 gui.MainGUI"
-jLabelSelectOption"__id*
+jButtonCreateQueryùö
+j
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javap, p(I
+%8Lgui/MainGUI$2817;"Lgui/MainGUI$2817;≠
+™
+j
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javap( t(
+%9"java.lang.Object#<init>()V*
 
-%3javax.swing.JLabel∫
-∑
-l
-`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaë ë(
-%5javax.swing.JLabel"__id*'*%
-gui.MainGUI"
-jLabelSelectOptionä
-á
-l
-`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaë1 ë(:	
-%6int"__id*
-""ïí
-l
-`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaë" ë(&
-%7java.awt.Font"java.awt.Font⁄
-◊
-l
-`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaë ë(?
-%8"+java.awt.Font#<init>(Ljava/lang/String;II)V*
-
-%7java.awt.Font*
-
-Tahoma*
-	
-%6int*2¸˘
-l
-`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaë ë(@
-
-%9void"0javax.swing.JComponent#setFont(Ljava/awt/Font;)V*
+%8Lgui/MainGUI$2817;π∂
+j
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javap t(
+%10void"Njavax.swing.AbstractButton#addActionListener(Ljava/awt/event/ActionListener;)V*
+
+%7javax.swing.JButton*
 
-%5javax.swing.JLabel*
-
-%7java.awt.Font2setFont(Ljava/awt/Font;)ª
-∏
-l
-`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaí í(
-%10javax.swing.JLabel"__id*'*%
+%8Lgui/MainGUI$2817;22addActionListener(Ljava/awt/event/ActionListener;)*
+1*≥
+3j
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javam m(π
+∂
+j
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javam m(
+%0javax.swing.JButton"__id*'*%
 gui.MainGUI"
-jLabelSelectOptionñ
-ì
-l
-`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaí$ í(/
-%11java.awt.Color"__id*
-""éã
-l
-`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaí í(0
-%12void"7javax.swing.JComponent#setForeground(Ljava/awt/Color;)V*
-
-%10javax.swing.JLabel*
-
-%11java.awt.Color2setForeground(Ljava/awt/Color;)ª
-∏
-l
-`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaì ì(
-%13javax.swing.JLabel"__id*'*%
-gui.MainGUI"
-jLabelSelectOptionã
-à
-l
-`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaì- ì(B
-
-%14int"__id*
-""Û
-l
-`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaì ì(C
-%15void"-javax.swing.JLabel#setHorizontalAlignment(I)V*
-
-%13javax.swing.JLabel*
-
-
-%14int2setHorizontalAlignment(I)*
-1*∂
-3l
-`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaè è(∫
-∑
-l
-`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaè è(
-%0javax.swing.JLabel"__id*'*%
-gui.MainGUI"
-jLabelSelectOption*
+jButtonCreateQuery*
 2
-1*Ω
-1l
-`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaï	 ï(ª
-∏
-l
-`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaï	 ï(
-%16javax.swing.JLabel"__id*'*%
+1*π
+1j
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javav	 v(∫
+∑
+j
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javav	 v(
+%11javax.swing.JButton"__id*'*%
 gui.MainGUI"
-jLabelSelectOption"ã
-l
-`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javaï ï(
-
-%16javax.swing.JLabelB
+jButtonCreateQuery"ä
+j
+`/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MainGUI.javav v(
+
+%11javax.swing.JButtonB
 gui.MainGUI

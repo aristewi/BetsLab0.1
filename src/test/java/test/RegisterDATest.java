@@ -1,10 +1,10 @@
 package test;
 
 import static org.junit.Assert.*;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.text.ParseException;
-
 
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -23,25 +23,23 @@ public class RegisterDATest {
 	@Test
 	@DisplayName("Test 1: user in bd")
 	public void test1() {
-		try {
-		betsDAO.register("Tarek", "Chamkhi", "Ermina", "Tarek12301", "aaaaaaaa", "123456789", "Tarek12301@gmail.com",UtilDate.newDate(2001, 8, 9), "Bezeroa");
-			
-		} catch (UserAlreadyExist e) {
-			fail("Usuario ya existente");
-			e.printStackTrace();
-		}
+		
+		assertThrows(UserAlreadyExist.class, () -> sut.register("Tarek", "Chamkhi", "Ermina", "Tarek12301", "aaaaaaaa",
+				"123456789", "Tarek12301@gmail.com", UtilDate.newDate(2001, 8, 9), "Bezeroa"));
 
 	}
+
 	@Test
 	@DisplayName("Test5: usuario con parametros nulos")
 	public void test5() {
+
 		try {
-			betsDAO.register(null, null, null, null, null, null, null, null, "bezeroa");
-			System.out.print("Parametros nulos en algunos o todos los campos");
-			
-		}catch(Exception e) {
-			e.printStackTrace();
+			betsDAO.register(null, "324323", null, null, "dsafds", null, null, null, "bezeroa");
+			assertThrows(Exception.class, () -> sut.register(null, null, null, null, null, null, null, null, null));
+		} catch (UserAlreadyExist e) {
+			System.out.print("usuario NO añadido corrrectamente");
 		}
+
 	}
 
 	@Test
@@ -49,12 +47,16 @@ public class RegisterDATest {
 	public void test2() throws ParseException, UserAlreadyExist {
 
 		try {
-			betsDAO.register("Amiaaa ", "aaaaaa", "bbbb", "adaaasf", "aaaaaaa", "67676777", "asdaa@gmail.com",
-					UtilDate.newDate(2021, 11, 2), "bezeroa");
+			Pertsona b = betsDAO.register("Amiaaa ", "aaaaaa", "bbbb", "adaaasf", "aaaaaaa", "67676777",
+					"asdaa@gmail.com", UtilDate.newDate(2021, 11, 2), "bezeroa");
 			System.out.print("usuario añadido corrrectamente, bezeroa");
+
+			assertEquals(b, sut.register("Amiaaa ", "aaaaaa", "bbbb", "adaaasf", "aaaaaaa", "67676777",
+					"asdaa@gmail.com", UtilDate.newDate(2021, 11, 2), "bezeroa"));
+
 		} catch (UserAlreadyExist e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.print("usuario NO añadido corrrectamente");
+
 		}
 
 	}
@@ -63,15 +65,16 @@ public class RegisterDATest {
 	@DisplayName("Test 3: La persona a añadir es un admin")
 	public void test3() {
 		try {
-			betsDAO.register("Amiadfga ", "aadfgaa", "bbsdfbb", "adasf", "aafhsdfghaa", "676736777", "asda@gmail.com",
-					UtilDate.newDate(2021, 11, 2), "admin");
-			
+			Pertsona a = betsDAO.register("Amiadfga ", "aadfgaa", "bbsdfbb", "adasf", "aafhsdfghaa", "676736777",
+					"asda@gmail.com", UtilDate.newDate(2021, 11, 2), "admin");
+
 			System.out.print("usuario añadido corrrectamente, admin");
-			
+			assertEquals(a, sut.register("Amiaaa ", "aaaaaa", "bbbb", "adaaasf", "aaaaaaa", "67676777",
+					"asdaa@gmail.com", UtilDate.newDate(2021, 11, 2), "bezeroa"));
 
 		} catch (UserAlreadyExist e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.print("usuario NO añadido corrrectamente");
+
 		}
 
 	}
@@ -80,12 +83,16 @@ public class RegisterDATest {
 	@DisplayName("Test 4: La persona a añadir es un langilea")
 	public void test4() {
 		try {
-			betsDAO.register("Amisdfgasa ", "aaaaadgsa", "bbbaagfdsb", "adaasagfsf", "aaabsdcvdaa", "67676777", "asasda@gmail.com",
-					UtilDate.newDate(2021, 11, 2), "langilea");
+			Pertsona l = betsDAO.register("Amisdfgasa ", "aaaaadgsa", "bbbaagfdsb", "adaasagfsf", "aaabsdcvdaa",
+					"67676777", "asasda@gmail.com", UtilDate.newDate(2021, 11, 2), "langilea");
+
 			System.out.print("usuario añadido corrrectamente, langilea");
+			assertEquals(l, sut.register("Amiaaa ", "aaaaaa", "bbbb", "adaaasf", "aaaaaaa", "67676777",
+					"asdaa@gmail.com", UtilDate.newDate(2021, 11, 2), "bezeroa"));
+
 		} catch (UserAlreadyExist e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.print("usuario NO añadido corrrectamente");
+
 		}
 
 	}

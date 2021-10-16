@@ -3,7 +3,6 @@ package test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.DisplayName;
@@ -26,12 +25,13 @@ import exceptions.QuestionAlreadyExist;
 
 
 class CreateQuestionBLMockTest {
+
 	DataAccess dataAccess = Mockito.mock(DataAccess.class);
 	Event mockedEvent = Mockito.mock(Event.class);
 
 	BLFacade sut = new BLFacadeImplementation(dataAccess);
 
-	@SuppressWarnings("unchecked")
+
 	@DisplayName("sut.createQuestion: The event has one question with a queryText.")
 	@Test
 	void test1() throws QuestionAlreadyExist, ParseException {
@@ -81,7 +81,7 @@ class CreateQuestionBLMockTest {
 
 				assertEquals(mockedEvent, eventCaptor.getValue());
 				assertEquals(queryText, questionStringCaptor.getValue());
-				assertEquals(betMinimum, betMinimunCaptor.getValue(),0);
+				assertEquals(betMinimum, betMinimunCaptor.getValue());
 
 			} catch (QuestionAlreadyExist e) {
 				fail("Mock DataAccess should not raise the exception QuestionAlreadyExist");

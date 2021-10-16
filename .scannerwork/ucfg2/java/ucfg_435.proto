@@ -1,16 +1,16 @@
 
-@configuration.ConfigXML#getBusinessLogicName()Ljava/lang/String;x
-l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/configuration/ConfigXML.javaö ö(#"1*Ê
+>configuration.ConfigXML#getInstance()Lconfiguration/ConfigXML;x
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/configuration/ConfigXML.javaé é($"1*Ó
 1x
-l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/configuration/ConfigXML.javaõ	 õ(œ
-Ã
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/configuration/ConfigXML.javaè	 è(–
+Õ
 x
-l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/configuration/ConfigXML.javaõ	 õ(
-%0java.lang.String"__id*2*0
-configuration.ConfigXML"
-businessLogicName"î
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/configuration/ConfigXML.javaè	 è(
+%0configuration.ConfigXML"__id*,**
+configuration.ConfigXML"
+theInstance"õ
 x
-l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/configuration/ConfigXML.javaõ õ(
-
-%0java.lang.StringB
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/configuration/ConfigXML.javaè è(
+
+%0configuration.ConfigXMLB"
 configuration.ConfigXML

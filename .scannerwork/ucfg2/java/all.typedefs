@@ -4185,7 +4185,11 @@ $<init>(Ljava/awt/Component;IJIIIIZI)?java.awt.event.MouseEvent#<init>(Ljava/aw
 -actionPerformed(Ljava/awt/event/ActionEvent;)3null#actionPerformed(Ljava/awt/event/ActionEvent;)V·
 Lgui/ErrepikatzaileakGUI$4313;java.awt.event.MouseAdapter
 <init>()null#<init>()V\
-)mouseClicked(Ljava/awt/event/MouseEvent;)/null#mouseClicked(Ljava/awt/event/MouseEvent;)VÖ
+)mouseClicked(Ljava/awt/event/MouseEvent;)/null#mouseClicked(Ljava/awt/event/MouseEvent;)V¤
+test.RegisterBLTestjava.lang.Object)
+<init>()test.RegisterBLTest#<init>()V'
+test1()test.RegisterBLTest#test1()V'
+test2()test.RegisterBLTest#test2()VÖ
 domain.Errepikapenajava.lang.Objectjava.io.Serializable=
 getHilabetekoMax()'domain.Errepikapena#getHilabetekoMax()D3
 	getNori()&domain.Errepikapena#getNori()LBezeroa;S
@@ -4202,14 +4206,12 @@ $<init>(Ljava/awt/Component;IJIIIIZI)?java.awt.event.MouseEvent#<init>(Ljava/aw
 getApustatukoDena()(domain.Errepikapena#getApustatukoDena()DÈ
 exceptions.QuestionAlreadyExistjava.lang.Exception5
 <init>())exceptions.QuestionAlreadyExist#<init>()VY
-<init>(Ljava/lang/String;);exceptions.QuestionAlreadyExist#<init>(Ljava/lang/String;)Vè
+<init>(Ljava/lang/String;);exceptions.QuestionAlreadyExist#<init>(Ljava/lang/String;)VŽ
 test.RegisterBLMockTestjava.lang.Object+
 test5() test.RegisterBLMockTest#test5()V+
 test3() test.RegisterBLMockTest#test3()V-
 <init>()!test.RegisterBLMockTest#<init>()V+
-test4() test.RegisterBLMockTest#test4()V+
 test1() test.RegisterBLMockTest#test1()V+
-test2() test.RegisterBLMockTest#test2()V+
 setUp() test.RegisterBLMockTest#setUp()Vû
 domain.Mezuajava.lang.Objectjava.io.Serializable7
 

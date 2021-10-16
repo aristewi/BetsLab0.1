@@ -1,16 +1,126 @@
 
-4domain.Apustua#getPronostikoKop()Ljava/lang/Integer;m
-c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.java< <( "1*º
-1m
-c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.java=	 =(¸
-µ
-m
-c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.java=	 =(
-%0java.lang.Integer"__id*%*#
-domain.Apustua"
-pronostikoKop"Š
-m
-c/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Apustua.java= =(
+‚gui.MugimenduakIkusiGUI$listaBackground#getListCellRendererComponent(Ljavax/swing/JList;Ljava/lang/Object;IZZ)Ljava/awt/Component;x
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MugimenduakIkusiGUI.javaš š(/"4*ø
+2x
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MugimenduakIkusiGUI.java¢ ¢(¡
+ž
+x
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MugimenduakIkusiGUI.java¢! ¢(,
+%9java.awt.Color"__id*
+""“
+x
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MugimenduakIkusiGUI.java¢ ¢(.
+%10void"3java.awt.Component#setBackground(Ljava/awt/Color;)V*
 
-%0java.lang.IntegerB
-domain.Apustua
+cjava.awt.Component*
+
+%9java.awt.Color2setBackground(Ljava/awt/Color;)¢
+Ÿ
+x
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MugimenduakIkusiGUI.java£  £()
+%11java.awt.Color"__id*
+""”‘
+x
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MugimenduakIkusiGUI.java£ £(*
+%12void"3java.awt.Component#setForeground(Ljava/awt/Color;)V*
+
+cjava.awt.Component*
+
+%11java.awt.Color2setForeground(Ljava/awt/Color;)*
+1*ô
+3x
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MugimenduakIkusiGUI.javaž ž(¡
+ž
+x
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MugimenduakIkusiGUI.javaž! ž(+
+%5java.awt.Color"__id*
+""’
+x
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MugimenduakIkusiGUI.javaž ž(-
+
+%6void"3java.awt.Component#setBackground(Ljava/awt/Color;)V*
+
+cjava.awt.Component*
+
+%5java.awt.Color2setBackground(Ljava/awt/Color;)¡
+ž
+x
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MugimenduakIkusiGUI.javaŸ  Ÿ(+
+%7java.awt.Color"__id*
+""’
+x
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MugimenduakIkusiGUI.javaŸ Ÿ(,
+
+%8void"3java.awt.Component#setForeground(Ljava/awt/Color;)V*
+
+cjava.awt.Component*
+
+%7java.awt.Color2setForeground(Ljava/awt/Color;)*
+1*Ë
+4x
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MugimenduakIkusiGUI.java› ›(ñ
+î
+x
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MugimenduakIkusiGUI.java› ›(l
+%0java.awt.Component"~javax.swing.DefaultListCellRenderer#getListCellRendererComponent(Ljavax/swing/JList;Ljava/lang/Object;IZZ)Ljava/awt/Component;*
+""*
+
+listjavax.swing.JList*
+
+valuejava.lang.Object*
+""*
+""*
+""¸
+µ
+x
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MugimenduakIkusiGUI.java› ›(m
+cjava.awt.Component"__id*
+
+%0java.awt.Componentíê
+x
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MugimenduakIkusiGUI.javaœ œ(-
+%1java.lang.String"-java.lang.Object#toString()Ljava/lang/String;*
+
+valuejava.lang.Object2
+toString()’
+x
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MugimenduakIkusiGUI.javaœ œ(8
+%2java.lang.String[]"=java.lang.String#split(Ljava/lang/String;)[Ljava/lang/String;*
+
+%1java.lang.String*
+ 2split(Ljava/lang/String;)¼
+¹
+x
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MugimenduakIkusiGUI.javaœ œ(9
+partsjava.lang.String[]"__id*
+
+%2java.lang.String[]È
+Å
+x
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MugimenduakIkusiGUI.java  (5
+%3java.lang.String"
+__arrayGet*
+
+partsjava.lang.String[]*
+""…
+‚
+x
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MugimenduakIkusiGUI.java (6
+%4java.lang.Double">java.lang.Double#valueOf(Ljava/lang/String;)Ljava/lang/Double;*"
+java.lang.Double*
+
+%3java.lang.String*
+2
+3*•
+1x
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MugimenduakIkusiGUI.java¥ ¥("•
+x
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/MugimenduakIkusiGUI.java¥ ¥(
+
+cjava.awt.Component:
+listjavax.swing.JList:
+valuejava.lang.Object:
+"":
+"":
+""B+)
+'gui.MugimenduakIkusiGUI$listaBackground

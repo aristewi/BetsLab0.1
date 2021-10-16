@@ -31,7 +31,7 @@ class CreateQuestionDATest {
 	@Test
 	// sut.createQuestion: The event has one question with a queryText.
 	void test1() {
-sut.initializeDB();
+
 		try {
 			// configure the state of the system (create object in the dabatase)
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -120,12 +120,15 @@ sut.initializeDB();
 		// configure the state of the system (create object in the dabatase)
 		Float betMinimum = 2f;
 		String queryText = "Query Text";
+
+		
 		try {
 			// invoke System Under Test (sut)
 			Question q = sut.createQuestion(null, queryText, betMinimum);
 
 			// verify the results returned
 			assertNull(q);
+			
 
 		} catch (QuestionAlreadyExist e) {
 			// if the program goes to this point fail

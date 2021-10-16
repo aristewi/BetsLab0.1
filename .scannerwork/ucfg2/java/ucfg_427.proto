@@ -1,17 +1,16 @@
 
-7configuration.ConfigXML#getPassword()Ljava/lang/String;v
-l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/configuration/ConfigXML.java= =("1*×
+5configuration.ConfigXML#getLocale()Ljava/lang/String;v
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/configuration/ConfigXML.java1 1("1*Õ
 1v
-l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/configuration/ConfigXML.java>	 >(Ä
-Á
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/configuration/ConfigXML.java2	 2(Â
+¿
 v
-l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/configuration/ConfigXML.java>	 >(
-%0java.lang.String"__id*)*'
-configuration.ConfigXML"
-
-password"’
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/configuration/ConfigXML.java2	 2(
+%0java.lang.String"__id*'*%
+configuration.ConfigXML"
+locale"’
 v
-l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/configuration/ConfigXML.java> >(
+l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/configuration/ConfigXML.java2 2(
 
 %0java.lang.StringB
 configuration.ConfigXML

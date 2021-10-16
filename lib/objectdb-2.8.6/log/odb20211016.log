@@ -1,0 +1,50 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2021-10-16 23:35:43 #1 store] 
+Database '/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/resources/bets.temp' is opened by 2357@MacBook-Air-de-Amaia.local
+
+[2021-10-16 23:35:43 #2 store] 
+Configuration path: /Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/lib/objectdb-2.8.6/objectdb.conf
+
+[2021-10-16 23:35:43 #3 type] 
+Type domain.Apustua is not enhanced.
+
+[2021-10-16 23:35:43 #4 type] 
+Type domain.Pronostikoa is not enhanced.
+
+[2021-10-16 23:35:43 #5 type] 
+Type domain.Pertsona is not enhanced.
+
+[2021-10-16 23:35:43 #6 type] 
+Type domain.Bezeroa is not enhanced.
+
+[2021-10-16 23:35:43 #7 type] 
+Type domain.Question is not enhanced.
+
+[2021-10-16 23:35:43 #8 type] 
+Type domain.ArretaElkarrizketa is not enhanced.
+
+[2021-10-16 23:35:43 #9 type] 
+Type domain.Errepikapena is not enhanced.
+
+[2021-10-16 23:35:43 #10 type] 
+Type domain.Mezua is not enhanced.
+
+[2021-10-16 23:35:43 #11 type] 
+Type domain.BezeroartekoMezua is not enhanced.
+
+[2021-10-16 23:35:43 #12 type] 
+Type domain.Mugimendua is not enhanced.
+
+[2021-10-16 23:35:43 #13 type] 
+Type domain.Event is not enhanced.
+
+[2021-10-16 23:35:43 #14 type] 
+Type domain.ArretaMezua is not enhanced.
+
+[2021-10-16 23:35:43 #15 type] 
+Type domain.Langilea is not enhanced.
+
+[2021-10-16 23:35:43 #16 type] 
+Type domain.Admin is not enhanced.
+

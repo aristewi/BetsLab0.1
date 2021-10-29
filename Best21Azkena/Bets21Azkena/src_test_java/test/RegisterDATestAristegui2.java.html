@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>RegisterDATestAristegui2.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">RegisterDATestAristegui2 (19 oct 2021 9:50:03)</a> &gt; <a href="../../index.html" class="el_group">Bets21Azkena</a> &gt; <a href="../index.html" class="el_bundle">src/test/java</a> &gt; <a href="index.source.html" class="el_package">test</a> &gt; <span class="el_source">RegisterDATestAristegui2.java</span></div><h1>RegisterDATestAristegui2.java</h1><pre class="source lang-java linenums">package test;
+
+import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.text.ParseException;
+
+import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
+
+import configuration.ConfigXML;
+import configuration.UtilDate;
+
+import dataAccess.DataAccessAristegui2;
+import domain.Admin;
+import domain.Bezeroa;
+import domain.Langilea;
+import exceptions.UserAlreadyExist;
+import utility.TestUtilityFacadeImplementation;
+
+<span class="fc" id="L22">public class RegisterDATestAristegui2 {</span>
+<span class="fc" id="L23">	private static DataAccessAristegui2 sut = new DataAccessAristegui2(ConfigXML.getInstance().getDataBaseOpenMode().equals(&quot;initialize&quot;));;</span>
+<span class="fc" id="L24">	private static TestUtilityFacadeImplementation betsDAO = new TestUtilityFacadeImplementation();</span>
+
+	@Test
+	@DisplayName(&quot;Test 1: user in bd&quot;)
+	public void test1() {
+		
+<span class="pc" id="L30">		assertThrows(UserAlreadyExist.class, () -&gt; sut.register(&quot;Tarek&quot;, &quot;Chamkhi&quot;, &quot;Ermina&quot;, &quot;Tarek12301&quot;, &quot;aaaaaaaa&quot;,</span>
+<span class="pc" id="L31">				&quot;123456789&quot;, &quot;Tarek12301@gmail.com&quot;, UtilDate.newDate(2001, 8, 9), &quot;Bezeroa&quot;));</span>
+
+<span class="nc" id="L33">	}</span>
+
+	@Test
+	@DisplayName(&quot;Test5: usuario con parametros nulos&quot;)
+	public void test5() {
+
+		try {
+<span class="fc" id="L40">			betsDAO.register(null, &quot;324323&quot;, null, null, &quot;dsafds&quot;, null, null, null, &quot;bezeroa&quot;);</span>
+<span class="pc" id="L41">			assertThrows(Exception.class, () -&gt; sut.register(null, null, null, null, null, null, null, null, null));</span>
+<span class="pc" id="L42">		} catch (UserAlreadyExist e) {</span>
+<span class="nc" id="L43">			System.out.print(&quot;usuario NO añadido corrrectamente&quot;);</span>
+		}
+
+<span class="fc" id="L46">	}</span>
+
+	@Test
+	@DisplayName(&quot;Test 2: La persona a añadir es un bezeroa&quot;)
+	public void test2() throws ParseException {
+
+	try {
+<span class="fc" id="L53">			Bezeroa b = new Bezeroa (&quot;Amiaaa &quot;, &quot;aaaaaa&quot;, &quot;bbbb&quot;, &quot;adaaasf&quot;, &quot;aaaaaaa&quot;, &quot;67676777&quot;,</span>
+<span class="fc" id="L54">					&quot;asdaa@gmail.com&quot;, UtilDate.newDate(2021, 11, 2));</span>
+			
+<span class="fc" id="L56">			System.out.print(&quot;usuario añadido corrrectamente, bezeroa&quot;);</span>
+<span class="fc" id="L57">			betsDAO.register(&quot;Amiaaa &quot;, &quot;aaaaaa&quot;, &quot;bbbb&quot;, &quot;adaaasf&quot;, &quot;aaaaaaa&quot;, &quot;67676777&quot;,</span>
+<span class="fc" id="L58">					&quot;asdaa@gmail.com&quot;, UtilDate.newDate(2021, 11, 2), &quot;bezeroa&quot;);</span>
+<span class="fc" id="L59">			assertTrue(true);</span>
+<span class="pc" id="L60">			assertEquals(b, sut.register(&quot;Amiaaa &quot;, &quot;aaaaaa&quot;, &quot;bbbb&quot;, &quot;adaaasf&quot;, &quot;aaaaaaa&quot;, &quot;67676777&quot;,</span>
+<span class="fc" id="L61">					&quot;asdaa@gmail.com&quot;, UtilDate.newDate(2021, 11, 2), &quot;bezeroa&quot;));</span>
+		
+			
+<span class="pc" id="L64">	}catch(UserAlreadyExist e) {</span>
+<span class="fc" id="L65">		System.out.print(&quot;Usuario NO añadido, existente&quot;);</span>
+	}
+
+		
+
+<span class="fc" id="L70">	}</span>
+
+	@Test
+	@DisplayName(&quot;Test 3: La persona a añadir es un admin&quot;)
+	public void test3() {
+		try {
+<span class="fc" id="L76">			Admin a = new Admin(&quot;Amiadfga &quot;, &quot;aadfgaa&quot;, &quot;bbsdfbb&quot;, &quot;adasf&quot;, &quot;aafhsdfghaa&quot;, &quot;676736777&quot;,</span>
+<span class="fc" id="L77">					&quot;asda@gmail.com&quot;, UtilDate.newDate(2021, 11, 2));</span>
+
+<span class="fc" id="L79">			System.out.print(&quot;usuario añadido corrrectamente, admin&quot;);</span>
+			//betsDAO.register(&quot;Amiadfga &quot;, &quot;aadfgaa&quot;, &quot;bbsdfbb&quot;, &quot;adasf&quot;, &quot;aafhsdfghaa&quot;, &quot;676736777&quot;,&quot;asda@gmail.com&quot;, UtilDate.newDate(2021, 11, 2), &quot;admin&quot;);
+			
+<span class="pc" id="L82">			assertEquals(a, sut.register(&quot;Amiadfga &quot;, &quot;aadfgaa&quot;, &quot;bbsdfbb&quot;, &quot;adasf&quot;, &quot;aafhsdfghaa&quot;, &quot;676736777&quot;,</span>
+<span class="fc" id="L83">&quot;asda@gmail.com&quot;, UtilDate.newDate(2021, 11, 2), &quot;admin&quot;));</span>
+
+<span class="nc" id="L85">		} catch (UserAlreadyExist e) {</span>
+<span class="nc" id="L86">			System.out.print(&quot;usuario NO añadido corrrectamente&quot;);</span>
+
+		}
+
+<span class="nc" id="L90">	}</span>
+
+	@Test
+	@DisplayName(&quot;Test 4: La persona a añadir es un langilea&quot;)
+	public void test4() {
+		try {
+<span class="fc" id="L96">			Langilea l = new Langilea (&quot;Amisdfgasa &quot;, &quot;aaaaadgsa&quot;, &quot;bbbaagfdsb&quot;, &quot;adaasagfsf&quot;, &quot;aaabsdcvdaa&quot;,</span>
+<span class="fc" id="L97">					&quot;67676777&quot;, &quot;asasda@gmail.com&quot;, UtilDate.newDate(2021, 11, 2));</span>
+
+<span class="fc" id="L99">			System.out.print(&quot;usuario añadido corrrectamente, langilea&quot;);</span>
+			
+			//betsDAO.register(&quot;Amisdfgasa &quot;, &quot;aaaaadgsa&quot;, &quot;bbbaagfdsb&quot;, &quot;adaasagfsf&quot;, &quot;aaabsdcvdaa&quot;,	&quot;67676777&quot;, &quot;asasda@gmail.com&quot;, UtilDate.newDate(2021, 11, 2),&quot;langilea&quot;);
+			
+<span class="pc" id="L103">			assertEquals(l, sut.register(&quot;Amisdfgasa &quot;, &quot;aaaaadgsa&quot;, &quot;bbbaagfdsb&quot;, &quot;adaasagfsf&quot;, &quot;aaabsdcvdaa&quot;,</span>
+<span class="fc" id="L104">					&quot;67676777&quot;, &quot;asasda@gmail.com&quot;, UtilDate.newDate(2021, 11, 2), &quot;langilea&quot;));</span>
+
+<span class="nc" id="L106">		} catch (UserAlreadyExist e) {</span>
+<span class="nc" id="L107">			System.out.print(&quot;usuario NO añadido corrrectamente&quot;);</span>
+
+		}
+
+<span class="nc" id="L111">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>RegisterDATestAristegui2 (19 oct 2021 9:50:03)</div></body></html>

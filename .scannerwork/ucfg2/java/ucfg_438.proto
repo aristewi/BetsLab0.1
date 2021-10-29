@@ -1,16 +1,14 @@
 
-@configuration.ConfigXML#getBusinessLogicName()Ljava/lang/String;x
-l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/configuration/ConfigXML.javaö ö(#"1*Ê
-1x
-l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/configuration/ConfigXML.javaõ	 õ(œ
-Ã
-x
-l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/configuration/ConfigXML.javaõ	 õ(
-%0java.lang.String"__id*2*0
-configuration.ConfigXML"
-businessLogicName"î
-x
-l/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/configuration/ConfigXML.javaõ õ(
-
-%0java.lang.StringB
-configuration.ConfigXML
+0gui.ArretaZerbitzuaEskatuGUI#baduElkarrizketa()Z}
+q/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/ArretaZerbitzuaEskatuGUI.javaâ â(!"3"1*å
+3}
+q/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/ArretaZerbitzuaEskatuGUI.javaå å("á
+}
+q/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/ArretaZerbitzuaEskatuGUI.javaå å(
+""*å
+1}
+q/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/ArretaZerbitzuaEskatuGUI.javaè	 è("á
+}
+q/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/gui/ArretaZerbitzuaEskatuGUI.javaè è(
+""B 
+gui.ArretaZerbitzuaEskatuGUI

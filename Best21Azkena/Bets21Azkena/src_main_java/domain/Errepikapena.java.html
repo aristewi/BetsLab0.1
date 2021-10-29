@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Errepikapena.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">RegisterDATestAristegui2 (19 oct 2021 9:50:03)</a> &gt; <a href="../../index.html" class="el_group">Bets21Azkena</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">Errepikapena.java</span></div><h1>Errepikapena.java</h1><pre class="source lang-java linenums">package domain;
+
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+@Entity
+@XmlAccessorType(XmlAccessType.FIELD)
+public class Errepikapena implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
+	@XmlID
+	@XmlJavaTypeAdapter(IntegerAdapter.class)
+	@GeneratedValue
+	private Integer identifikadorea;
+	@OneToOne
+	@XmlIDREF
+	private Bezeroa nork;
+	@OneToOne
+	@XmlIDREF
+	private Bezeroa nori;
+	private double hilabeteHonetanGeratzenDena;
+	private double apustatukoDena;
+	private double hilabetekoMax;
+	private double komisioa;
+	
+	public Errepikapena() {
+<span class="nc" id="L40">		super();</span>
+<span class="nc" id="L41">	}</span>
+	
+<span class="nc" id="L43">	public Errepikapena(Bezeroa nork, Bezeroa nori, double apustatukoDena, double hilabetekoMax, double komisioa) {</span>
+<span class="nc" id="L44">		this.nork=nork;</span>
+<span class="nc" id="L45">		this.nori=nori;</span>
+<span class="nc" id="L46">		this.apustatukoDena=apustatukoDena;</span>
+<span class="nc" id="L47">		this.hilabetekoMax=hilabetekoMax;</span>
+<span class="nc" id="L48">		hilabeteHonetanGeratzenDena=hilabetekoMax;</span>
+<span class="nc" id="L49">		this.komisioa=komisioa;</span>
+<span class="nc" id="L50">	}</span>
+	
+	public Bezeroa getNork() {
+<span class="nc" id="L53">		return nork;</span>
+	}
+
+	public Bezeroa getNori() {
+<span class="nc" id="L57">		return nori;</span>
+	}
+
+	public double getKomisioa() {
+<span class="nc" id="L61">		return komisioa;</span>
+	}
+
+	public void setIdentifikadorea(Integer identifikadorea) {
+<span class="nc" id="L65">		this.identifikadorea = identifikadorea;</span>
+<span class="nc" id="L66">	}</span>
+
+	public double getApustatukoDena() {
+<span class="nc" id="L69">		return apustatukoDena;</span>
+	}
+
+	public void setApustatukoDena(double apustatukoDena) {
+<span class="nc" id="L73">		this.apustatukoDena = apustatukoDena;</span>
+<span class="nc" id="L74">	}</span>
+
+	public double getHilabetekoMax() {
+<span class="nc" id="L77">		return hilabetekoMax;</span>
+	}
+
+	public void setHilabetekoMax(double hilabetekoMax) {
+<span class="nc" id="L81">		this.hilabetekoMax = hilabetekoMax;</span>
+<span class="nc" id="L82">	}</span>
+	
+	public double getHilabeteHonetanGeratzenDena() {
+<span class="nc" id="L85">		return hilabeteHonetanGeratzenDena;</span>
+	}
+	
+	public void eguneratuHilHonetanGeratzenDena(double x) {
+<span class="nc" id="L89">		hilabeteHonetanGeratzenDena+=x;</span>
+<span class="nc" id="L90">	}</span>
+	
+	public void setHilHonetanGeratzenDena(double x) {
+<span class="nc" id="L93">		this.hilabeteHonetanGeratzenDena = x;</span>
+<span class="nc" id="L94">	}</span>
+
+	public Integer getIdentifikadorea() {
+<span class="nc" id="L97">		return identifikadorea;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>RegisterDATestAristegui2 (19 oct 2021 9:50:03)</div></body></html>

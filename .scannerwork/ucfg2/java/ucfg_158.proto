@@ -1,23 +1,16 @@
 
-4domain.Event#DoesQuestionExists(Ljava/lang/String;)Zk
-a/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Event.javag g(""5*ç
-3k
-a/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Event.javaj j("u
-k
-a/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Event.javaj j(
-""*Â
-5k
-a/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Event.javah h(ÇÄ
-k
-a/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Event.javah h(%
-%0"-domain.Event#getQuestions()Ljava/util/Vector;*
-domain.Event2getQuestions()*
-3
-1*ç
++domain.Event#getEventDate()Ljava/util/Date;k
+a/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Event.javaF F("1*¨
 1k
-a/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Event.javal	 l("u
+a/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Event.javaG	 G(­
+ª
 k
-a/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Event.javal l(
-"":
-questionjava.lang.StringB
+a/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Event.javaG	 G(
+%0java.util.Date"__id**
+domain.Event"
+	eventDate"…
+k
+a/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Event.javaG G(
+
+%0java.util.DateB
 domain.Event

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>DiruaSartuGUI.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">RegisterDATestAristegui2 (19 oct 2021 9:50:03)</a> &gt; <a href="../../index.html" class="el_group">Bets21Azkena</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">gui</a> &gt; <span class="el_source">DiruaSartuGUI.java</span></div><h1>DiruaSartuGUI.java</h1><pre class="source lang-java linenums">package gui;
+
+import java.awt.Color;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import businessLogic.BLFacade;
+import domain.Bezeroa;
+
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
+import java.awt.event.ActionEvent;
+
+public class DiruaSartuGUI extends JFrame {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JTextField textField;
+	private Bezeroa bezeroa;
+	private BezeroaGUI lehengoa;
+	private JLabel jlblError;
+	private JLabel jlblSucces;
+	private JLabel lblNewLabel;
+
+	/**
+	 * Launch the application.
+	 */
+<span class="nc" id="L36">	public DiruaSartuGUI(Bezeroa bezeroa, BezeroaGUI lehengoa) {</span>
+		try {
+<span class="nc" id="L38">			this.lehengoa=lehengoa;</span>
+<span class="nc" id="L39">			this.bezeroa=bezeroa;</span>
+<span class="nc" id="L40">			DiruaSartuGUIExekuzioa();</span>
+<span class="nc" id="L41">		} catch (Exception e) {</span>
+<span class="nc" id="L42">			e.printStackTrace();</span>
+		}
+<span class="nc" id="L44">	}</span>
+
+	/**
+	 * Create the frame.
+	 */
+	public void DiruaSartuGUIExekuzioa() {
+<span class="nc" id="L50">		this.setTitle(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;PutMoneyGUI&quot;));</span>
+<span class="nc" id="L51">		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L52">		setBounds(100, 100, 450, 300);</span>
+<span class="nc" id="L53">		contentPane = new JPanel();</span>
+<span class="nc" id="L54">		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));</span>
+<span class="nc" id="L55">		setContentPane(contentPane);</span>
+<span class="nc" id="L56">		contentPane.setLayout(null);</span>
+		
+<span class="nc" id="L58">		textField = new JTextField();</span>
+<span class="nc" id="L59">		textField.setBackground(Color.WHITE);</span>
+<span class="nc" id="L60">		textField.setForeground(Color.BLACK);</span>
+<span class="nc" id="L61">		textField.setBounds(302, 66, 86, 20);</span>
+<span class="nc" id="L62">		contentPane.add(textField);</span>
+<span class="nc" id="L63">		textField.setColumns(10);</span>
+		
+<span class="nc" id="L65">		JLabel lblEzarriSartuBeharreko = new JLabel();</span>
+<span class="nc" id="L66">		lblEzarriSartuBeharreko.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;lblEzarriSartuBeharreko&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L67">		lblEzarriSartuBeharreko.setBounds(39, 62, 241, 28);</span>
+<span class="nc" id="L68">		contentPane.add(lblEzarriSartuBeharreko);</span>
+		
+<span class="nc" id="L70">		BLFacade facade=MainGUI.getBusinessLogic();</span>
+<span class="nc" id="L71">		JButton btnDiruaSartu = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;btnDiruaSartu&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L72">		btnDiruaSartu.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L74">				jlblSucces.setText(&quot;&quot;);</span>
+<span class="nc" id="L75">				jlblError.setText(&quot;&quot;);</span>
+				try {
+<span class="nc" id="L77">					double zenb= Double.valueOf(textField.getText());</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">					if (zenb&gt;1) {</span>
+<span class="nc" id="L79">						bezeroa = facade.diruaSartu(zenb, bezeroa);</span>
+<span class="nc" id="L80">						jlblSucces.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;SuccessMoney&quot;));</span>
+<span class="nc" id="L81">					}else {</span>
+<span class="nc" id="L82">						jlblError.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;SartuMinimo&quot;));</span>
+					}
+<span class="nc" id="L84">				} catch(Exception e) {</span>
+<span class="nc" id="L85">					jlblError.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;InvalidSyntax&quot;));</span>
+				}
+				
+				
+<span class="nc" id="L89">			}</span>
+		});
+<span class="nc" id="L91">		btnDiruaSartu.setBounds(142, 175, 157, 23);</span>
+<span class="nc" id="L92">		contentPane.add(btnDiruaSartu);</span>
+		
+<span class="nc" id="L94">		JButton btnClose = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Close&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L95">		btnClose.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L97">				atzera();</span>
+<span class="nc" id="L98">			}</span>
+		});
+<span class="nc" id="L100">		btnClose.setBounds(335, 227, 89, 23);</span>
+<span class="nc" id="L101">		contentPane.add(btnClose);</span>
+		
+<span class="nc" id="L103">		jlblError = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L104">		jlblError.setForeground(Color.RED);</span>
+<span class="nc" id="L105">		jlblError.setBounds(50, 113, 347, 20);</span>
+<span class="nc" id="L106">		contentPane.add(jlblError);</span>
+		
+<span class="nc" id="L108">		jlblSucces = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L109">		jlblSucces.setForeground(Color.GREEN);</span>
+<span class="nc" id="L110">		jlblSucces.setBounds(69, 113, 314, 20);</span>
+<span class="nc" id="L111">		contentPane.add(jlblSucces);</span>
+		
+<span class="nc" id="L113">		lblNewLabel = new JLabel(&quot;\u20AC&quot;);</span>
+<span class="nc" id="L114">		lblNewLabel.setBounds(392, 69, 13, 14);</span>
+<span class="nc" id="L115">		contentPane.add(lblNewLabel);</span>
+<span class="nc" id="L116">	}</span>
+	
+	public void atzera() {
+<span class="nc" id="L119">		this.setVisible(false);</span>
+<span class="nc" id="L120">		this.lehengoa.setBezeroa(bezeroa);</span>
+<span class="nc" id="L121">		this.lehengoa.setVisible(true);</span>
+<span class="nc" id="L122">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>RegisterDATestAristegui2 (19 oct 2021 9:50:03)</div></body></html>

@@ -1,34 +1,9 @@
 
-0domain.Pronostikoa#equals(Ldomain/Pronostikoa;)Zq
-g/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Pronostikoa.javal l("3*„
-3q
-g/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Pronostikoa.javam	 m(
-À
-½
-q
-g/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Pronostikoa.javam	 m(
-%0java.lang.String"__id***(
-
-pdomain.Pronostikoa"
-deskripzioa½
-º
-q
-g/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Pronostikoa.javam m(.
-%1java.lang.String"__id*'*%
-domain.Pronostikoa"
-deskripzioaƒ€
-q
-g/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Pronostikoa.javam	 m(/
-%2boolean",java.lang.String#equals(Ljava/lang/Object;)Z*
-
-%0java.lang.String*
-
-%1java.lang.String2equals(Ljava/lang/Object;)*
-1*ó
+domain.Pronostikoa#getKuota()Dq
+g/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Pronostikoa.javaT T("1*ó
 1q
-g/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Pronostikoa.javam m(p"{
+g/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Pronostikoa.javaU	 U("{
 q
-g/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Pronostikoa.javam m(p
-"":
-pdomain.PronostikoaB
+g/Users/amaiaaristeguiiturraran/eclipse-workspace/is2/Bets21Azkena/src/main/java/domain/Pronostikoa.javaU U(
+""B
 domain.Pronostikoa

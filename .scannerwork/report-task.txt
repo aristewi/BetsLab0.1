@@ -3,5 +3,5 @@ projectKey=aristewi_Lab0.1
 serverUrl=https://sonarcloud.io
 serverVersion=8.0.0.23912
 dashboardUrl=https://sonarcloud.io/dashboard?id=aristewi_Lab0.1
-ceTaskId=AXyLCVz6NvOJTe-IyRfF
-ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AXyLCVz6NvOJTe-IyRfF
+ceTaskId=AXyXjXdRujezI92cDK3C
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AXyXjXdRujezI92cDK3C

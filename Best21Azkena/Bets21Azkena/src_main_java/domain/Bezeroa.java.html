@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Bezeroa.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">RegisterDATestAristegui2 (19 oct 2021 9:50:03)</a> &gt; <a href="../../index.html" class="el_group">Bets21Azkena</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">Bezeroa.java</span></div><h1>Bezeroa.java</h1><pre class="source lang-java linenums">package domain;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Vector;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlIDREF;
+
+@Entity
+@XmlAccessorType(XmlAccessType.FIELD)
+public class Bezeroa extends Pertsona implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private double dirua;
+	private Integer jokatuak;
+	private Integer irabaziak;
+	private boolean publikoa;
+	private double komisioAutomatikoa;
+	
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+<span class="fc" id="L31">	private Vector&lt;Mugimendua&gt; mugimenduak=new Vector&lt;Mugimendua&gt;();</span>
+	
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+<span class="fc" id="L34">	private Vector&lt;Apustua&gt; apustuak=new Vector&lt;Apustua&gt;();</span>
+	
+	@XmlIDREF
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+<span class="fc" id="L38">	private Vector&lt;BezeroartekoMezua&gt; bidalitakoBezeroMezuak=new Vector&lt;BezeroartekoMezua&gt;();</span>
+	
+	@XmlIDREF
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+<span class="fc" id="L42">	private Vector&lt;BezeroartekoMezua&gt; jasotakoBezeroMezuak=new Vector&lt;BezeroartekoMezua&gt;();</span>
+	
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+<span class="fc" id="L45">	private Vector&lt;Errepikapena&gt; errepikatzaileak=new Vector&lt;Errepikapena&gt;();</span>
+	
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+<span class="fc" id="L48">	private Vector&lt;Errepikapena&gt; errepikatuak=new Vector&lt;Errepikapena&gt;();</span>
+	
+	@XmlIDREF
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+<span class="fc" id="L52">	private Vector&lt;ArretaElkarrizketa&gt; arretaElkarrizketak=new Vector&lt;ArretaElkarrizketa&gt;();</span>
+	
+	
+	public Bezeroa(){
+<span class="fc" id="L56">		super();</span>
+<span class="fc" id="L57">	}</span>
+	
+	public void setDirua(double dirua) {
+<span class="nc" id="L60">		this.dirua = dirua;</span>
+<span class="nc" id="L61">	}</span>
+
+	public void setMugimenduak(Vector&lt;Mugimendua&gt; mugimenduak) {
+<span class="nc" id="L64">		this.mugimenduak = mugimenduak;</span>
+<span class="nc" id="L65">	}</span>
+
+	public Bezeroa(String izena, String abizena1, String abizena2, String erabiltzaileIzena, String pasahitza, String telefonoZbkia, String email, Date jaiotzeData) {
+<span class="fc" id="L68">		super(izena, abizena1, abizena2, erabiltzaileIzena, pasahitza, telefonoZbkia, email, jaiotzeData);</span>
+<span class="fc" id="L69">		this.dirua=0;</span>
+<span class="fc" id="L70">		jokatuak=0;</span>
+<span class="fc" id="L71">		irabaziak=0;</span>
+<span class="fc" id="L72">		publikoa=true;</span>
+<span class="fc" id="L73">		komisioAutomatikoa=-1;</span>
+<span class="fc" id="L74">	}</span>
+	
+	public Mugimendua addMugimendua(String deskripzioa, double kuota, String mota) {
+<span class="nc" id="L77">		eguneratuDirua(kuota);</span>
+<span class="nc" id="L78">		Mugimendua berria = new Mugimendua(deskripzioa, kuota, this, mota);</span>
+<span class="nc" id="L79">		mugimenduak.add(berria);</span>
+<span class="nc" id="L80">		return berria;</span>
+	}
+	
+	public Mugimendua addMugimendua(String deskripzioa, double kuota, String mota, Date data) {
+<span class="nc" id="L84">		eguneratuDirua(kuota);</span>
+<span class="nc" id="L85">		Mugimendua berria = new Mugimendua(deskripzioa, kuota, this, mota, data);</span>
+<span class="nc" id="L86">		mugimenduak.add(berria);</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">		if(mota==&quot;irabazi&quot;) {</span>
+<span class="nc" id="L88">			irabaziak++;</span>
+		}
+<span class="nc" id="L90">		return berria;</span>
+	}
+	
+	public void eguneratuDirua(double zenbatekoa) {
+<span class="nc" id="L94">		dirua+=zenbatekoa;</span>
+<span class="nc" id="L95">	}</span>
+	
+	public double getDirua() {
+<span class="nc" id="L98">		return dirua;</span>
+	}
+	
+	public Vector&lt;Mugimendua&gt; getMugimenduak(){
+<span class="nc" id="L102">		return mugimenduak;</span>
+	}
+	
+	public Apustua addApustua(ArrayList&lt;Pronostikoa&gt; pronostikoak, double dirua, Bezeroa nori) {
+<span class="nc" id="L106">		Apustua berria = new Apustua(dirua, this, pronostikoak, nori);</span>
+<span class="nc" id="L107">		apustuak.add(berria);</span>
+<span class="nc" id="L108">		jokatuak=jokatuak+1;</span>
+<span class="nc" id="L109">		return berria;</span>
+	}
+	
+	public void removeApustua(Apustua apustua) {
+<span class="nc" id="L113">		this.apustuak.remove(apustua);</span>
+<span class="nc" id="L114">		jokatuak=jokatuak-1;</span>
+<span class="nc" id="L115">	}</span>
+	
+	public Vector&lt;Apustua&gt; getApustuak(){
+<span class="nc" id="L118">		return apustuak;</span>
+	}
+	
+	public ArrayList&lt;Double&gt; getEtekinInformazioa(){
+<span class="nc" id="L122">		ArrayList&lt;Double&gt; emaitza = new ArrayList&lt;Double&gt;();</span>
+		double irabazia, jokatua, etekina;
+<span class="nc" id="L124">		irabazia=0;</span>
+<span class="nc" id="L125">		jokatua=0;</span>
+<span class="nc bnc" id="L126" title="All 2 branches missed.">		for(Mugimendua mugimendua : mugimenduak) {</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">			if(mugimendua.getMota().equals(&quot;irabazi&quot;)) {</span>
+<span class="nc" id="L128">				irabazia+=mugimendua.getAldaketa();</span>
+<span class="nc bnc" id="L129" title="All 2 branches missed.">			}else if(mugimendua.getMota().equals(&quot;bueltatu&quot;)) {</span>
+<span class="nc" id="L130">				jokatua-=mugimendua.getAldaketa();</span>
+<span class="nc bnc" id="L131" title="All 2 branches missed.">			}else if(mugimendua.getMota().equals(&quot;jokatu&quot;)){</span>
+<span class="nc" id="L132">				jokatua-=mugimendua.getAldaketa();</span>
+			}
+		}
+<span class="nc" id="L135">		etekina=irabazia-jokatua;</span>
+<span class="nc" id="L136">		emaitza.add(jokatua);</span>
+<span class="nc" id="L137">		emaitza.add(irabazia);</span>
+<span class="nc" id="L138">		emaitza.add(etekina);</span>
+<span class="nc" id="L139">		return emaitza;</span>
+	}
+
+	public Integer getJokatuak() {
+<span class="nc" id="L143">		return jokatuak;</span>
+	}
+
+	public void setJokatuak(Integer jokatuak) {
+<span class="nc" id="L147">		this.jokatuak = jokatuak;</span>
+<span class="nc" id="L148">	}</span>
+
+	public Integer getIrabaziak() {
+<span class="nc" id="L151">		return irabaziak;</span>
+	}
+
+	public void setIrabaziak(Integer irabaziak) {
+<span class="nc" id="L155">		this.irabaziak = irabaziak;</span>
+<span class="nc" id="L156">	}</span>
+	
+	public String toString() {
+<span class="nc" id="L159">		return erabiltzaileIzena;</span>
+	}
+	
+	public BezeroartekoMezua addBidalitakoBezeroMezua(Bezeroa nori, String mezua, String gaia, String mota, double zenbatApostatu, double hilabeteanZenbat, double zenbatErrepikatuarentzat) {
+<span class="nc" id="L163">		BezeroartekoMezua bidalitakoMezua = new BezeroartekoMezua(mezua, gaia, mota, zenbatApostatu, hilabeteanZenbat, zenbatErrepikatuarentzat, this, nori);</span>
+<span class="nc" id="L164">		bidalitakoBezeroMezuak.add(bidalitakoMezua);</span>
+<span class="nc" id="L165">		return bidalitakoMezua;</span>
+	}
+	
+	public Vector&lt;BezeroartekoMezua&gt; getBidalitakoBezeroMezuak() {
+<span class="nc" id="L169">		return bidalitakoBezeroMezuak;</span>
+	}
+
+	public Vector&lt;BezeroartekoMezua&gt; getJasotakoMezuak() {
+<span class="nc" id="L173">		return jasotakoBezeroMezuak;</span>
+	}
+
+	public void addJasotakoBezeroMezua(BezeroartekoMezua jasotakoMezua) {
+<span class="nc" id="L177">		jasotakoBezeroMezuak.add(jasotakoMezua);</span>
+<span class="nc" id="L178">	}</span>
+	
+	public void ezabatuBidalitakoBezeroMezua(BezeroartekoMezua mezua) {
+<span class="nc" id="L181">		bidalitakoBezeroMezuak.remove(mezua);</span>
+<span class="nc" id="L182">	}</span>
+	
+	public void ezabatuJasotakoBezeroMezua(BezeroartekoMezua mezua) {
+<span class="nc" id="L185">		jasotakoBezeroMezuak.remove(mezua);</span>
+<span class="nc" id="L186">	}</span>
+	
+	public boolean baduMezua(Bezeroa bestea) {
+		//erabiltzaileak badu mezuren bat besteak bidalitakoa irakurri gabe.
+<span class="nc bnc" id="L190" title="All 2 branches missed.">		for(BezeroartekoMezua m : bidalitakoBezeroMezuak) {</span>
+<span class="nc bnc" id="L191" title="All 4 branches missed.">			if(m.getHartzailea().getErabiltzaileIzena().equals(bestea.getErabiltzaileIzena()) &amp;&amp;  !m.isIrakurrita()) {</span>
+<span class="nc" id="L192">				return true;</span>
+			}
+		}
+		//besteak badu mezuren bat erabiltzaileak bidalitakoa irakurri gabe.
+<span class="nc bnc" id="L196" title="All 2 branches missed.">		for(BezeroartekoMezua m : jasotakoBezeroMezuak) {</span>
+<span class="nc bnc" id="L197" title="All 4 branches missed.">			if(m.getIgorlea().getErabiltzaileIzena().equals(bestea.getErabiltzaileIzena()) &amp;&amp; !m.isIrakurrita()) {</span>
+<span class="nc" id="L198">				return true;</span>
+			}
+		}
+<span class="nc" id="L201">		return false;</span>
+	}
+	
+	public boolean errepikapenErlazioaDu(Bezeroa bestea) {
+<span class="nc bnc" id="L205" title="All 2 branches missed.">		for(Errepikapena e : errepikatuak) {</span>
+<span class="nc bnc" id="L206" title="All 2 branches missed.">			if(e.getNori().getErabiltzaileIzena().equals(bestea.getErabiltzaileIzena())) {</span>
+<span class="nc" id="L207">				return true;</span>
+			}
+		}
+<span class="nc bnc" id="L210" title="All 2 branches missed.">		for(Errepikapena e : errepikatzaileak) {</span>
+<span class="nc bnc" id="L211" title="All 2 branches missed.">			if(e.getNork().getErabiltzaileIzena().equals(bestea.getErabiltzaileIzena())) {</span>
+<span class="nc" id="L212">				return true;</span>
+			}
+		}
+<span class="nc" id="L215">		return false;</span>
+	}
+
+	public boolean isPublikoa() {
+<span class="nc" id="L219">		return publikoa;</span>
+	}
+
+	public void setPublikoa(boolean publikoa) {
+<span class="nc" id="L223">		this.publikoa = publikoa;</span>
+<span class="nc" id="L224">	}</span>
+
+	public double getKomisioAutomatikoa() {
+<span class="nc" id="L227">		return komisioAutomatikoa;</span>
+	}
+
+	public void setKomisioAutomatikoa(double komisioAutomatikoa) {
+<span class="nc" id="L231">		this.komisioAutomatikoa = komisioAutomatikoa;</span>
+<span class="nc" id="L232">	}</span>
+	
+	public void eguneratuEzarpenak(boolean publikoa, double komisioAutomatikoa) {
+<span class="nc" id="L235">		this.publikoa = publikoa;</span>
+<span class="nc" id="L236">		this.komisioAutomatikoa = komisioAutomatikoa;</span>
+<span class="nc" id="L237">	}</span>
+	
+	public Errepikapena addErrepikatzailea(Bezeroa nork, double apustatukoDena, double hilabetekoMax, double komisioa) {
+<span class="nc" id="L240">		Errepikapena errepikapenBerria = new Errepikapena(nork, this, apustatukoDena, hilabetekoMax,komisioa);</span>
+<span class="nc" id="L241">		this.errepikatzaileak.add(errepikapenBerria);</span>
+<span class="nc" id="L242">		return errepikapenBerria;</span>
+	}
+	
+	public void addErrepikatua(Errepikapena e) {
+<span class="nc" id="L246">		this.errepikatuak.add(e);</span>
+<span class="nc" id="L247">	}</span>
+
+	public Vector&lt;Errepikapena&gt; getErrepikatzaileak() {
+<span class="nc" id="L250">		return errepikatzaileak;</span>
+	}
+
+	public Vector&lt;Errepikapena&gt; getErrepikatuak() {
+<span class="nc" id="L254">		return errepikatuak;</span>
+	}
+	
+	public Errepikapena getErrepikapena(Bezeroa bez) {
+<span class="nc" id="L258">		String erabIzena=bez.getErabiltzaileIzena();</span>
+<span class="nc bnc" id="L259" title="All 2 branches missed.">		for (Errepikapena erre:errepikatuak) {</span>
+<span class="nc" id="L260">			String erabiltzaile=erre.getNori().getErabiltzaileIzena();</span>
+<span class="nc bnc" id="L261" title="All 2 branches missed.">			if (erabiltzaile.equals(erabIzena)) {</span>
+<span class="nc" id="L262">				return erre;</span>
+			}
+		}
+<span class="nc" id="L265">		return null;</span>
+	}
+	
+	public Apustua baduApustua(Apustua apus) {
+<span class="nc bnc" id="L269" title="All 2 branches missed.">		for (Apustua apustu : apustuak) {</span>
+<span class="nc" id="L270">			System.out.println(apustu.getErrepikatua()+&quot; &quot;+apus.getBezeroa());</span>
+<span class="nc bnc" id="L271" title="All 6 branches missed.">			if (apustu.equals(apus) &amp;&amp; apustu.getErrepikatua()!=null &amp;&amp; apustu.getErrepikatua().getErabiltzaileIzena().equals(apus.getBezeroa().getErabiltzaileIzena())) {</span>
+<span class="nc" id="L272">				return apustu;</span>
+			}
+		}
+<span class="nc" id="L275">		return null;</span>
+	}
+	
+	public boolean baduElkarrizketa() {
+<span class="nc bnc" id="L279" title="All 2 branches missed.">		for(ArretaElkarrizketa ae : arretaElkarrizketak) {</span>
+<span class="nc bnc" id="L280" title="All 2 branches missed.">			if(!ae.isAmaituta()) {</span>
+<span class="nc" id="L281">				return true;</span>
+			}
+		}
+<span class="nc" id="L284">		return false;</span>
+	}
+	
+	public ArretaElkarrizketa addElkarrizketa(String gaia) {
+<span class="nc" id="L288">		ArretaElkarrizketa berria = new ArretaElkarrizketa(this, gaia);</span>
+<span class="nc" id="L289">		this.arretaElkarrizketak.add(berria);</span>
+<span class="nc" id="L290">		return berria;</span>
+	}
+	
+	public Vector&lt;Mezua&gt; getMezuak() {
+<span class="nc" id="L294">		Vector&lt;Mezua&gt; emaitza = new Vector&lt;Mezua&gt;();</span>
+<span class="nc" id="L295">		emaitza.addAll(jasotakoBezeroMezuak);</span>
+<span class="nc bnc" id="L296" title="All 2 branches missed.">		for(ArretaElkarrizketa ae : arretaElkarrizketak) {</span>
+<span class="nc bnc" id="L297" title="All 2 branches missed.">			for(ArretaMezua am : ae.getLangileakBidalitakoak()) {</span>
+<span class="nc bnc" id="L298" title="All 2 branches missed.">				if(am.isIkusgaiBezeroarentzat()) {</span>
+<span class="nc" id="L299">					emaitza.add(am);</span>
+				}
+			}
+		}
+		int zaharrenaPos;
+		Mezua lag;
+<span class="nc bnc" id="L305" title="All 2 branches missed.">		for(int i = 0; i&lt;emaitza.size(); i++) {</span>
+<span class="nc" id="L306">			zaharrenaPos = i;</span>
+<span class="nc bnc" id="L307" title="All 2 branches missed.">			for(int j = i; j&lt;emaitza.size(); j++) {</span>
+<span class="nc bnc" id="L308" title="All 2 branches missed.">				if(emaitza.get(j).getData().before(emaitza.get(zaharrenaPos).getData())) {</span>
+<span class="nc" id="L309">					zaharrenaPos = j;</span>
+				}
+			}
+<span class="nc" id="L312">			lag=emaitza.get(i);</span>
+<span class="nc" id="L313">			emaitza.set(i, emaitza.get(zaharrenaPos));</span>
+<span class="nc" id="L314">			emaitza.set(zaharrenaPos, lag);</span>
+		}
+<span class="nc" id="L316">		return emaitza;</span>
+	}
+
+	public Vector&lt;ArretaElkarrizketa&gt; getArretaElkarrizketak() {
+<span class="nc" id="L320">		return arretaElkarrizketak;</span>
+	}
+
+	public void removeElkarrizketa(ArretaElkarrizketa ae) {
+<span class="nc" id="L324">		arretaElkarrizketak.remove(ae);</span>
+<span class="nc" id="L325">	}</span>
+
+	public void ezabatuErrepikatua(Errepikapena errepikatua) {
+<span class="nc" id="L328">		errepikatuak.remove(errepikatua);</span>
+<span class="nc" id="L329">	}</span>
+
+	public void ezabatuErrepikatzailea(Errepikapena errepikatzailea) {
+<span class="nc" id="L332">		errepikatzaileak.remove(errepikatzailea);</span>
+<span class="nc" id="L333">	}</span>
+	
+	public Errepikapena noriErrepikatu(Bezeroa bez) {
+<span class="nc" id="L336">		Errepikapena res = null;</span>
+<span class="nc" id="L337">		String erabIzena = bez.getErabiltzaileIzena();</span>
+<span class="nc bnc" id="L338" title="All 2 branches missed.">		for (Errepikapena erre : errepikatuak) {</span>
+<span class="nc" id="L339">			String erabiltzaile = erre.getNori().getErabiltzaileIzena();</span>
+<span class="nc bnc" id="L340" title="All 2 branches missed.">			if (erabiltzaile.equals(erabIzena)) {</span>
+<span class="nc" id="L341">				res = erre;</span>
+			}
+		}
+<span class="nc" id="L344">		return res;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>RegisterDATestAristegui2 (19 oct 2021 9:50:03)</div></body></html>

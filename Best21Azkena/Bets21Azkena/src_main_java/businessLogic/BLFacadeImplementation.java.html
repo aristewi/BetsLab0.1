@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>BLFacadeImplementation.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">RegisterDATestAristegui2 (19 oct 2021 9:50:03)</a> &gt; <a href="../../index.html" class="el_group">Bets21Azkena</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">businessLogic</a> &gt; <span class="el_source">BLFacadeImplementation.java</span></div><h1>BLFacadeImplementation.java</h1><pre class="source lang-java linenums">package businessLogic;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.ResourceBundle;
+import java.util.Vector;
+
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+
+import configuration.ConfigXML;
+import dataAccess.DataAccess;
+import domain.Question;
+import domain.Apustua;
+import domain.ArretaElkarrizketa;
+import domain.Bezeroa;
+import domain.BezeroaContainer;
+import domain.Errepikapena;
+import domain.ErrepikatuakContainer;
+import domain.Event;
+import domain.Langilea;
+import domain.Mezua;
+import domain.Pertsona;
+import domain.Pronostikoa;
+import domain.PronostikoaContainer;
+import exceptions.EventAlreadyExist;
+import exceptions.EventFinished;
+import exceptions.PronosticAlreadyExist;
+import exceptions.QuestionAlreadyExist;
+import exceptions.UserAlreadyExist;
+
+/**
+ * It implements the business logic as a web service.
+ */
+@WebService(endpointInterface = &quot;businessLogic.BLFacade&quot;)
+public class BLFacadeImplementation  implements BLFacade {
+	DataAccess dbManager;
+
+<span class="nc" id="L39">	public BLFacadeImplementation()  {		</span>
+<span class="nc" id="L40">		System.out.println(&quot;Creating BLFacadeImplementation instance&quot;);</span>
+<span class="nc" id="L41">		ConfigXML c=ConfigXML.getInstance();</span>
+<span class="nc" id="L42">		dbManager=new DataAccess(c.getDataBaseOpenMode().equals(&quot;initialize&quot;));</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">		if (c.getDataBaseOpenMode().equals(&quot;initialize&quot;)) {</span>
+<span class="nc" id="L44">			dbManager.initializeDB();</span>
+<span class="nc" id="L45">			dbManager.close();</span>
+		}
+<span class="nc" id="L47">	}</span>
+	
+<span class="nc" id="L49">    public BLFacadeImplementation(DataAccess da)  {</span>
+		
+<span class="nc" id="L51">		System.out.println(&quot;Creating BLFacadeImplementation instance with DataAccess parameter&quot;);</span>
+<span class="nc" id="L52">		ConfigXML c=ConfigXML.getInstance();</span>
+		
+<span class="nc bnc" id="L54" title="All 2 branches missed.">		if (c.getDataBaseOpenMode().equals(&quot;initialize&quot;)) {</span>
+<span class="nc" id="L55">			da.open(true);</span>
+<span class="nc" id="L56">			da.initializeDB();</span>
+<span class="nc" id="L57">			da.close();</span>
+
+		}
+<span class="nc" id="L60">		dbManager=da;		</span>
+<span class="nc" id="L61">	}</span>
+	
+
+	/**
+	 * This method creates a question for an event, with a question text and the minimum bet
+	 * 
+	 * @param event to which question is added
+	 * @param question text of the question
+	 * @param betMinimum minimum quantity of the bet
+	 * @return the created question, or null, or an exception
+	 * @throws EventFinished if current data is after data of the event
+ 	 * @throws QuestionAlreadyExist if the same question already exists for the event
+	 */
+   @WebMethod
+   public Question createQuestion(Event event, String question,  double betMinimum) throws EventFinished, QuestionAlreadyExist{
+	   
+	    //The minimum bed must be greater than 0
+<span class="nc" id="L78">		dbManager.open(false);</span>
+<span class="nc" id="L79">		Question qry=null;</span>
+		
+	    
+<span class="nc bnc" id="L82" title="All 2 branches missed.">		if(new Date().compareTo(event.getEventDate())&gt;0)</span>
+<span class="nc" id="L83">			throw new EventFinished(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;ErrorEventHasFinished&quot;));</span>
+				
+		
+<span class="nc" id="L86">		 qry=dbManager.createQuestion(event,question,betMinimum);		</span>
+
+<span class="nc" id="L88">		dbManager.close();</span>
+		
+<span class="nc" id="L90">		return qry;</span>
+   };
+	
+	/**
+	 * This method invokes the data access to retrieve the events of a given date 
+	 * 
+	 * @param date in which events are retrieved
+	 * @return collection of events
+	 */
+    @WebMethod	
+	public Vector&lt;Event&gt; getEvents(Date date)  {
+<span class="nc" id="L101">		dbManager.open(false);</span>
+<span class="nc" id="L102">		Vector&lt;Event&gt;  events=dbManager.getEvents(date);</span>
+<span class="nc" id="L103">		dbManager.close();</span>
+<span class="nc" id="L104">		return events;</span>
+	}
+
+    
+	/**
+	 * This method invokes the data access to retrieve the dates a month for which there are events
+	 * 
+	 * @param date of the month for which days with events want to be retrieved 
+	 * @return collection of dates
+	 */
+	@WebMethod public Vector&lt;Date&gt; getEventsMonth(Date date) {
+<span class="nc" id="L115">		dbManager.open(false);</span>
+<span class="nc" id="L116">		Vector&lt;Date&gt;  dates=dbManager.getEventsMonth(date);</span>
+<span class="nc" id="L117">		dbManager.close();</span>
+<span class="nc" id="L118">		return dates;</span>
+	}
+	
+	
+	public void close() {
+<span class="nc" id="L123">		DataAccess dB4oManager=new DataAccess(false);</span>
+
+<span class="nc" id="L125">		dB4oManager.close();</span>
+
+<span class="nc" id="L127">	}</span>
+
+	/**
+	 * This method invokes the data access to initialize the database with some events and questions.
+	 * It is invoked only when the option &quot;initialize&quot; is declared in the tag dataBaseOpenMode of resources/config.xml file
+	 */	
+    @WebMethod	
+	 public void initializeBD(){
+<span class="nc" id="L135">    	dbManager.open(false);</span>
+<span class="nc" id="L136">		dbManager.initializeDB();</span>
+<span class="nc" id="L137">		dbManager.close();</span>
+<span class="nc" id="L138">	}</span>
+    
+    @WebMethod
+    public Pertsona isLogin(String erabiltzaileIzena, String pasahitza) {
+<span class="nc" id="L142">    	dbManager.open(false);</span>
+<span class="nc" id="L143">		Pertsona emaitza = dbManager.isLogin(erabiltzaileIzena, pasahitza);</span>
+<span class="nc" id="L144">		dbManager.close();</span>
+<span class="nc" id="L145">		return emaitza;</span>
+    }
+    
+    @WebMethod
+	public Pertsona register(String izena, String abizena1, String abizena2, String erabiltzaileIzena, String pasahitza, String telefonoZbkia, String email, Date jaiotzeData, String mota) throws UserAlreadyExist{
+<span class="nc" id="L150">    	dbManager.open(false);</span>
+<span class="nc" id="L151">		Pertsona emaitza = dbManager.register(izena, abizena1, abizena2, erabiltzaileIzena, pasahitza, telefonoZbkia, email, jaiotzeData, mota);</span>
+<span class="nc" id="L152">		dbManager.close();</span>
+<span class="nc" id="L153">		return emaitza;</span>
+    }
+    
+    @WebMethod
+    public void createEvent(String description, Date eventDate) throws EventAlreadyExist{
+<span class="nc" id="L158">    	dbManager.open(false);</span>
+<span class="nc" id="L159">		dbManager.createEvent(description, eventDate);</span>
+<span class="nc" id="L160">		dbManager.close();</span>
+<span class="nc" id="L161">    }</span>
+    
+    @WebMethod	
+	public Vector&lt;Question&gt; getQuestions(Event event)  {
+<span class="nc" id="L165">		dbManager.open(false);</span>
+<span class="nc" id="L166">		Vector&lt;Question&gt;  questions=dbManager.getQuestions(event);</span>
+<span class="nc" id="L167">		dbManager.close();</span>
+<span class="nc" id="L168">		return questions;</span>
+	}
+    
+    @WebMethod
+    public Pronostikoa createPronostic(Question question, String description, double kuota) throws PronosticAlreadyExist{
+<span class="nc" id="L173"> 		dbManager.open(false);</span>
+<span class="nc" id="L174"> 		Pronostikoa p=dbManager.createPronostic(question,description,kuota);		</span>
+<span class="nc" id="L175"> 		dbManager.close();</span>
+<span class="nc" id="L176"> 		return p;</span>
+    };
+    
+    @WebMethod
+    public void emaitzaIpini(Question question, Pronostikoa pronostikoa){
+<span class="nc" id="L181">    	dbManager.open(false);</span>
+<span class="nc" id="L182"> 		dbManager.emaitzaIpini(question,pronostikoa);		</span>
+<span class="nc" id="L183"> 		dbManager.close();</span>
+<span class="nc" id="L184">    }</span>
+    
+    @WebMethod
+    public Bezeroa apustuaEgin(ArrayList&lt;Pronostikoa&gt; pronostikoak, double a, Bezeroa bezero) {
+<span class="nc" id="L188">    	dbManager.open(false);</span>
+<span class="nc" id="L189">    	System.out.println(bezero);</span>
+<span class="nc" id="L190">    	Bezeroa bezeroa = dbManager.apustuaEgin(pronostikoak,a,bezero);</span>
+<span class="nc" id="L191">    	dbManager.close();</span>
+<span class="nc" id="L192">    	return bezeroa;</span>
+    }
+    
+    @WebMethod
+    public Bezeroa deleteApustua(Apustua a) throws EventFinished{ 	
+<span class="nc" id="L197">    	dbManager.open(false);</span>
+<span class="nc" id="L198">    	Bezeroa bezeroa = dbManager.deleteApustua(a);</span>
+<span class="nc" id="L199">    	dbManager.close();</span>
+<span class="nc" id="L200">    	return bezeroa;</span>
+    }
+    
+    @WebMethod
+    public Bezeroa diruaSartu(double u, Bezeroa bezero) {
+<span class="nc" id="L205">    	dbManager.open(false);</span>
+<span class="nc" id="L206">    	Bezeroa bezeroa = dbManager.diruaSartu(u,bezero);</span>
+<span class="nc" id="L207">    	dbManager.close();</span>
+<span class="nc" id="L208">    	return bezeroa;</span>
+    }
+    
+    @WebMethod
+    public void ezabatuGertaera(Event event) {
+<span class="nc" id="L213">    	dbManager.open(false);</span>
+<span class="nc" id="L214">    	dbManager.ezabatuGertaera(event);</span>
+<span class="nc" id="L215">    	dbManager.close();</span>
+<span class="nc" id="L216">    }</span>
+    
+    @WebMethod 
+    public Bezeroa getBezeroa(String ErabiltzaileIzena) {
+<span class="nc" id="L220">    	dbManager.open(false);</span>
+<span class="nc" id="L221">    	Bezeroa b = dbManager.getBezeroa(ErabiltzaileIzena);</span>
+<span class="nc" id="L222">    	dbManager.close();</span>
+<span class="nc" id="L223">    	return b;</span>
+    }
+    
+    @WebMethod 
+    public Langilea getLangilea(String ErabiltzaileIzena) {
+<span class="nc" id="L228">    	dbManager.open(false);</span>
+<span class="nc" id="L229">    	Langilea l = dbManager.getLangilea(ErabiltzaileIzena);</span>
+<span class="nc" id="L230">    	dbManager.close();</span>
+<span class="nc" id="L231">    	return l;</span>
+    }
+    
+    @WebMethod 
+    public Vector&lt;Bezeroa&gt; getBezeroak(String username, Bezeroa bezeroa){
+<span class="nc" id="L236">    	dbManager.open(false);</span>
+<span class="nc" id="L237">    	Vector&lt;Bezeroa&gt; bezeroak = dbManager.getBezeroak(username, bezeroa);</span>
+<span class="nc" id="L238">    	dbManager.close();</span>
+<span class="nc" id="L239">    	return bezeroak;</span>
+    }
+    
+    @WebMethod 
+    public Bezeroa bidaliMezua(Bezeroa nork, Bezeroa nori, String mezua, String gaia, String mota, double zenbatApostatu, double hilabeteanZenbat, double zenbatErrepikatuarentzat) {
+<span class="nc" id="L244">    	dbManager.open(false);</span>
+<span class="nc" id="L245">    	Bezeroa bezeroa = dbManager.bidaliMezua(nork, nori, mezua, gaia, mota, zenbatApostatu, hilabeteanZenbat, zenbatErrepikatuarentzat);</span>
+<span class="nc" id="L246">    	dbManager.close();</span>
+<span class="nc" id="L247">    	return bezeroa;</span>
+    }
+    
+    @WebMethod 
+    public Vector&lt;Mezua&gt; getMezuak(Bezeroa bezeroa){
+<span class="nc" id="L252">    	dbManager.open(false);</span>
+<span class="nc" id="L253">    	Vector&lt;Mezua&gt; mezuak = dbManager.getMezuak(bezeroa);</span>
+<span class="nc" id="L254">    	dbManager.close();</span>
+<span class="nc" id="L255">    	return mezuak;</span>
+    }
+    
+    
+    @WebMethod 
+    public void mezuaIrakurri(Mezua mezua) {
+<span class="nc" id="L261">    	dbManager.open(false);</span>
+<span class="nc" id="L262">    	dbManager.mezuaIrakurri(mezua);</span>
+<span class="nc" id="L263">    	dbManager.close();</span>
+<span class="nc" id="L264">	}</span>
+    
+    @WebMethod 
+    public void removeMezua(Mezua mezua) {
+<span class="nc" id="L268">    	dbManager.open(false);</span>
+<span class="nc" id="L269">    	dbManager.removeMezua(mezua);</span>
+<span class="nc" id="L270">    	dbManager.close();</span>
+<span class="nc" id="L271">    }</span>
+    
+    @WebMethod 
+    public Bezeroa eguneratuEzarpenak(Bezeroa b,double komisioa, boolean publikoa) {
+<span class="nc" id="L275">    	dbManager.open(false);</span>
+<span class="nc" id="L276">    	Bezeroa berria = dbManager.eguneratuEzarpenak(b,komisioa,publikoa);</span>
+<span class="nc" id="L277">    	dbManager.close();</span>
+<span class="nc" id="L278">    	return berria;</span>
+    }
+    
+    @WebMethod 
+    public void errepikatu(Bezeroa nork, Bezeroa nori, double apustatukoDena, double hilabetekoMax, double komisioa) {
+<span class="nc" id="L283">    	dbManager.open(false);</span>
+<span class="nc" id="L284">    	dbManager.errepikatu(nork, nori, apustatukoDena, hilabetekoMax, komisioa);</span>
+<span class="nc" id="L285">    	dbManager.close();</span>
+<span class="nc" id="L286">    }</span>
+
+	@WebMethod 
+	public Vector&lt;PronostikoaContainer&gt; getPronostikoak(Apustua a){
+<span class="nc" id="L290">		dbManager.open(false);</span>
+<span class="nc" id="L291">    	Vector&lt;PronostikoaContainer&gt; emaitza = dbManager.getPronostikoak(a);</span>
+<span class="nc" id="L292">    	dbManager.close();</span>
+<span class="nc" id="L293">    	return emaitza;</span>
+	}
+	
+	@WebMethod 
+	public ArretaElkarrizketa arretaMezuaBidali(ArretaElkarrizketa elkarrizketa, String mezua, boolean langileari) {
+<span class="nc" id="L298">		dbManager.open(false);</span>
+<span class="nc" id="L299">		ArretaElkarrizketa emaitza = dbManager.arretaMezuaBidali(elkarrizketa, mezua, langileari);</span>
+<span class="nc" id="L300">    	dbManager.close();</span>
+<span class="nc" id="L301">    	return emaitza;</span>
+	}
+
+	@WebMethod 
+	public ArretaElkarrizketa bezeroaEsleitu(Langilea langilea) {
+<span class="nc" id="L306">		dbManager.open(false);</span>
+<span class="nc" id="L307">		ArretaElkarrizketa elkarrizketa = dbManager.bezeroaEsleitu(langilea);</span>
+<span class="nc" id="L308">    	dbManager.close();</span>
+<span class="nc" id="L309">    	return elkarrizketa;</span>
+	}
+	
+	@WebMethod 
+	public ArretaElkarrizketa arretaElkarrizketaSortu(Bezeroa bezeroa, String gaia, String mezua) {
+<span class="nc" id="L314">		dbManager.open(false);</span>
+<span class="nc" id="L315">		ArretaElkarrizketa erantzuna = dbManager.arretaElkarrizketaSortu(bezeroa, gaia, mezua);</span>
+<span class="nc" id="L316">    	dbManager.close();</span>
+<span class="nc" id="L317">    	return erantzuna;</span>
+	}
+	
+	@WebMethod 
+	public BezeroaContainer getBezeroaContainer(Bezeroa b) {
+<span class="nc" id="L322">		dbManager.open(false);</span>
+<span class="nc" id="L323">		BezeroaContainer bezeroaEguneratuta = dbManager.getBezeroaContainer(b);</span>
+<span class="nc" id="L324">    	dbManager.close();</span>
+<span class="nc" id="L325">    	return bezeroaEguneratuta;</span>
+	}
+	
+	@WebMethod 
+	public void geldituElkarrizketa(ArretaElkarrizketa ae) {
+<span class="nc" id="L330">		dbManager.open(false);</span>
+<span class="nc" id="L331">		dbManager.geldituElkarrizketa(ae);</span>
+<span class="nc" id="L332">    	dbManager.close();</span>
+<span class="nc" id="L333">	}</span>
+	
+	@WebMethod
+	public void amaituElkarrizketa(ArretaElkarrizketa ae) {
+<span class="nc" id="L337">		dbManager.open(false);</span>
+<span class="nc" id="L338">		dbManager.amaituElkarrizketa(ae);</span>
+<span class="nc" id="L339">    	dbManager.close();</span>
+<span class="nc" id="L340">	}</span>
+	
+	@WebMethod 
+	public void gehituPuntuazioa(ArretaElkarrizketa l, Integer x) {
+<span class="nc" id="L344">		dbManager.open(false);</span>
+<span class="nc" id="L345">		dbManager.gehituPuntuazioa(l,x);</span>
+<span class="nc" id="L346">    	dbManager.close();</span>
+<span class="nc" id="L347">	}</span>
+	
+	@WebMethod
+	public void eguneratuErrepikapenak() {
+<span class="nc" id="L351">		dbManager.open(false);</span>
+<span class="nc" id="L352">		dbManager.eguneratuErrepikapenak();</span>
+<span class="nc" id="L353">		dbManager.close();</span>
+<span class="nc" id="L354">	}</span>
+	
+	@WebMethod
+	public Vector&lt;Langilea&gt; getLangileak() {
+<span class="nc" id="L358">		dbManager.open(false);</span>
+<span class="nc" id="L359">		Vector&lt;Langilea&gt; list = dbManager.getLangileak();</span>
+<span class="nc" id="L360">		dbManager.close();</span>
+<span class="nc" id="L361">		return list;</span>
+	}
+	
+	@WebMethod
+	public void jarraitzeariUtzi(Errepikapena errepikapena) {
+<span class="nc" id="L366">		dbManager.open(false);</span>
+<span class="nc" id="L367">		dbManager.jarraitzeariUtzi(errepikapena);</span>
+<span class="nc" id="L368">		dbManager.close();</span>
+
+<span class="nc" id="L370">	}</span>
+
+	@WebMethod
+	public ArrayList&lt;ErrepikatuakContainer&gt; getErrepikatzaileak(Bezeroa bezeroa) {
+<span class="nc" id="L374">		dbManager.open(false);</span>
+<span class="nc" id="L375">		ArrayList&lt;ErrepikatuakContainer&gt; errepikapenak = dbManager.getErrepikatzaileak(bezeroa);</span>
+<span class="nc" id="L376">		dbManager.close();</span>
+<span class="nc" id="L377">		return errepikapenak;</span>
+	}
+
+	@WebMethod
+	public ArrayList&lt;ErrepikatuakContainer&gt; getErrepikapenak(Bezeroa bezeroa) {
+<span class="nc" id="L382">		dbManager.open(false);</span>
+<span class="nc" id="L383">		ArrayList&lt;ErrepikatuakContainer&gt; errepikapenak = dbManager.getErrepikapenak(bezeroa);</span>
+<span class="nc" id="L384">		dbManager.close();</span>
+<span class="nc" id="L385">		return errepikapenak;</span>
+	}
+	
+	@WebMethod 
+	public ArretaElkarrizketa getArretaElkarrizketa(ArretaElkarrizketa ae) {
+<span class="nc" id="L390">		dbManager.open(false);</span>
+<span class="nc" id="L391">		ArretaElkarrizketa emaitza = dbManager.getArretaElkarrizketa(ae);</span>
+<span class="nc" id="L392">		dbManager.close();</span>
+<span class="nc" id="L393">		return emaitza;</span>
+	}
+
+	
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>RegisterDATestAristegui2 (19 oct 2021 9:50:03)</div></body></html>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Apustua.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">RegisterDATestAristegui2 (19 oct 2021 9:50:03)</a> &gt; <a href="../../index.html" class="el_group">Bets21Azkena</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">Apustua.java</span></div><h1>Apustua.java</h1><pre class="source lang-java linenums">package domain;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+@Entity
+@XmlAccessorType(XmlAccessType.FIELD)
+public class Apustua implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private double kopurua;
+	@Id
+	@XmlID
+	@XmlJavaTypeAdapter(IntegerAdapter.class)
+	@GeneratedValue
+	private Integer identifikadorea;
+	@XmlIDREF
+	private Bezeroa bezeroa;
+	@XmlIDREF
+	private Bezeroa errepikatua;
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+<span class="nc" id="L37">	private ArrayList&lt;Pronostikoa&gt; pronostikoak=new ArrayList&lt;Pronostikoa&gt;();</span>
+	private Integer pronostikoKop;
+	private Integer asmatutakoKop;
+	private double kuotaTotala;
+	
+	public Apustua(){
+<span class="nc" id="L43">		super();</span>
+<span class="nc" id="L44">	}</span>
+	
+<span class="nc" id="L46">	public Apustua(double kopurua, Bezeroa bezeroa, ArrayList&lt;Pronostikoa&gt; pronostikoak, Bezeroa errepikatua) {</span>
+<span class="nc" id="L47">		this.kopurua = kopurua;</span>
+<span class="nc" id="L48">		this.bezeroa = bezeroa;</span>
+<span class="nc" id="L49">		this.pronostikoak = pronostikoak;</span>
+<span class="nc" id="L50">		this.pronostikoKop = pronostikoak.size();</span>
+<span class="nc" id="L51">		asmatutakoKop=0;</span>
+<span class="nc" id="L52">		double kuota = 1;</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">		for(Pronostikoa p : pronostikoak) {</span>
+<span class="nc" id="L54">			kuota=kuota*p.getKuota();</span>
+		}
+<span class="nc" id="L56">		kuotaTotala=kuota;</span>
+<span class="nc" id="L57">		this.errepikatua=errepikatua;</span>
+<span class="nc" id="L58">	}</span>
+	
+	public Integer getPronostikoKop() {
+<span class="nc" id="L61">		return pronostikoKop;</span>
+	}
+
+	public void setPronostikoKop(Integer pronostikoKop) {
+<span class="nc" id="L65">		this.pronostikoKop = pronostikoKop;</span>
+<span class="nc" id="L66">	}</span>
+
+	public Integer getAsmatutakoKop() {
+<span class="nc" id="L69">		return asmatutakoKop;</span>
+	}
+
+	public void setAsmatutakoKop(Integer asmatutakoKop) {
+<span class="nc" id="L73">		this.asmatutakoKop = asmatutakoKop;</span>
+<span class="nc" id="L74">	}</span>
+
+	public double getKuotaTotala() {
+<span class="nc" id="L77">		return kuotaTotala;</span>
+	}
+
+	public void setKuotaTotala(double kuotaTotala) {
+<span class="nc" id="L81">		this.kuotaTotala = kuotaTotala;</span>
+<span class="nc" id="L82">	}</span>
+
+	public void setKopurua(double kopurua) {
+<span class="nc" id="L85">		this.kopurua = kopurua;</span>
+<span class="nc" id="L86">	}</span>
+
+	public void setIdentifikadorea(Integer identifikadorea) {
+<span class="nc" id="L89">		this.identifikadorea = identifikadorea;</span>
+<span class="nc" id="L90">	}</span>
+
+	public void setBezeroa(Bezeroa bezeroa) {
+<span class="nc" id="L93">		this.bezeroa = bezeroa;</span>
+<span class="nc" id="L94">	}</span>
+
+	public void setPronostikoak(ArrayList&lt;Pronostikoa&gt; pronostikoak) {
+<span class="nc" id="L97">		this.pronostikoak = pronostikoak;</span>
+<span class="nc" id="L98">	}</span>
+
+<span class="nc" id="L100">	public Apustua(double kopurua) {</span>
+<span class="nc" id="L101">		this.kopurua = kopurua;</span>
+<span class="nc" id="L102">	}</span>
+	
+	public double getKopurua() {
+<span class="nc" id="L105">		return kopurua;</span>
+	}
+	
+	public Integer getIdentifikadorea() {
+<span class="nc" id="L109">		return identifikadorea;</span>
+	}
+	
+	public Bezeroa getBezeroa() {
+<span class="nc" id="L113">		return bezeroa;</span>
+	}
+	
+	public ArrayList&lt;Pronostikoa&gt; getPronostikoak() {
+<span class="nc" id="L117">		return pronostikoak;</span>
+	}
+	
+	public String toString() {
+<span class="nc bnc" id="L121" title="All 2 branches missed.">		if(errepikatua!=null) {</span>
+<span class="nc" id="L122">			return identifikadorea+&quot; (&quot;+errepikatua+&quot;)&quot;;</span>
+		}
+<span class="nc" id="L124">		return identifikadorea+&quot;&quot;;</span>
+	}
+	
+	public int removePronostikoa(Pronostikoa p) {
+<span class="nc" id="L128">		pronostikoKop--;</span>
+<span class="nc" id="L129">		kuotaTotala=kuotaTotala/p.getKuota();</span>
+<span class="nc" id="L130">		this.pronostikoak.remove(p);</span>
+<span class="nc" id="L131">		return pronostikoKop;</span>
+	}
+	
+	public boolean eguneratuAsmatutakoKop() {
+<span class="nc" id="L135">		asmatutakoKop=asmatutakoKop+1;</span>
+<span class="nc" id="L136">		System.out.println(asmatutakoKop+&quot;==&quot;+pronostikoKop);</span>
+<span class="nc" id="L137">		return asmatutakoKop.equals(pronostikoKop);</span>
+				
+	}
+
+	public Bezeroa getErrepikatua() {
+<span class="nc" id="L142">		return errepikatua;</span>
+	}
+
+	public void setErrepikatua(Bezeroa errepikatua) {
+<span class="nc" id="L146">		this.errepikatua = errepikatua;</span>
+<span class="nc" id="L147">	}</span>
+	
+	public boolean equals(Apustua apus) {
+<span class="nc bnc" id="L150" title="All 2 branches missed.">		if(this.pronostikoKop!=apus.getPronostikoKop()) {</span>
+<span class="nc" id="L151">			return false;</span>
+		}
+<span class="nc bnc" id="L153" title="All 2 branches missed.">		for(Pronostikoa p : pronostikoak) {</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">			if(!apus.baduPronostikoa(p)) {</span>
+<span class="nc" id="L155">				return false;</span>
+			}
+		}
+<span class="nc" id="L158">		return true;</span>
+	}
+	
+	public boolean baduPronostikoa(Pronostikoa pronos) {
+<span class="nc bnc" id="L162" title="All 2 branches missed.">		for(Pronostikoa p : pronostikoak) {</span>
+<span class="nc bnc" id="L163" title="All 2 branches missed.">			if(pronos.equals(p)) {</span>
+<span class="nc" id="L164">				return true;</span>
+			}
+		}
+<span class="nc" id="L167">		return false;</span>
+	}
+	
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>RegisterDATestAristegui2 (19 oct 2021 9:50:03)</div></body></html>

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>BezeroaGUI.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">RegisterDATestAristegui2 (19 oct 2021 9:50:03)</a> &gt; <a href="../../index.html" class="el_group">Bets21Azkena</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">gui</a> &gt; <span class="el_source">BezeroaGUI.java</span></div><h1>BezeroaGUI.java</h1><pre class="source lang-java linenums">package gui;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import domain.Bezeroa;
+
+public class BezeroaGUI extends JFrame {
+
+	/**
+	* 
+	*/
+	private static final long serialVersionUID = 6458065498915389023L;
+	private JPanel contentPane;
+	private MainGUI lehengoMain;
+	private Bezeroa bezeroa;
+
+<span class="nc" id="L25">	public BezeroaGUI(Bezeroa bezeroa, MainGUI lehengoMain) {</span>
+		try {
+<span class="nc" id="L27">			this.lehengoMain = lehengoMain;</span>
+<span class="nc" id="L28">			this.bezeroa=bezeroa;</span>
+<span class="nc" id="L29">			bezeroaGUIExekuzioa();</span>
+<span class="nc" id="L30">		} catch (Exception e) {</span>
+<span class="nc" id="L31">			e.printStackTrace();</span>
+		}
+<span class="nc" id="L33">	}</span>
+
+	public void bezeroaGUIExekuzioa() throws Exception {
+		
+<span class="nc" id="L37">		this.setTitle(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Customer&quot;));</span>
+<span class="nc" id="L38">		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L39">		setBounds(100, 100, 450, 500);</span>
+<span class="nc" id="L40">		contentPane = new JPanel();</span>
+<span class="nc" id="L41">		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));</span>
+<span class="nc" id="L42">		setContentPane(contentPane);</span>
+<span class="nc" id="L43">		contentPane.setLayout(null);</span>
+
+<span class="nc" id="L45">		JLabel lblNewLabel = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Welcome&quot;)+&quot; &quot;+bezeroa.getErabiltzaileIzena()+&quot;!&quot;); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L46">		lblNewLabel.setBounds(123, 0, 250, 29);</span>
+<span class="nc" id="L47">		contentPane.add(lblNewLabel);</span>
+
+<span class="nc" id="L49">		JButton SignOut = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;SignOut&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L50">		SignOut.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L52">				saioaItxi();</span>
+<span class="nc" id="L53">			}</span>
+		});
+<span class="nc" id="L55">		SignOut.setBounds(16, 427, 140, 23);</span>
+<span class="nc" id="L56">		contentPane.add(SignOut);</span>
+		
+<span class="nc" id="L58">		JButton btnMakeABet = new JButton();</span>
+<span class="nc" id="L59">		btnMakeABet.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L61">				irekiApustuaEgin();</span>
+<span class="nc" id="L62">			}</span>
+		});
+<span class="nc" id="L64">		btnMakeABet.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;btnMakeABet&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L65">		btnMakeABet.setBounds(16, 25, 408, 40);</span>
+<span class="nc" id="L66">		contentPane.add(btnMakeABet);</span>
+		
+<span class="nc" id="L68">		JButton btnDeleteABet = new JButton();</span>
+<span class="nc" id="L69">		btnDeleteABet.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L71">				irekiApostuaEzabatu();</span>
+<span class="nc" id="L72">			}</span>
+		});
+<span class="nc" id="L74">		btnDeleteABet.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;btnDeleteABet&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L75">		btnDeleteABet.setBounds(16, 64, 408, 40);</span>
+<span class="nc" id="L76">		contentPane.add(btnDeleteABet);</span>
+		
+<span class="nc" id="L78">		JButton btnDirua = new JButton();</span>
+<span class="nc" id="L79">		btnDirua.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L81">				irekiDiruaSartu();</span>
+<span class="nc" id="L82">			}</span>
+		});
+<span class="nc" id="L84">		btnDirua.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;btnDirua&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L85">		btnDirua.setBounds(16, 103, 408, 40);</span>
+<span class="nc" id="L86">		contentPane.add(btnDirua);</span>
+		
+<span class="nc" id="L88">		JButton btnDiruMugimenduakIkusi = new JButton();</span>
+<span class="nc" id="L89">		btnDiruMugimenduakIkusi.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L91">				irekiMugimenduakIkusi();</span>
+<span class="nc" id="L92">			}</span>
+		});
+<span class="nc" id="L94">		btnDiruMugimenduakIkusi.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;btnDiruMugimenduakIkusi&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L95">		btnDiruMugimenduakIkusi.setBounds(16, 142, 408, 40);</span>
+<span class="nc" id="L96">		contentPane.add(btnDiruMugimenduakIkusi);</span>
+		
+<span class="nc" id="L98">		JButton btnQueryQuestions = new JButton();</span>
+<span class="nc" id="L99">		btnQueryQuestions.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L101">				JFrame a = new FindQuestionsGUI();</span>
+<span class="nc" id="L102">				a.setVisible(true);</span>
+<span class="nc" id="L103">			}</span>
+		});
+<span class="nc" id="L105">		btnQueryQuestions.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;QueryQueries&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L106">		btnQueryQuestions.setBounds(16, 181, 408, 40);</span>
+<span class="nc" id="L107">		contentPane.add(btnQueryQuestions);</span>
+		
+<span class="nc" id="L109">		JButton requestRepeat = new JButton();</span>
+<span class="nc" id="L110">		requestRepeat.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L112">				irekiErrepikatzekoEskaeraEgin();</span>
+<span class="nc" id="L113">			}</span>
+		});
+<span class="nc" id="L115">		requestRepeat.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;RequestToRepeat&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L116">		requestRepeat.setBounds(16, 220, 408, 40);</span>
+<span class="nc" id="L117">		contentPane.add(requestRepeat);</span>
+		
+<span class="nc" id="L119">		JButton postontzia = new JButton();</span>
+<span class="nc" id="L120">		postontzia.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L122">				irekiPostontzia();</span>
+<span class="nc" id="L123">			}</span>
+		});
+<span class="nc" id="L125">		postontzia.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Mailbox&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L126">		postontzia.setBounds(16, 298, 408, 40);</span>
+<span class="nc" id="L127">		contentPane.add(postontzia);</span>
+		
+<span class="nc" id="L129">		JButton ezarpenak = new JButton();</span>
+<span class="nc" id="L130">		ezarpenak.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L132">				irekiEzarpenak();</span>
+<span class="nc" id="L133">			}</span>
+		});
+<span class="nc" id="L135">		ezarpenak.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Settings&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L136">		ezarpenak.setBounds(16, 337, 408, 40);</span>
+<span class="nc" id="L137">		contentPane.add(ezarpenak);</span>
+		
+<span class="nc" id="L139">		JButton arretaZerbitzua = new JButton();</span>
+<span class="nc" id="L140">		arretaZerbitzua.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L142">				irekiArretaZerbitzua();</span>
+<span class="nc" id="L143">			}</span>
+		});
+<span class="nc" id="L145">		arretaZerbitzua.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CustomerService&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L146">		arretaZerbitzua.setBounds(16, 376, 408, 40);</span>
+<span class="nc" id="L147">		contentPane.add(arretaZerbitzua);</span>
+		
+<span class="nc" id="L149">		JButton jarraitzaileak = new JButton();</span>
+<span class="nc" id="L150">		jarraitzaileak.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L152">				irekiErrepikapena();</span>
+<span class="nc" id="L153">			}</span>
+		});
+<span class="nc" id="L155">		jarraitzaileak.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CheckFollowers&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L156">		jarraitzaileak.setBounds(16, 259, 408, 40);</span>
+<span class="nc" id="L157">		contentPane.add(jarraitzaileak);</span>
+<span class="nc" id="L158">	}</span>
+
+	/**
+	 * Metodo honen bidez, saioa itxi eta hasierako menura joaten gara
+	 */
+	public void saioaItxi() {
+<span class="nc" id="L164">		this.setVisible(false);</span>
+<span class="nc" id="L165">		this.lehengoMain.setVisible(true);</span>
+<span class="nc" id="L166">	}</span>
+	
+	public void irekiApustuaEgin() {
+<span class="nc" id="L169">		this.setVisible(false);</span>
+<span class="nc" id="L170">		JFrame a = new ApustuaEginGUI(this, bezeroa);</span>
+<span class="nc" id="L171">		a.setVisible(true);</span>
+<span class="nc" id="L172">	}</span>
+	
+	public void irekiApostuaEzabatu() {
+<span class="nc" id="L175">		this.setVisible(false);</span>
+<span class="nc" id="L176">		JFrame a = new ApostuaEzabatuGUI(this, bezeroa);</span>
+<span class="nc" id="L177">		a.setVisible(true);</span>
+<span class="nc" id="L178">	}</span>
+	
+	public void irekiDiruaSartu() {
+<span class="nc" id="L181">		this.setVisible(false);</span>
+<span class="nc" id="L182">		JFrame a = new DiruaSartuGUI(bezeroa, this);</span>
+<span class="nc" id="L183">		a.setVisible(true);</span>
+<span class="nc" id="L184">	}</span>
+	
+	public void irekiMugimenduakIkusi() {
+<span class="nc" id="L187">		this.setVisible(false);</span>
+<span class="nc" id="L188">		JFrame a = new MugimenduakIkusiGUI(bezeroa, this);</span>
+<span class="nc" id="L189">		a.setVisible(true);</span>
+<span class="nc" id="L190">	}</span>
+	
+	public void irekiErrepikatzekoEskaeraEgin() {
+<span class="nc" id="L193">		this.setVisible(false);</span>
+<span class="nc" id="L194">		JFrame a = new ErrepikatzekoEskaeraEginGUI(bezeroa, this);</span>
+<span class="nc" id="L195">		a.setVisible(true);</span>
+<span class="nc" id="L196">	}</span>
+	
+	public void irekiPostontzia() {
+<span class="nc" id="L199">		this.setVisible(false);</span>
+<span class="nc" id="L200">		JFrame a = new PostontziaGUI(this, bezeroa);</span>
+<span class="nc" id="L201">		a.setVisible(true);</span>
+<span class="nc" id="L202">	}</span>
+	
+	public void irekiEzarpenak() {
+<span class="nc" id="L205">		this.setVisible(false);</span>
+<span class="nc" id="L206">		JFrame a = new EzarpenakAldatuGUI(bezeroa, this);</span>
+<span class="nc" id="L207">		a.setVisible(true);</span>
+<span class="nc" id="L208">	}</span>
+
+	public void irekiArretaZerbitzua() {
+<span class="nc" id="L211">		this.setVisible(false);</span>
+<span class="nc" id="L212">		JFrame a = new ArretaZerbitzuaEskatuGUI(bezeroa, this);</span>
+<span class="nc" id="L213">		a.setVisible(true);</span>
+<span class="nc" id="L214">	}</span>
+	
+	public void irekiErrepikapena() {
+<span class="nc" id="L217">	 	 this.setVisible(false);</span>
+<span class="nc" id="L218">	 	 JFrame a = new ErrepikatzaileakGUI(bezeroa, this);</span>
+<span class="nc" id="L219">	 	 a.setVisible(true);</span>
+<span class="nc" id="L220">	}</span>
+	
+	public void setBezeroa(Bezeroa b) {
+<span class="nc" id="L223">		this.bezeroa=b;</span>
+<span class="nc" id="L224">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>RegisterDATestAristegui2 (19 oct 2021 9:50:03)</div></body></html>

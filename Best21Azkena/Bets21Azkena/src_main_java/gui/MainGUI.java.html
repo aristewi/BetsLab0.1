@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>MainGUI.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">RegisterDATestAristegui2 (19 oct 2021 9:50:03)</a> &gt; <a href="../../index.html" class="el_group">Bets21Azkena</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">gui</a> &gt; <span class="el_source">MainGUI.java</span></div><h1>MainGUI.java</h1><pre class="source lang-java linenums">package gui;
+
+/**
+ * @author Software Engineering teachers
+ */
+
+
+import javax.swing.*;
+
+import businessLogic.BLFacade;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+
+public class MainGUI extends JFrame {
+	
+	private static final long serialVersionUID = 1L;
+
+<span class="nc" id="L28">	private JPanel jContentPane = null;</span>
+<span class="nc" id="L29">	private JButton jButtonCreateQuery = null;</span>
+<span class="nc" id="L30">	private JButton jButtonQueryQueries = null;</span>
+
+    private static BLFacade appFacadeInterface;
+	
+	public static BLFacade getBusinessLogic(){
+<span class="nc" id="L35">		return appFacadeInterface;</span>
+	}
+	 
+	public static void setBussinessLogic (BLFacade afi){
+<span class="nc" id="L39">		appFacadeInterface=afi;</span>
+<span class="nc" id="L40">	}</span>
+	protected JLabel jLabelSelectOption;
+	private JRadioButton rdbtnNewRadioButton;
+	private JRadioButton rdbtnNewRadioButton_1;
+	private JRadioButton rdbtnNewRadioButton_2;
+	private JPanel panel;
+<span class="nc" id="L46">	private final ButtonGroup buttonGroup = new ButtonGroup();</span>
+	
+	/**
+	 * This is the default constructor
+	 */
+	public MainGUI() {
+<span class="nc" id="L52">		super();</span>
+		
+<span class="nc" id="L54">		addWindowListener(new WindowAdapter() {</span>
+			@Override
+			public void windowClosing(WindowEvent e) {
+				try {
+					//if (ConfigXML.getInstance().isBusinessLogicLocal()) facade.close();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					System.out.println(&quot;Error: &quot;+e1.toString()+&quot; , probably problems with Business Logic or Database&quot;);
+				}
+<span class="nc" id="L63">				System.exit(1);</span>
+<span class="nc" id="L64">			}</span>
+		});
+
+<span class="nc" id="L67">		initialize();</span>
+		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+<span class="nc" id="L69">	}</span>
+	
+	
+
+	/**
+	 * This method initializes this
+	 * 
+	 * @return void
+	 */
+	private void initialize() {
+		// this.setSize(271, 295);
+<span class="nc" id="L80">		this.setSize(495, 290);</span>
+<span class="nc" id="L81">		this.setContentPane(getJContentPane());</span>
+<span class="nc" id="L82">		this.setTitle(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;MainTitle&quot;));</span>
+<span class="nc" id="L83">	}</span>
+
+	/**
+	 * This method initializes jContentPane
+	 * 
+	 * @return javax.swing.JPanel
+	 */
+	private JPanel getJContentPane() {
+<span class="nc bnc" id="L91" title="All 2 branches missed.">		if (jContentPane == null) {</span>
+<span class="nc" id="L92">			jContentPane = new JPanel();</span>
+<span class="nc" id="L93">			jContentPane.setLayout(new GridLayout(4, 1, 0, 0));</span>
+<span class="nc" id="L94">			jContentPane.add(getLblNewLabel());</span>
+<span class="nc" id="L95">			jContentPane.add(getBoton3());</span>
+<span class="nc" id="L96">			jContentPane.add(getBoton2());</span>
+<span class="nc" id="L97">			jContentPane.add(getPanel());</span>
+		}
+<span class="nc" id="L99">		return jContentPane;</span>
+	}
+
+
+	/**
+	 * This method initializes boton1
+	 * 
+	 * @return javax.swing.JButton
+	 */
+	private JButton getBoton2(){
+<span class="nc bnc" id="L109" title="All 2 branches missed.">		if (jButtonCreateQuery == null) {</span>
+<span class="nc" id="L110">			jButtonCreateQuery = new JButton();</span>
+<span class="nc" id="L111">			jButtonCreateQuery.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;logIn&quot;)); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L112">			jButtonCreateQuery.addActionListener(new java.awt.event.ActionListener() {</span>
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+<span class="nc" id="L114">					irekiLogin();</span>
+<span class="nc" id="L115">				}</span>
+			});
+		}
+<span class="nc" id="L118">		return jButtonCreateQuery;</span>
+	}
+	
+	/**
+	 * This method initializes boton2
+	 * 
+	 * @return javax.swing.JButton
+	 */
+	private JButton getBoton3() {
+<span class="nc bnc" id="L127" title="All 2 branches missed.">		if (jButtonQueryQueries == null) {</span>
+<span class="nc" id="L128">			jButtonQueryQueries = new JButton();</span>
+<span class="nc" id="L129">			jButtonQueryQueries.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;QueryQueries&quot;));</span>
+<span class="nc" id="L130">			jButtonQueryQueries.addActionListener(new java.awt.event.ActionListener() {</span>
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+<span class="nc" id="L132">					JFrame a = new FindQuestionsGUI();</span>
+
+<span class="nc" id="L134">					a.setVisible(true);</span>
+<span class="nc" id="L135">				}</span>
+			});
+		}
+<span class="nc" id="L138">		return jButtonQueryQueries;</span>
+	}
+	
+
+	private JLabel getLblNewLabel() {
+<span class="nc bnc" id="L143" title="All 2 branches missed.">		if (jLabelSelectOption == null) {</span>
+<span class="nc" id="L144">			jLabelSelectOption = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;SelectOption&quot;));</span>
+<span class="nc" id="L145">			jLabelSelectOption.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 13));</span>
+<span class="nc" id="L146">			jLabelSelectOption.setForeground(Color.BLACK);</span>
+<span class="nc" id="L147">			jLabelSelectOption.setHorizontalAlignment(SwingConstants.CENTER);</span>
+		}
+<span class="nc" id="L149">		return jLabelSelectOption;</span>
+	}
+	private JRadioButton getRdbtnNewRadioButton() {
+<span class="nc bnc" id="L152" title="All 2 branches missed.">		if (rdbtnNewRadioButton == null) {</span>
+<span class="nc" id="L153">			rdbtnNewRadioButton = new JRadioButton(&quot;English&quot;);</span>
+<span class="nc" id="L154">			rdbtnNewRadioButton.addActionListener(new ActionListener() {</span>
+				public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L156">					Locale.setDefault(new Locale(&quot;en&quot;));</span>
+<span class="nc" id="L157">					System.out.println(&quot;Locale: &quot;+Locale.getDefault());</span>
+<span class="nc" id="L158">					redibujar();				}</span>
+			});
+<span class="nc" id="L160">			buttonGroup.add(rdbtnNewRadioButton);</span>
+		}
+<span class="nc" id="L162">		return rdbtnNewRadioButton;</span>
+	}
+	private JRadioButton getRdbtnNewRadioButton_1() {
+<span class="nc bnc" id="L165" title="All 2 branches missed.">		if (rdbtnNewRadioButton_1 == null) {</span>
+<span class="nc" id="L166">			rdbtnNewRadioButton_1 = new JRadioButton(&quot;Euskara&quot;);</span>
+<span class="nc" id="L167">			rdbtnNewRadioButton_1.addActionListener(new ActionListener() {</span>
+				public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L169">					Locale.setDefault(new Locale(&quot;eus&quot;));</span>
+<span class="nc" id="L170">					System.out.println(&quot;Locale: &quot;+Locale.getDefault());</span>
+<span class="nc" id="L171">					redibujar();				}</span>
+			});
+<span class="nc" id="L173">			buttonGroup.add(rdbtnNewRadioButton_1);</span>
+		}
+<span class="nc" id="L175">		return rdbtnNewRadioButton_1;</span>
+	}
+	private JRadioButton getRdbtnNewRadioButton_2() {
+<span class="nc bnc" id="L178" title="All 2 branches missed.">		if (rdbtnNewRadioButton_2 == null) {</span>
+<span class="nc" id="L179">			rdbtnNewRadioButton_2 = new JRadioButton(&quot;Castellano&quot;);</span>
+<span class="nc" id="L180">			rdbtnNewRadioButton_2.addActionListener(new ActionListener() {</span>
+				public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L182">					Locale.setDefault(new Locale(&quot;es&quot;));</span>
+<span class="nc" id="L183">					System.out.println(&quot;Locale: &quot;+Locale.getDefault());</span>
+<span class="nc" id="L184">					redibujar();</span>
+<span class="nc" id="L185">				}</span>
+			});
+<span class="nc" id="L187">			buttonGroup.add(rdbtnNewRadioButton_2);</span>
+		}
+<span class="nc" id="L189">		return rdbtnNewRadioButton_2;</span>
+	}
+	private JPanel getPanel() {
+<span class="nc bnc" id="L192" title="All 2 branches missed.">		if (panel == null) {</span>
+<span class="nc" id="L193">			panel = new JPanel();</span>
+<span class="nc" id="L194">			panel.add(getRdbtnNewRadioButton_1());</span>
+<span class="nc" id="L195">			panel.add(getRdbtnNewRadioButton_2());</span>
+<span class="nc" id="L196">			panel.add(getRdbtnNewRadioButton());</span>
+		}
+<span class="nc" id="L198">		return panel;</span>
+	}
+	
+	private void redibujar() {
+<span class="nc" id="L202">		jLabelSelectOption.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;SelectOption&quot;));</span>
+<span class="nc" id="L203">		jButtonQueryQueries.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;QueryQueries&quot;));</span>
+<span class="nc" id="L204">		jButtonCreateQuery.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;logIn&quot;));</span>
+<span class="nc" id="L205">		this.setTitle(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;MainTitle&quot;));</span>
+<span class="nc" id="L206">	}</span>
+	
+	public void irekiLogin() {
+<span class="nc" id="L209">		this.setVisible(false);</span>
+<span class="nc" id="L210">		JFrame a = new LoginGUI(this);</span>
+<span class="nc" id="L211">		a.setVisible(true);</span>
+<span class="nc" id="L212">	}</span>
+	
+} // @jve:decl-index=0:visual-constraint=&quot;0,0&quot;
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>RegisterDATestAristegui2 (19 oct 2021 9:50:03)</div></body></html>

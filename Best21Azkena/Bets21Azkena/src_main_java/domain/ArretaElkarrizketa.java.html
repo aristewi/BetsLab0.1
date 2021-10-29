@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>ArretaElkarrizketa.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">RegisterDATestAristegui2 (19 oct 2021 9:50:03)</a> &gt; <a href="../../index.html" class="el_group">Bets21Azkena</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">ArretaElkarrizketa.java</span></div><h1>ArretaElkarrizketa.java</h1><pre class="source lang-java linenums">package domain;
+
+import java.io.Serializable;
+import java.util.Vector;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+@Entity
+@XmlAccessorType(XmlAccessType.FIELD)
+public class ArretaElkarrizketa implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
+	@XmlID
+	@XmlJavaTypeAdapter(IntegerAdapter.class)
+	@GeneratedValue
+	private Integer identifikadorea;
+	@OneToOne
+	private Bezeroa bezeroa;
+	@OneToOne
+	@XmlIDREF
+	private Langilea langilea;
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+<span class="nc" id="L38">	private Vector&lt;ArretaMezua&gt; langileakBidalitakoak=new Vector&lt;ArretaMezua&gt;();</span>
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+<span class="nc" id="L40">	private Vector&lt;ArretaMezua&gt; bezeroakBidalitakoak=new Vector&lt;ArretaMezua&gt;();</span>
+	private String gaia;
+<span class="nc" id="L42">	boolean amaituta = false;</span>
+	boolean azkenaBezeroak;
+	
+	public ArretaElkarrizketa() {
+<span class="nc" id="L46">		super();</span>
+<span class="nc" id="L47">	}</span>
+	
+<span class="nc" id="L49">	public ArretaElkarrizketa(Bezeroa bezeroa, String gaia) {</span>
+<span class="nc" id="L50">		this.bezeroa=bezeroa;</span>
+<span class="nc" id="L51">		this.gaia=gaia;</span>
+<span class="nc" id="L52">		this.langilea=null;</span>
+<span class="nc" id="L53">		amaituta=false;</span>
+<span class="nc" id="L54">	}</span>
+
+	public Bezeroa getBezeroa() {
+<span class="nc" id="L57">		return bezeroa;</span>
+	}
+
+	public Langilea getLangilea() {
+<span class="nc" id="L61">		return langilea;</span>
+	}
+
+	public void setLangilea(Langilea langilea) {
+<span class="nc" id="L65">		this.langilea = langilea;</span>
+<span class="nc" id="L66">	}</span>
+	
+	public ArretaMezua addMezua(String mezua, Boolean langileari) {
+<span class="nc" id="L69">		ArretaMezua berria = new ArretaMezua(mezua, this);</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">		if(langileari) {</span>
+<span class="nc" id="L71">			bezeroakBidalitakoak.add(berria);</span>
+<span class="nc" id="L72">			azkenaBezeroak=true;</span>
+<span class="nc" id="L73">		}else {</span>
+<span class="nc" id="L74">			langileakBidalitakoak.add(berria);</span>
+<span class="nc" id="L75">			azkenaBezeroak=false;</span>
+		}
+<span class="nc" id="L77">		return berria;</span>
+	}
+	
+	public void addLangileak(ArretaMezua mezua) {
+<span class="nc" id="L81">		langileakBidalitakoak.add(mezua);</span>
+<span class="nc" id="L82">	}</span>
+
+	public Integer getIdentifikadorea() {
+<span class="nc" id="L85">		return identifikadorea;</span>
+	}
+
+	public Vector&lt;ArretaMezua&gt; getLangileakBidalitakoak() {
+<span class="nc" id="L89">		return langileakBidalitakoak;</span>
+	}
+
+	public Vector&lt;ArretaMezua&gt; getBezeroakBidalitakoak() {
+<span class="nc" id="L93">		return bezeroakBidalitakoak;</span>
+	}
+
+	public String getGaia() {
+<span class="nc" id="L97">		return gaia;</span>
+	}
+
+	public boolean isAmaituta() {
+<span class="nc" id="L101">		return amaituta;</span>
+	}
+
+	public void setAmaituta(boolean amaituta) {
+<span class="nc" id="L105">		this.amaituta = amaituta;</span>
+<span class="nc" id="L106">	}</span>
+	
+	public String toString() {
+<span class="nc" id="L109">		return bezeroa.getErabiltzaileIzena();</span>
+	}
+	
+	public Vector&lt;ArretaMezua&gt; getMezuak(){
+<span class="nc" id="L113">		Vector&lt;ArretaMezua&gt; emaitza = new Vector&lt;ArretaMezua&gt;();</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">		for(int i = 0; i&lt;bezeroakBidalitakoak.size(); i++) {</span>
+<span class="nc" id="L115">			emaitza.add(bezeroakBidalitakoak.get(i));</span>
+<span class="nc bnc" id="L116" title="All 2 branches missed.">			if(i&lt;langileakBidalitakoak.size()) {</span>
+<span class="nc" id="L117">				emaitza.add(langileakBidalitakoak.get(i));</span>
+			}
+		}
+<span class="nc" id="L120">		return emaitza;</span>
+	}
+
+	public boolean azkenaBezeroak() {
+<span class="nc" id="L124">		return azkenaBezeroak;</span>
+	}
+	
+	public void gelditu() {
+<span class="nc" id="L128">		langilea.removeElkarrizketa(this);</span>
+<span class="nc" id="L129">		langilea=null;</span>
+<span class="nc" id="L130">	}</span>
+	
+	public void removeMezua(ArretaMezua am) {
+<span class="nc bnc" id="L133" title="All 2 branches missed.">		if(am.isAzkena()) {</span>
+<span class="nc" id="L134">			langileakBidalitakoak.remove(am);</span>
+<span class="nc" id="L135">		}else {</span>
+<span class="nc" id="L136">			bezeroakBidalitakoak.remove(am);</span>
+		}
+<span class="nc" id="L138">	}</span>
+	
+	public boolean mezurikEz() {
+<span class="nc bnc" id="L141" title="All 4 branches missed.">		return langileakBidalitakoak.isEmpty() &amp;&amp; bezeroakBidalitakoak.isEmpty();</span>
+	}
+	
+	public void removeLangilearenMezua(ArretaMezua m) {
+<span class="nc" id="L145">		langileakBidalitakoak.remove(m);</span>
+<span class="nc" id="L146">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>RegisterDATestAristegui2 (19 oct 2021 9:50:03)</div></body></html>

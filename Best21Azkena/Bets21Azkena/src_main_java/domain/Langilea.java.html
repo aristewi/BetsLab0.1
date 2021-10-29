@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Langilea.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">RegisterDATestAristegui2 (19 oct 2021 9:50:03)</a> &gt; <a href="../../index.html" class="el_group">Bets21Azkena</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">Langilea.java</span></div><h1>Langilea.java</h1><pre class="source lang-java linenums">package domain;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Vector;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
+@Entity
+@XmlAccessorType(XmlAccessType.FIELD)
+public class Langilea extends Pertsona implements Serializable{
+	/**
+	 * 
+	 */
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+<span class="pc" id="L21">	private Vector&lt;ArretaElkarrizketa&gt; arretaElkarrizketak=new Vector&lt;ArretaElkarrizketa&gt;();</span>
+<span class="pc" id="L22">	private int[] balorazioak=new int [5];</span>
+	
+	private static final long serialVersionUID = 1L;
+	
+	public Langilea(){
+<span class="nc" id="L27">		super();</span>
+<span class="nc" id="L28">	}</span>
+
+	public Langilea(String izena, String abizena1, String abizena2, String erabiltzaileIzena, String pasahitza, String telefonoZbkia, String email, Date jaiotzeData) {
+<span class="fc" id="L31">		super(izena, abizena1, abizena2, erabiltzaileIzena, pasahitza, telefonoZbkia, email, jaiotzeData);</span>
+<span class="fc" id="L32">	}</span>
+	
+	public void addElkarrizketa(ArretaElkarrizketa elkarrizketa) {
+<span class="nc" id="L35">		arretaElkarrizketak.add(elkarrizketa);</span>
+<span class="nc" id="L36">	}</span>
+
+	public Vector&lt;ArretaElkarrizketa&gt; getArretaElkarrizketak() {
+<span class="nc" id="L39">		return arretaElkarrizketak;</span>
+	}
+	
+	public void removeElkarrizketa(ArretaElkarrizketa ae) {
+<span class="nc" id="L43">		arretaElkarrizketak.remove(ae);</span>
+<span class="nc" id="L44">	}</span>
+
+	public void addBalorazioa(int balorazioa) {
+<span class="nc bnc" id="L47" title="All 2 branches missed.">		if (balorazioa == 1) {</span>
+<span class="nc" id="L48">			balorazioak[0]++;</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">		} else if (balorazioa == 2) {</span>
+<span class="nc" id="L50">			balorazioak[1]++;</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">		} else if (balorazioa == 3) {</span>
+<span class="nc" id="L52">			balorazioak[2]++;</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">		} else if (balorazioa == 4) {</span>
+<span class="nc" id="L54">			balorazioak[3]++;</span>
+<span class="nc" id="L55">		} else {</span>
+<span class="nc" id="L56">			balorazioak[4]++;</span>
+		}
+<span class="nc" id="L58">	}</span>
+
+	public int[] getBalorazioak() {
+<span class="nc" id="L61">		return this.balorazioak;</span>
+	}
+	
+	public int batezBestekoa() {
+<span class="nc bnc" id="L65" title="All 2 branches missed.">		if(kopurua()==0) {</span>
+<span class="nc" id="L66">			return 0;</span>
+		}else {
+<span class="nc" id="L68">			return batura()/kopurua();</span>
+		}
+	}
+	
+	public int batura() {
+<span class="nc" id="L73">		return balorazioak[0]+balorazioak[1]*2+balorazioak[2]*3+balorazioak[3]*4+balorazioak[4]*5;	</span>
+	}
+	
+	public int kopurua() {
+<span class="nc" id="L77">		return balorazioak[0]+balorazioak[1]+balorazioak[2]+balorazioak[3]+balorazioak[4];	</span>
+	}
+	
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>RegisterDATestAristegui2 (19 oct 2021 9:50:03)</div></body></html>

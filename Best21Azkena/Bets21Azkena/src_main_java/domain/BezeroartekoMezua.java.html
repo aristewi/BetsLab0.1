@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>BezeroartekoMezua.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">RegisterDATestAristegui2 (19 oct 2021 9:50:03)</a> &gt; <a href="../../index.html" class="el_group">Bets21Azkena</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">BezeroartekoMezua.java</span></div><h1>BezeroartekoMezua.java</h1><pre class="source lang-java linenums">package domain;
+
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
+@Entity
+@XmlAccessorType(XmlAccessType.FIELD)
+public class BezeroartekoMezua extends Mezua implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@OneToOne
+	private Bezeroa igorlea;
+	@OneToOne
+	private Bezeroa hartzailea;
+	private String mota;
+	private double zenbatApostatu;
+	private double hilabeteanZenbat;
+	private double zenbatErrepikatuarentzat;
+	private String gaia;
+	
+	public BezeroartekoMezua() {
+<span class="nc" id="L29">		super();</span>
+<span class="nc" id="L30">	}</span>
+	
+	public BezeroartekoMezua(String mezua, String gaia, String mota, double zenbatApostatu, double hilabeteanZenbat, double zenbatErrepikatuarentzat, Bezeroa igorlea, Bezeroa hartzailea) {
+<span class="nc" id="L33">		super(mezua);</span>
+<span class="nc" id="L34">		this.gaia=gaia;</span>
+<span class="nc" id="L35">		this.mota=mota;</span>
+<span class="nc" id="L36">		this.zenbatApostatu=zenbatApostatu;</span>
+<span class="nc" id="L37">		this.hilabeteanZenbat=hilabeteanZenbat;</span>
+<span class="nc" id="L38">		this.igorlea=igorlea;</span>
+<span class="nc" id="L39">		this.hartzailea=hartzailea;</span>
+<span class="nc" id="L40">		this.zenbatErrepikatuarentzat=zenbatErrepikatuarentzat;</span>
+<span class="nc" id="L41">	}</span>
+
+	public String getMota() {
+<span class="nc" id="L44">		return mota;</span>
+	}
+
+	public void setMota(String mota) {
+<span class="nc" id="L48">		this.mota = mota;</span>
+<span class="nc" id="L49">	}</span>
+
+	public double getZenbatApostatu() {
+<span class="nc" id="L52">		return zenbatApostatu;</span>
+	}
+
+	public void setZenbatApostatu(double zenbatApostatu) {
+<span class="nc" id="L56">		this.zenbatApostatu = zenbatApostatu;</span>
+<span class="nc" id="L57">	}</span>
+
+	public double getHilabeteanZenbat() {
+<span class="nc" id="L60">		return hilabeteanZenbat;</span>
+	}
+
+	public void setHilabeteanZenbat(double hilabeteanZenbat) {
+<span class="nc" id="L64">		this.hilabeteanZenbat = hilabeteanZenbat;</span>
+<span class="nc" id="L65">	}</span>
+
+	public Bezeroa getIgorlea() {
+<span class="nc" id="L68">		return igorlea;</span>
+	}
+
+	public Bezeroa getHartzailea() {
+<span class="nc" id="L72">		return hartzailea;</span>
+	}
+
+	public double getZenbatErrepikatuarentzat() {
+<span class="nc" id="L76">		return zenbatErrepikatuarentzat;</span>
+	}
+
+	public void setZenbatErrepikatuarentzat(double zenbatErrepikatuarentzat) {
+<span class="nc" id="L80">		this.zenbatErrepikatuarentzat = zenbatErrepikatuarentzat;</span>
+<span class="nc" id="L81">	}</span>
+
+	public String getGaia() {
+<span class="nc" id="L84">		return gaia;</span>
+	}
+
+	public void setGaia(String gaia) {
+<span class="nc" id="L88">		this.gaia = gaia;</span>
+<span class="nc" id="L89">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>RegisterDATestAristegui2 (19 oct 2021 9:50:03)</div></body></html>

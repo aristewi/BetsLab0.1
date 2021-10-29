@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>ErrepikatzekoEskaeraEginGUI.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">RegisterDATestAristegui2 (19 oct 2021 9:50:03)</a> &gt; <a href="../../index.html" class="el_group">Bets21Azkena</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">gui</a> &gt; <span class="el_source">ErrepikatzekoEskaeraEginGUI.java</span></div><h1>ErrepikatzekoEskaeraEginGUI.java</h1><pre class="source lang-java linenums">package gui;
+
+import java.awt.Color;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import businessLogic.BLFacade;
+import domain.Bezeroa;
+
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+import java.util.Vector;
+import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
+import java.awt.Font;
+
+public class ErrepikatzekoEskaeraEginGUI extends JFrame {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private Bezeroa bezeroa;
+	private BezeroaGUI lehengoa;
+	private JTextField bilatzailea;
+	private JLabel username;
+	private JLabel apustuKop;
+	private JLabel irabaziKop;
+	private JLabel portzentaia;
+	private JLabel jokatua;
+	private JLabel irabazia;
+	private JLabel etekina;
+	private JComboBox&lt;Bezeroa&gt; comboBox;
+<span class="nc" id="L42">	private DefaultComboBoxModel&lt;Bezeroa&gt; bezeroakModel = new DefaultComboBoxModel&lt;Bezeroa&gt;();</span>
+	private JButton search;
+	private JLabel erabiltzailerikEz;
+	private Bezeroa selectedBezeroa;
+	private JTextField mezua;
+	private JTextField zenbatekoApustua;
+	private JLabel hilabeteanMax;
+	private JTextField hilabetekoMax;
+	private JLabel norentzat;
+	private JLabel zenbatApostatu;
+	private JLabel success;
+	private JButton send;
+	private JButton requestButton;
+	private JLabel invalid1;
+	private JLabel invalid2;
+	
+	/**
+	 * Launch the application.
+	 */
+<span class="nc" id="L61">	public ErrepikatzekoEskaeraEginGUI(Bezeroa bezeroa, BezeroaGUI lehengoa) {</span>
+		try {
+<span class="nc" id="L63">			this.lehengoa=lehengoa;</span>
+<span class="nc" id="L64">			this.bezeroa=bezeroa;</span>
+<span class="nc" id="L65">			ErrepikatzekoEskaeraEginGUIExekuzioa();</span>
+<span class="nc" id="L66">		} catch (Exception e) {</span>
+<span class="nc" id="L67">			e.printStackTrace();</span>
+		}
+<span class="nc" id="L69">	}</span>
+
+	/**
+	 * Create the frame.
+	 */
+	public void ErrepikatzekoEskaeraEginGUIExekuzioa() {
+<span class="nc" id="L75">		this.setTitle(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;RequestToRepeat&quot;));</span>
+<span class="nc" id="L76">		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L77">		setBounds(100, 100, 624, 300);</span>
+<span class="nc" id="L78">		contentPane = new JPanel();</span>
+<span class="nc" id="L79">		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));</span>
+<span class="nc" id="L80">		setContentPane(contentPane);</span>
+<span class="nc" id="L81">		contentPane.setLayout(null);</span>
+		
+<span class="nc" id="L83">		BLFacade facade=MainGUI.getBusinessLogic();</span>
+		
+<span class="nc" id="L85">		JButton btnClose = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Close&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L86">		btnClose.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L88">				atzera();</span>
+<span class="nc" id="L89">			}</span>
+		});
+<span class="nc" id="L91">		btnClose.setBounds(509, 227, 89, 23);</span>
+<span class="nc" id="L92">		contentPane.add(btnClose);</span>
+		
+<span class="nc" id="L94">		bilatzailea = new JTextField();</span>
+<span class="nc" id="L95">		bilatzailea.setBounds(117, 33, 260, 20);</span>
+<span class="nc" id="L96">		contentPane.add(bilatzailea);</span>
+<span class="nc" id="L97">		bilatzailea.setColumns(10);</span>
+		
+<span class="nc" id="L99">		search = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Search&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L100">		search.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L102">				success.setText(&quot;&quot;);</span>
+<span class="nc" id="L103">				mezua.setVisible(false);</span>
+<span class="nc" id="L104">				send.setVisible(false);</span>
+<span class="nc" id="L105">				send.setEnabled(false);</span>
+<span class="nc" id="L106">				norentzat.setText(&quot;&quot;);</span>
+<span class="nc" id="L107">				zenbatApostatu.setText(&quot;&quot;);</span>
+<span class="nc" id="L108">				hilabeteanMax.setText(&quot;&quot;);</span>
+<span class="nc" id="L109">				zenbatekoApustua.setVisible(false);</span>
+<span class="nc" id="L110">				hilabetekoMax.setVisible(false);</span>
+<span class="nc" id="L111">				invalid1.setText(&quot;&quot;);</span>
+<span class="nc" id="L112">				invalid2.setText(&quot;&quot;);</span>
+<span class="nc" id="L113">				erabiltzailerikEz.setText(&quot;&quot;);</span>
+<span class="nc" id="L114">				comboBox.setVisible(false);</span>
+<span class="nc" id="L115">				bezeroakModel.removeAllElements();</span>
+<span class="nc" id="L116">				String text = bilatzailea.getText();</span>
+<span class="nc" id="L117">				Vector&lt;Bezeroa&gt; bezeroak = facade.getBezeroak(text, bezeroa);</span>
+<span class="nc bnc" id="L118" title="All 2 branches missed.">				if(bezeroak.isEmpty()) {</span>
+<span class="nc" id="L119">					erabiltzailerikEz.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;NoUserfound&quot;));</span>
+<span class="nc" id="L120">					comboBox.setVisible(false);</span>
+<span class="nc" id="L121">				}else {</span>
+<span class="nc" id="L122">					comboBox.setVisible(true);</span>
+<span class="nc bnc" id="L123" title="All 2 branches missed.">					for(Bezeroa b : bezeroak) {</span>
+<span class="nc bnc" id="L124" title="All 2 branches missed.">						if(!b.getErabiltzaileIzena().equals(bezeroa.getErabiltzaileIzena())) {</span>
+<span class="nc" id="L125">							bezeroakModel.addElement(b);</span>
+						}
+					}
+				}
+<span class="nc" id="L129">			}</span>
+		});
+<span class="nc" id="L131">		search.setBounds(376, 33, 116, 20);</span>
+<span class="nc" id="L132">		contentPane.add(search);</span>
+		
+<span class="nc" id="L134">		requestButton = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;RequestToRepeat&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L135">		requestButton.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L137">				success.setText(&quot;&quot;);</span>
+<span class="nc" id="L138">				requestButton.setEnabled(false);</span>
+<span class="nc" id="L139">				requestButton.setVisible(false);</span>
+<span class="nc" id="L140">				username.setText(&quot;&quot;);</span>
+<span class="nc" id="L141">				apustuKop.setText(&quot;&quot;);</span>
+<span class="nc" id="L142">				irabaziKop.setText(&quot;&quot;);</span>
+<span class="nc" id="L143">				portzentaia.setText(&quot;&quot;);</span>
+<span class="nc" id="L144">				jokatua.setText(&quot;&quot;);</span>
+<span class="nc" id="L145">				irabazia.setText(&quot;&quot;);</span>
+<span class="nc" id="L146">				etekina.setText(&quot;&quot;);</span>
+<span class="nc" id="L147">				norentzat.setText(&quot;&quot;);</span>
+<span class="nc" id="L148">				mezua.setText(&quot;&quot;);</span>
+<span class="nc" id="L149">				mezua.setVisible(true);</span>
+<span class="nc" id="L150">				send.setVisible(true);</span>
+<span class="nc" id="L151">				send.setEnabled(true);</span>
+<span class="nc" id="L152">				norentzat.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;For&quot;)+&quot; &quot;+selectedBezeroa.getErabiltzaileIzena());</span>
+<span class="nc" id="L153">				zenbatApostatu.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;HowManyBet&quot;));</span>
+<span class="nc" id="L154">				hilabeteanMax.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;MaxMonth&quot;));</span>
+<span class="nc" id="L155">				zenbatekoApustua.setVisible(true);</span>
+<span class="nc" id="L156">				hilabetekoMax.setVisible(true);</span>
+<span class="nc" id="L157">			}</span>
+		});
+<span class="nc" id="L159">		requestButton.setBounds(167, 185, 270, 23);</span>
+<span class="nc" id="L160">		contentPane.add(requestButton);</span>
+<span class="nc" id="L161">		requestButton.setVisible(false);</span>
+<span class="nc" id="L162">		requestButton.setEnabled(false);</span>
+		
+<span class="nc" id="L164">		comboBox = new JComboBox&lt;Bezeroa&gt;();</span>
+<span class="nc" id="L165">		comboBox.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L167">				selectedBezeroa=((domain.Bezeroa) comboBox.getSelectedItem());</span>
+				
+<span class="nc bnc" id="L169" title="All 2 branches missed.">				if(selectedBezeroa!=null) {</span>
+<span class="nc" id="L170">					username.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;UserName&quot;)+&quot; &quot;+selectedBezeroa.getErabiltzaileIzena());</span>
+<span class="nc" id="L171">					apustuKop.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;BetsMade&quot;)+&quot; &quot;+selectedBezeroa.getJokatuak());</span>
+<span class="nc" id="L172">					irabaziKop.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;BetsWon&quot;)+&quot; &quot;+selectedBezeroa.getIrabaziak());</span>
+<span class="nc bnc" id="L173" title="All 2 branches missed.">					if(selectedBezeroa.getJokatuak()!=0) {</span>
+<span class="nc" id="L174">						portzentaia.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;PercentageSuccess&quot;)+&quot; % &quot;+((double) selectedBezeroa.getIrabaziak() / (double) selectedBezeroa.getJokatuak() * 100.0));</span>
+
+<span class="nc" id="L176">					}else {</span>
+<span class="nc" id="L177">						portzentaia.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;PercentageSuccess&quot;)+&quot; % &quot;+0);</span>
+
+					}
+<span class="nc" id="L180">					ArrayList&lt;Double&gt; x = selectedBezeroa.getEtekinInformazioa();</span>
+<span class="nc" id="L181">					jokatua.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Played&quot;)+&quot; &quot;+x.get(0));</span>
+<span class="nc" id="L182">					irabazia.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Win&quot;)+&quot; &quot;+x.get(1));</span>
+<span class="nc" id="L183">					etekina.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Yield&quot;)+&quot; &quot;+x.get(2));</span>
+<span class="nc" id="L184">					requestButton.setEnabled(true);</span>
+<span class="nc" id="L185">					requestButton.setVisible(true);</span>
+				}
+<span class="nc" id="L187">			}</span>
+		});
+<span class="nc" id="L189">		comboBox.setModel(bezeroakModel);</span>
+<span class="nc" id="L190">		comboBox.setBounds(117, 53, 260, 22);</span>
+<span class="nc" id="L191">		contentPane.add(comboBox);</span>
+<span class="nc" id="L192">		comboBox.setVisible(false);</span>
+		
+<span class="nc" id="L194">		username = new JLabel(&quot;&quot;); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L195">		username.setFont(username.getFont().deriveFont(username.getFont().getStyle() | Font.BOLD, username.getFont().getSize() + 2f));</span>
+<span class="nc" id="L196">		username.setBounds(50, 88, 180, 23);</span>
+<span class="nc" id="L197">		contentPane.add(username);</span>
+		
+<span class="nc" id="L199">		apustuKop = new JLabel(&quot;&quot;); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L200">		apustuKop.setBounds(50, 122, 180, 14);</span>
+<span class="nc" id="L201">		contentPane.add(apustuKop);</span>
+		
+<span class="nc" id="L203">		irabaziKop = new JLabel(&quot;&quot;); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L204">		irabaziKop.setBounds(227, 122, 197, 14);</span>
+<span class="nc" id="L205">		contentPane.add(irabaziKop);</span>
+		
+<span class="nc" id="L207">		portzentaia = new JLabel(&quot;&quot;); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L208">		portzentaia.setBounds(412, 122, 186, 14);</span>
+<span class="nc" id="L209">		contentPane.add(portzentaia);</span>
+		
+<span class="nc" id="L211">		jokatua = new JLabel(&quot;&quot;); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L212">		jokatua.setBounds(50, 160, 107, 14);</span>
+<span class="nc" id="L213">		contentPane.add(jokatua);</span>
+		
+<span class="nc" id="L215">		irabazia = new JLabel(&quot;&quot;); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L216">		irabazia.setBounds(167, 160, 116, 14);</span>
+<span class="nc" id="L217">		contentPane.add(irabazia);</span>
+		
+<span class="nc" id="L219">		etekina = new JLabel(&quot;&quot;); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L220">		etekina.setBounds(303, 160, 121, 14);</span>
+<span class="nc" id="L221">		contentPane.add(etekina);</span>
+		
+<span class="nc" id="L223">		erabiltzailerikEz = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L224">		erabiltzailerikEz.setForeground(Color.RED);</span>
+<span class="nc" id="L225">		erabiltzailerikEz.setBounds(117, 58, 260, 14);</span>
+<span class="nc" id="L226">		contentPane.add(erabiltzailerikEz);</span>
+		
+<span class="nc" id="L228">		mezua = new JTextField();</span>
+<span class="nc" id="L229">		mezua.setText(&quot;&quot;);</span>
+<span class="nc" id="L230">		mezua.setBounds(104, 118, 409, 29);</span>
+<span class="nc" id="L231">		contentPane.add(mezua);</span>
+<span class="nc" id="L232">		mezua.setColumns(10);</span>
+<span class="nc" id="L233">		mezua.setVisible(false);</span>
+		
+<span class="nc" id="L235">		norentzat = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L236">		norentzat.setBounds(100, 83, 157, 14);</span>
+<span class="nc" id="L237">		contentPane.add(norentzat);</span>
+		
+<span class="nc" id="L239">		zenbatApostatu = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L240">		zenbatApostatu.setBounds(10, 185, 315, 14);</span>
+<span class="nc" id="L241">		contentPane.add(zenbatApostatu);</span>
+		
+<span class="nc" id="L243">		zenbatekoApustua = new JTextField();</span>
+<span class="nc" id="L244">		zenbatekoApustua.setText(&quot;&quot;);</span>
+<span class="nc" id="L245">		zenbatekoApustua.setBounds(93, 202, 86, 20);</span>
+<span class="nc" id="L246">		contentPane.add(zenbatekoApustua);</span>
+<span class="nc" id="L247">		zenbatekoApustua.setColumns(10);</span>
+<span class="nc" id="L248">		zenbatekoApustua.setVisible(false);</span>
+		
+		
+<span class="nc" id="L251">		hilabeteanMax = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L252">		hilabeteanMax.setBounds(357, 185, 241, 14);</span>
+<span class="nc" id="L253">		contentPane.add(hilabeteanMax);</span>
+		
+<span class="nc" id="L255">		hilabetekoMax = new JTextField();</span>
+<span class="nc" id="L256">		hilabetekoMax.setText(&quot;&quot;);</span>
+<span class="nc" id="L257">		hilabetekoMax.setBounds(427, 202, 86, 20);</span>
+<span class="nc" id="L258">		contentPane.add(hilabetekoMax);</span>
+<span class="nc" id="L259">		hilabetekoMax.setColumns(10);</span>
+<span class="nc" id="L260">		hilabetekoMax.setVisible(false);;</span>
+		
+<span class="nc" id="L262">		send = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Send&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L263">		send.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L265">				invalid1.setText(&quot;&quot;);</span>
+<span class="nc" id="L266">				invalid2.setText(&quot;&quot;);</span>
+<span class="nc" id="L267">				success.setText(&quot;&quot;);</span>
+<span class="nc" id="L268">				double apostatukoDena=-1, apustuaHilabetean=-1; </span>
+				try {
+<span class="nc" id="L270">					apostatukoDena = Double.valueOf(zenbatekoApustua.getText());</span>
+<span class="nc" id="L271">				}catch (Exception e) {</span>
+<span class="nc" id="L272">					invalid1.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Invalid&quot;));</span>
+				}
+				try {
+<span class="nc" id="L275">					apustuaHilabetean = Double.valueOf(hilabetekoMax.getText());</span>
+<span class="nc" id="L276">				}catch (Exception e) {</span>
+<span class="nc" id="L277">					invalid2.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Invalid&quot;));</span>
+				}
+<span class="nc bnc" id="L279" title="All 2 branches missed.">				if(apostatukoDena&lt;=0) {</span>
+<span class="nc" id="L280">					invalid1.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Invalid&quot;));</span>
+				}
+<span class="nc bnc" id="L282" title="All 2 branches missed.">				if(apustuaHilabetean&lt;1) {</span>
+<span class="nc" id="L283">					invalid2.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Invalid1&quot;));</span>
+				}
+<span class="nc bnc" id="L285" title="All 4 branches missed.">				if(apostatukoDena&gt;0 &amp;&amp; apustuaHilabetean&gt;=1) {</span>
+<span class="nc" id="L286">					BLFacade facade = MainGUI.getBusinessLogic();</span>
+<span class="nc bnc" id="L287" title="All 2 branches missed.">					if(selectedBezeroa.getKomisioAutomatikoa()==-1) {</span>
+<span class="nc" id="L288">						String mezuarenTestua = mezua.getText();</span>
+<span class="nc" id="L289">						bezeroa=facade.bidaliMezua(bezeroa, selectedBezeroa, mezuarenTestua, ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;RepeatRequest&quot;), &quot;eskaera&quot;, apostatukoDena, apustuaHilabetean, -1);</span>
+<span class="nc" id="L290">					}else {</span>
+<span class="nc" id="L291">						String mezuOsoa = ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;IAccept&quot;)+selectedBezeroa.getKomisioAutomatikoa()*100+&quot; &quot;+ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;IAccept2&quot;);</span>
+<span class="nc" id="L292">						facade.bidaliMezua(selectedBezeroa, bezeroa, mezuOsoa, ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Acceptance&quot;), &quot;errepikatuak eskaera onartu&quot;, apostatukoDena, apustuaHilabetean, selectedBezeroa.getKomisioAutomatikoa());</span>
+					}
+<span class="nc" id="L294">					success.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;RequestSent&quot;));</span>
+<span class="nc" id="L295">					bezeroakModel.removeElement(selectedBezeroa);</span>
+<span class="nc bnc" id="L296" title="All 2 branches missed.">					if(bezeroakModel.getSize()==0) {</span>
+<span class="nc" id="L297">						erabiltzailerikEz.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;NoUserfound&quot;));</span>
+<span class="nc" id="L298">						comboBox.setVisible(false);</span>
+					}
+<span class="nc" id="L300">					mezua.setText(&quot;&quot;);</span>
+<span class="nc" id="L301">					mezua.setVisible(false);</span>
+<span class="nc" id="L302">					send.setEnabled(false);</span>
+<span class="nc" id="L303">					send.setVisible(false);</span>
+<span class="nc" id="L304">					norentzat.setText(&quot;&quot;);</span>
+<span class="nc" id="L305">					zenbatApostatu.setText(&quot;&quot;);</span>
+<span class="nc" id="L306">					hilabeteanMax.setText(&quot;&quot;);</span>
+<span class="nc" id="L307">					zenbatekoApustua.setVisible(false);</span>
+<span class="nc" id="L308">					hilabetekoMax.setVisible(false);</span>
+<span class="nc" id="L309">					zenbatekoApustua.setText(&quot;&quot;);</span>
+<span class="nc" id="L310">					hilabetekoMax.setText(&quot;&quot;);</span>
+				}
+<span class="nc" id="L312">			}</span>
+		});
+<span class="nc" id="L314">		send.setBounds(33, 227, 89, 23);</span>
+<span class="nc" id="L315">		contentPane.add(send);</span>
+<span class="nc" id="L316">		send.setEnabled(false);</span>
+<span class="nc" id="L317">		send.setVisible(false);</span>
+		
+<span class="nc" id="L319">		success = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L320">		success.setForeground(Color.GREEN);</span>
+<span class="nc" id="L321">		success.setBounds(132, 231, 193, 14);</span>
+<span class="nc" id="L322">		contentPane.add(success);</span>
+		
+<span class="nc" id="L324">		invalid1 = new JLabel(&quot;\r\n&quot;);</span>
+<span class="nc" id="L325">		invalid1.setForeground(Color.RED);</span>
+<span class="nc" id="L326">		invalid1.setBounds(189, 205, 73, 14);</span>
+<span class="nc" id="L327">		contentPane.add(invalid1);</span>
+		
+<span class="nc" id="L329">		invalid2 = new JLabel(&quot;\r\n&quot;);</span>
+<span class="nc" id="L330">		invalid2.setForeground(Color.RED);</span>
+<span class="nc" id="L331">		invalid2.setBounds(519, 205, 89, 14);</span>
+<span class="nc" id="L332">		contentPane.add(invalid2);</span>
+<span class="nc" id="L333">	}</span>
+	
+	public void atzera() {
+<span class="nc" id="L336">		this.setVisible(false);</span>
+<span class="nc" id="L337">		this.lehengoa.setBezeroa(bezeroa);</span>
+<span class="nc" id="L338">		this.lehengoa.setVisible(true);</span>
+<span class="nc" id="L339">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>RegisterDATestAristegui2 (19 oct 2021 9:50:03)</div></body></html>

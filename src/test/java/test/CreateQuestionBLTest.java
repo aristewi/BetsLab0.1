@@ -23,7 +23,7 @@ import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 import utility.TestUtilityFacadeImplementation;
 
-class CreateQuestionBLTest {
+ class CreateQuestionBLTest {
 	private DataAccess da = new DataAccess(ConfigXML.getInstance().getDataBaseOpenMode().equals("initialize"));
 
 	private  BLFacadeImplementation sut= new BLFacadeImplementation(da);

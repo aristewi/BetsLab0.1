@@ -24,7 +24,7 @@ import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 
 
-class CreateQuestionBLMockTest {
+public class CreateQuestionBLMockTest {
 
 	DataAccess dataAccess = Mockito.mock(DataAccess.class);
 	Event mockedEvent = Mockito.mock(Event.class);

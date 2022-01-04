@@ -21,10 +21,10 @@ import domain.Question;
 import exceptions.QuestionAlreadyExist;
 import utility.TestUtilityDataAccess;
 
-class CreateQuestionDATest {
+ class CreateQuestionDATest {
 
-	static DataAccess sut = new DataAccess(ConfigXML.getInstance().getDataBaseOpenMode().equals("initialize"));;
-	static TestUtilityDataAccess testDA = new TestUtilityDataAccess();
+	 DataAccess sut = new DataAccess(ConfigXML.getInstance().getDataBaseOpenMode().equals("initialize"));;
+	 TestUtilityDataAccess testDA = new TestUtilityDataAccess();
 
 	private Event ev;
 

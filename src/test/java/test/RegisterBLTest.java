@@ -14,7 +14,7 @@ import domain.Pertsona;
 import exceptions.UserAlreadyExist;
 import utility.TestUtilityFacadeImplementation;
 
-class RegisterBLTest {
+ class RegisterBLTest {
 
 	private static DataAccess sut = new DataAccess(ConfigXML.getInstance().getDataBaseOpenMode().equals("initialize"));;
 	private static TestUtilityFacadeImplementation betsDAO = new TestUtilityFacadeImplementation();

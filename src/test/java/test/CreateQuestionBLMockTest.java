@@ -102,7 +102,7 @@ public class CreateQuestionBLMockTest {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			Date oneDate = sdf.parse("05/10/2022");
 
-			// configure Mock
+		
 			Mockito.doReturn(oneDate).when(mockedEvent).getEventDate();
 			try {
 				String queryText = "Query Text";
